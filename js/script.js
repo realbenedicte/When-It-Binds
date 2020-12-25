@@ -17,6 +17,8 @@ let img07;
 let img08;
 let img09;
 
+let imgZOffest = 100;
+
 
 function preload()
 {
@@ -36,7 +38,7 @@ function preload()
 // Description of setup() goes here.
 function setup() {
   // set canvas size
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
 
 }
 
@@ -44,23 +46,75 @@ function setup() {
 //
 // Description of draw() goes here.
 function draw() {
+rotateY(frameCount * 0.002);
+  var scale = 0.4;
+  // display background image
+  //image(img09, 0, 0, width, img09.height*width/img09.width);
+  background(200);
+  orbitControl();
+  //background
+  push();
+    texture(img09);
+    translate(0, 0, imgZOffest*-8);
+    noStroke();
+    plane(scale*width, scale*img09.height*width/img09.width)
 
-var scale = 0.5;
-// display background image
-image(img09, 0, 0, width, img09.height*width/img09.width);
+  pop();
 
-push();
-imageMode(CENTER);
-image(img09, 0.5*width, 0.5*height, scale*width, scale*img09.height*width/img09.width); // to fit width
-image(img08, 0.5*width, 0.5*height, scale*width, scale*img08.height*width/img08.width); // to fit width
-image(img07, 0.5*width, 0.5*height, scale*width, scale*img07.height*width/img07.width); // to fit width
-//image(img06, 0.5*width, 0.5*height, scale*width, scale*img06.height*width/img06.width); // to fit width
-image(img05, 0.5*width, 0.5*height, scale*width, scale*img05.height*width/img05.width); // to fit width
-image(img04, 0.5*width, 0.5*height, scale*width, scale*img04.height*width/img04.width); // to fit width
-image(img03, 0.5*width, 0.5*height, scale*width, scale*img03.height*width/img03.width); // to fit width
-image(img02, 0.5*width, 0.5*height, scale*width, scale*img02.height*width/img02.width); // to fit width
-image(img01, mouseX, mouseY, scale*width, scale*img01.height*width/img01.width); // to fit width
+  //8th image
+  push();
+    texture(img08);
+    translate(0, 0, imgZOffest*-7);
+    noStroke();
+    plane(scale*width, scale*img08.height*width/img08.width)
+  pop();
+
+  //7th image
+  push();
+    texture(img07);
+    translate(0, 0, imgZOffest*-6);
+    noStroke();
+    plane(scale*width, scale*img07.height*width/img07.width)
+  pop();
+
+  //5th image
+  push();
+    texture(img05);
+    translate(0, 0, imgZOffest*-5);
+    noStroke();
+    plane(scale*width, scale*img05.height*width/img05.width)
+  pop();
+
+//4th image
+  push();
+    texture(img04);
+    translate(0, 0, imgZOffest*-4);
+    noStroke();
+    plane(scale*width, scale*img04.height*width/img04.width)
+  pop();
 
 
-pop();
+  //3rd image
+    push();
+      texture(img03);
+      translate(0, 0, imgZOffest*-3);
+      noStroke();
+      plane(scale*width, scale*img03.height*width/img03.width)
+    pop();
+
+    //2nd image
+      push();
+        texture(img02);
+        translate(0, 0, imgZOffest*-2);
+        noStroke();
+        plane(scale*width, scale*img02.height*width/img02.width)
+      pop();
+
+      //1st image
+        push();
+          texture(img01);
+          translate(0, 0, imgZOffest*-1);
+          noStroke();
+          plane(scale*width, scale*img01.height*width/img01.width)
+        pop();
 }
