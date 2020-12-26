@@ -9,23 +9,6 @@ body {
   background-color: #dcdcdc;
 }
 
-#p5_loading {
-}
-
-.loadingclass{
-  text-align: center;
-}
-
-.blink_me {
-  animation: blinker 1s linear infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
-
 .main-nav {
   display: -webkit-flex;
   display: flex;
