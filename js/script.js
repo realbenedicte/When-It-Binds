@@ -30,6 +30,11 @@ let mirageFont;
 //Text
 let titleText;
 let albumTitle;
+let benedicteText;
+
+//PLane Size
+let planeX;
+let planeY;
 
 // preload()
 //
@@ -48,7 +53,7 @@ function preload()
   img09 = loadImage("assets/images/Images_Layers/9background.png");
 
   whenItBinds = loadImage("assets/images/WhiteFont.png");
-
+  benedicteText = loadImage("assets/images/benedicte.png");
   lapicideFont = loadFont('assets/fonts/Lapicide-Light.ttf');
 }
 
@@ -58,8 +63,8 @@ function setup() {
   //create canvas and make it window sized
   var cnv = createCanvas(windowWidth, windowHeight, WEBGL);
   cnv.style('display', 'block'); //formatting for css
-  titleText = new BasicText(-windowWidth/2 + 150, -windowHeight/2 + 120, 'Bénédicte', 50, lapicideFont);
-  albumTitle = new BasicText(0, 0, 'When It Binds', 50, lapicideFont);
+  // titleText = new BasicText(-windowWidth/2 + 150, -windowHeight/2 + 120, 'Bénédicte', 50, lapicideFont);
+  // albumTitle = new BasicText(0, 0, 'When It Binds', 50, lapicideFont);
 }
 
 // windowResized()
@@ -147,9 +152,9 @@ function draw() {
         pop();
         pop();
 
-        push();
-        titleText.display();
-        pop();
+        // push();
+        // titleText.display();
+        // pop();
 
         // push();
         // textAlign(CENTER, CENTER);
@@ -163,4 +168,22 @@ function draw() {
         noStroke();
         plane(whenItBindsScale*width, whenItBindsScale*whenItBinds.height*width/whenItBinds.width);
         pop();
-}
+        //
+        push();
+          let benedicteScale = 0.15;
+          planeX = benedicteScale*windowWidth;
+          planeY = benedicteScale*benedicteText.height*windowWidth/benedicteText.width;
+          texture(benedicteText);
+          noStroke();
+          translate(-windowWidth/2 + (planeX + 20), -windowHeight/2 + (planeY+60), 100);
+          plane(planeX, planeY);
+
+          print(planeX);
+
+        //width = width of SCREEN
+        //the plane will be some percentage of the screen width ie. 20percent
+        //the height of the plane is determined by percentofScreen (imageheight*width of screen/image width)
+        //basically get ratio of image (height over width)
+        pop();
+
+      }
