@@ -1,13 +1,13 @@
 
 body {
   background-color: #dcdcdc;
+  font-family: 'Lapicide', light;
 }
 
 
 @font-face {
   font-family: 'Lapicide', light;
   src: url('css/fonts/Lapicide-Light.ttf') format("truetype");
-  font-weight: light;
 }
 
 .main-nav {
@@ -17,10 +17,12 @@ body {
 .main-nav li:first-child {
   margin-right: auto;
   list-style-type: none;
+  font-family: 'Lapicide', light;
 }
 
 .main-nav li{
   list-style-type: none;
+  font-family: 'Lapicide', light;
 }
 
 .main-nav a {
@@ -38,4 +40,5 @@ body {
   font-size: 60px;
   margin: 0;
   padding: 0;
+  font-family: 'Lapicide', light;
 }
