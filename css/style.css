@@ -5,8 +5,9 @@ body {
 
 
 @font-face {
-  font-family: 'Lapicide', Light;
+  font-family: 'Lapicide', light;
   src: url('css/fonts/Lapicide-Light.ttf') format("truetype");
+  font-weight: light;
 }
 
 .main-nav {
@@ -30,7 +31,7 @@ body {
 	padding: 15px;
 	text-decoration: none;
   font-size: 20px;
-  font-family: 'Lapicide', Light;
+  font-family: 'Lapicide', light;
 }
 
 .main-nav .logo {
