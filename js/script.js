@@ -1,12 +1,13 @@
 "use strict";
 
 /**************************************************
-Template p5 project
-Pippin Barr
-
-Here is a description of this template p5 project.
+Bénédicte Webpage for When It Binds
+2021
 **************************************************/
 
+//Global Variables
+//
+//layered images
 let img01;
 let img02;
 let img03;
@@ -17,10 +18,22 @@ let img07;
 let img08;
 let img09;
 
+//how far image layers should be spaced apart
 let imgZOffest = 100;
+//album Title image
+let whenItBinds;
 
-let cam;
+//Font
+let lapicideFont;
+let mirageFont;
 
+//Text
+let titleText;
+let albumTitle;
+
+// preload()
+//
+//Preload Images
 function preload()
 {
   // load images
@@ -33,32 +46,43 @@ function preload()
   img07 = loadImage('assets/images/Images_Layers/7blue.png');
   img08 = loadImage('assets/images/Images_Layers/8white.png');
   img09 = loadImage("assets/images/Images_Layers/9background.png");
+
+  whenItBinds = loadImage("assets/images/WhiteFont.png");
+
+  lapicideFont = loadFont('assets/fonts/Lapicide-Light.ttf');
 }
+
 // setup()
 //
-// Description of setup() goes here.
 function setup() {
-  // set canvas size
-  createCanvas(windowWidth, windowHeight, WEBGL);
-//cam = createCamera();
+  //create canvas and make it window sized
+  var cnv = createCanvas(windowWidth, windowHeight, WEBGL);
+  cnv.style('display', 'block'); //formatting for css
+  titleText = new BasicText(-windowWidth/2 + 150, -windowHeight/2 + 120, 'Bénédicte', 50, lapicideFont);
+  albumTitle = new BasicText(0, 0, 'When It Binds', 50, lapicideFont);
+}
+
+// windowResized()
+//
+//resize window!!!
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 // draw()
 //
-// Description of draw() goes here.
 function draw() {
-
 //Zoom on z with mouse Y movement
-translate(0,0, (mouseY-height/2)/2)
+  push();
+  //mousemovements
+  translate((mouseX-width/2)/4,0, (mouseY-height/2));
+  //grey background
+  background(220);
+  //scale for how the layered images should be scaled
+  var scale = 0.6;
+  //rotateY(frameCount * 0.002);
 
-push();
-rotateY(frameCount * 0.002);
-  var scale = 0.4;
-  // display background image
-  //image(img09, 0, 0, width, img09.height*width/img09.width);
-  background(200);
-  //translate(mouseX-width/2, mouseY-height/2);
-  //background
+  //9th image
   push();
     texture(img09);
     translate(0, 0, imgZOffest*-8);
@@ -98,7 +122,6 @@ rotateY(frameCount * 0.002);
     plane(scale*width, scale*img04.height*width/img04.width)
   pop();
 
-
   //3rd image
     push();
       texture(img03);
@@ -115,11 +138,29 @@ rotateY(frameCount * 0.002);
         plane(scale*width, scale*img02.height*width/img02.width)
       pop();
 
-      //1st image
+    //1st image
         push();
           texture(img01);
           translate(0, 0, imgZOffest*-1);
           noStroke();
           plane(scale*width, scale*img01.height*width/img01.width)
+        pop();
+        pop();
+
+        push();
+        titleText.display();
+        pop();
+
+        // push();
+        // textAlign(CENTER, CENTER);
+        // albumTitle.display();
+        // pop();
+
+        push();
+        let whenItBindsScale = 0.6;
+        texture(whenItBinds);
+        translate(0, 0, 100);
+        noStroke();
+        plane(whenItBindsScale*width, whenItBindsScale*whenItBinds.height*width/whenItBinds.width);
         pop();
 }
