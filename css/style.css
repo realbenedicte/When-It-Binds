@@ -2,6 +2,7 @@
 @font-face {
   font-family: 'Lapicide', light;
   src: url('fonts/Lapicide-Light.woff') format("woff");
+  font-weight: light;
 }
 
 
