@@ -5,7 +5,7 @@ body {
 
 
 @font-face {
-  font-family: 'Lapicide', light;
+  font-family: 'Lapicide';
   src: url('fonts/Lapicide-Light.woff') format("woff");
 }
 
@@ -30,7 +30,7 @@ body {
 	padding: 15px;
 	text-decoration: none;
   font-size: 20px;
-  font-family: 'Lapicide', light;
+  font-family: 'Lapicide';
 }
 
 .main-nav .logo {
