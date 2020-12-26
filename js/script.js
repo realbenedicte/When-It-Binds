@@ -30,7 +30,7 @@ let mirageFont;
 //Text
 let titleText;
 let albumTitle;
-let benedicteText;
+//let benedicteText;
 
 //PLane Size
 let planeX;
@@ -47,14 +47,14 @@ function preload()
   img03 = loadImage('assets/images/Images_Layers/3stars.png');
   img04 = loadImage('assets/images/Images_Layers/4wispsright.png');
   img05 = loadImage('assets/images/Images_Layers/5tail.png');
-  img06 = loadImage('assets/images/Images_Layers/6blue.png');
+  // img06 = loadImage('assets/images/Images_Layers/6blue.png');
   img07 = loadImage('assets/images/Images_Layers/7blue.png');
   img08 = loadImage('assets/images/Images_Layers/8white.png');
   img09 = loadImage("assets/images/Images_Layers/9background.png");
 
   whenItBinds = loadImage("assets/images/WhiteFont_SMALL.png");
 
-  benedicteText = loadImage("assets/images/benedicte.png");
+  //benedicteText = loadImage("assets/images/benedicte.png");
   lapicideFont = loadFont('assets/fonts/Lapicide-Light.ttf');
 }
 
@@ -63,7 +63,10 @@ function preload()
 function setup() {
   //create canvas and make it window sized
   var cnv = createCanvas(windowWidth, windowHeight, WEBGL);
-  cnv.style('display', 'block'); //formatting for css
+  cnv.style('display', 'block');
+  cnv.position(0,0);
+  cnv.style('z-index', '-1')
+   //formatting for css
   // titleText = new BasicText(-windowWidth/2 + 150, -windowHeight/2 + 120, 'Bénédicte', 50, lapicideFont);
   // albumTitle = new BasicText(0, 0, 'When It Binds', 50, lapicideFont);
 }
@@ -170,21 +173,21 @@ function draw() {
         plane(whenItBindsScale*width, whenItBindsScale*whenItBinds.height*width/whenItBinds.width);
         pop();
         //
-        push();
-          let benedicteScale = 0.15;
-          planeX = benedicteScale*windowWidth;
-          planeY = benedicteScale*benedicteText.height*windowWidth/benedicteText.width;
-          texture(benedicteText);
-          noStroke();
-          translate(-windowWidth/2 + (planeX + 30), -windowHeight/2 + (planeY+60), 100);
-          plane(planeX, planeY);
-
-          print(planeX);
-
-        //width = width of SCREEN
-        //the plane will be some percentage of the screen width ie. 20percent
-        //the height of the plane is determined by percentofScreen (imageheight*width of screen/image width)
-        //basically get ratio of image (height over width)
-        pop();
+        // push();
+        //   let benedicteScale = 0.15;
+        //   planeX = benedicteScale*windowWidth;
+        //   planeY = benedicteScale*benedicteText.height*windowWidth/benedicteText.width;
+        //   texture(benedicteText);
+        //   noStroke();
+        //   translate(-windowWidth/2 + (planeX + 30), -windowHeight/2 + (planeY+60), 100);
+        //   plane(planeX, planeY);
+        //
+        //
+        //
+        // //width = width of SCREEN
+        // //the plane will be some percentage of the screen width ie. 20percent
+        // //the height of the plane is determined by percentofScreen (imageheight*width of screen/image width)
+        // //basically get ratio of image (height over width)
+        // pop();
 
       }

@@ -1,11 +1,60 @@
 
 body {
-  margin: 0;
+  background-color: #dcdcdc;
+
+}
+
+@font-face {
+  font-family: Lapicide;
+  src: url('/assets/fonts/Lapicide-Light.woff') format("woff");
+}
+
+#p5_loading {
+
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.loadingclass{
+  text-align: center;
+}
+
+
+.main-nav {
+  display: -webkit-flex;
   display: flex;
+}
+.main-nav li:first-child {
+  margin-right: auto;
+  list-style-type: none;
+}
 
-  /* This centers our sketch horizontally. */
-  justify-content: center;
+.main-nav li{
+  list-style-type: none;
+}
 
-  /* This centers our sketch vertically. */
-  align-items: center;
+
+.main-nav a {
+  margin: 10px;
+  border-radius: 5px;
+  color: #000000;
+	display: block;
+	padding: 15px;
+	text-decoration: none;
+  font-family: 'Lapicide';
+  font-size: 20px;
+}
+.main-nav .logo {
+
+  font-size: 60px;
+  margin: 0;
+  padding: 0;
 }
