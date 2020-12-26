@@ -175,7 +175,7 @@ function draw() {
           planeY = benedicteScale*benedicteText.height*windowWidth/benedicteText.width;
           texture(benedicteText);
           noStroke();
-          translate(-windowWidth/2 + (planeX + 20), -windowHeight/2 + (planeY+60), 100);
+          translate(-windowWidth/2 + (planeX + 30), -windowHeight/2 + (planeY+60), 100);
           plane(planeX, planeY);
 
           print(planeX);
