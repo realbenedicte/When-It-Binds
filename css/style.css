@@ -6,7 +6,7 @@ body {
 
 @font-face {
   font-family: 'Lapicide', regular;
-  src: url('css/fonts/Lapicide-Light.ttf') format("ttf");
+  src: url('css/fonts/Lapicide-Light.ttf') format("truetype");
 }
 
 .main-nav {
