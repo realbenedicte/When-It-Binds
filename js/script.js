@@ -19,6 +19,7 @@ let img09;
 
 let imgZOffest = 100;
 
+let cam;
 
 function preload()
 {
@@ -39,14 +40,16 @@ function preload()
 function setup() {
   // set canvas size
   createCanvas(windowWidth, windowHeight, WEBGL);
-
+//cam = createCamera();
 }
 
 // draw()
 //
 // Description of draw() goes here.
 function draw() {
-    //orbitControl();
+
+//Zoom on z with mouse Y movement
+translate(0,0, (mouseY-height/2)/2)
 
 push();
 rotateY(frameCount * 0.002);
