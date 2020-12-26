@@ -46,19 +46,21 @@ function setup() {
 //
 // Description of draw() goes here.
 function draw() {
+    //orbitControl();
+
+push();
 rotateY(frameCount * 0.002);
   var scale = 0.4;
   // display background image
   //image(img09, 0, 0, width, img09.height*width/img09.width);
   background(200);
-  orbitControl();
+  //translate(mouseX-width/2, mouseY-height/2);
   //background
   push();
     texture(img09);
     translate(0, 0, imgZOffest*-8);
     noStroke();
     plane(scale*width, scale*img09.height*width/img09.width)
-
   pop();
 
   //8th image
