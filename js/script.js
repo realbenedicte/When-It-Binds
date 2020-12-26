@@ -13,7 +13,7 @@ let img02;
 let img03;
 let img04;
 let img05;
-let img06;
+// let img06;
 let img07;
 let img08;
 let img09;
@@ -55,7 +55,7 @@ function preload()
   whenItBinds = loadImage("assets/images/WhiteFont_SMALL.png");
 
   //benedicteText = loadImage("assets/images/benedicte.png");
-  lapicideFont = loadFont('assets/fonts/Lapicide-Light.ttf');
+  lapicideFont = loadFont('css/fonts/Lapicide-Light.ttf');
 }
 
 // setup()
