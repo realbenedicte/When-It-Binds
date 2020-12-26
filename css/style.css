@@ -5,7 +5,7 @@ body {
 }
 
 @font-face {
-  font-family: Lapicide;
+  font-family: 'Lapicide';
   src: url('fonts/Lapicide-Light.woff') format("woff");
 }
 
