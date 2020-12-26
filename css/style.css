@@ -47,10 +47,11 @@ body {
 	display: block;
 	padding: 15px;
 	text-decoration: none;
-  font-family: 'Lapicide';
+  font-family: 'Lapicide', light;
   font-size: 20px;
 }
 .main-nav .logo {
+  font-family: 'Lapicide', light;
   font-size: 60px;
   margin: 0;
   padding: 0;
