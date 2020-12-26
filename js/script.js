@@ -1,7 +1,7 @@
 "use strict";
 
 /**************************************************
-Bénédicte Webpage for When It Binds
+Bénédicte Webpage for When It Binds ~~ EP ~~
 2021
 **************************************************/
 
@@ -23,7 +23,7 @@ let imgZOffest = 100;
 //album Title image
 let whenItBinds;
 
-//Font
+//Fonts
 let lapicideFont;
 let mirageFont;
 
@@ -38,7 +38,7 @@ let planeY;
 
 // preload()
 //
-//Preload Images
+//Preload Images and fonts
 function preload()
 {
   // load images
@@ -52,7 +52,8 @@ function preload()
   img08 = loadImage('assets/images/Images_Layers/8white.png');
   img09 = loadImage("assets/images/Images_Layers/9background.png");
 
-  whenItBinds = loadImage("assets/images/WhiteFont.png");
+  whenItBinds = loadImage("assets/images/WhiteFont_SMALL.png");
+
   benedicteText = loadImage("assets/images/benedicte.png");
   lapicideFont = loadFont('assets/fonts/Lapicide-Light.ttf');
 }
