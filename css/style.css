@@ -23,7 +23,7 @@ body {
 
 .main-nav li{
   list-style-type: none;
-    font-family: 'lapicidelight';
+  font-family: 'lapicidelight';
 }
 
 .main-nav a {
@@ -42,4 +42,21 @@ body {
   margin: 0;
   padding: 0;
 
+}
+
+#p5_loading {
+}
+
+.loadingclass{
+  text-align: center;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
