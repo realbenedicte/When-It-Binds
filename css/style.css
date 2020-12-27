@@ -1,14 +1,15 @@
 
 @font-face {
-  font-family: 'Lapicide', light;
-  src: url('fonts/Lapicide-Light.ttf') format("truetype"),
-       url('fonts/Lapicide-Light.woff') format("woff"),
-       url('fonts/Lapicide-Light.woff2') format("woff2"),
+    font-family: 'lapicidelight';
+    src: url('lapicide-light-webfont.woff2') format('woff2'),
+         url('lapicide-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
   background-color: #dcdcdc;
-  font-family: 'Lapicide', light;
+  font-family: 'lapicidelight';
 }
 
 .main-nav {
