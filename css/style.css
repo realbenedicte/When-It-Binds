@@ -7,6 +7,24 @@
     font-style: normal;
 }
 
+#p5_loading {
+  text-align: center;
+}
+
+.loadingclass{
+  text-align: center;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 body {
   background-color: #dcdcdc;
 
@@ -42,22 +60,4 @@ body {
   margin: 0;
   padding: 0;
 
-}
-
-#p5_loading {
-  text-align: center;
-}
-
-.loadingclass{
-  text-align: center;
-}
-
-.blink_me {
-  animation: blinker 1s linear infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
 }
