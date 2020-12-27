@@ -9,7 +9,7 @@
 
 body {
   background-color: #dcdcdc;
-  font-family: 'lapicidelight';
+
 }
 
 .main-nav {
@@ -23,7 +23,7 @@ body {
 
 .main-nav li{
   list-style-type: none;
-
+    font-family: 'lapicidelight';
 }
 
 .main-nav a {
