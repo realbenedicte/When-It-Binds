@@ -1,6 +1,6 @@
 
 @font-face {
-  font-family: 'Lapicide';
+  font-family: 'Lapicide', light;
   src: url('fonts/Lapicide-Light.ttf') format("truetype"),
        url('fonts/Lapicide-Light.woff') format("woff"),
        url('fonts/Lapicide-Light.woff2') format("woff2"),
@@ -8,7 +8,7 @@
 
 body {
   background-color: #dcdcdc;
-  font-family: 'Lapicide', Fallback;
+  font-family: 'Lapicide', light;
 }
 
 .main-nav {
