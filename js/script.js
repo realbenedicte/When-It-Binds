@@ -82,15 +82,22 @@ function windowResized() {
 //
 function draw() {
 //Zoom on z with mouse Y movement
+background(220);
+//scale for how the layered images should be scaled
+
+
   push();
+  if(windowWidth>700){
   //mousemovements
   translate((mouseX-width/2)/4,0, (mouseY-height/2));
   //grey background
-  background(220);
-  //scale for how the layered images should be scaled
-  var scale = 0.6;
+var scale = 0.6;
   //rotateY(frameCount * 0.002);
-
+}
+ else{
+  rotateY(frameCount * 0.003);
+  var scale = 1.8;
+ }
   //9th image
   push();
     texture(img09);
