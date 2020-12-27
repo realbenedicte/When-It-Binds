@@ -61,7 +61,7 @@ body {
   padding: 0;
 }
 
-@media screen and (max-width: 1127px) {
+@media (max-width: 700px) {
   .main-nav {
     flex-direction: column; /* change the direction of the container */
   }
