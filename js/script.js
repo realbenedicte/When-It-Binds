@@ -55,7 +55,7 @@ function preload()
   whenItBinds = loadImage("assets/images/WhiteFont_SMALL.png");
 
   //benedicteText = loadImage("assets/images/benedicte.png");
-  lapicideFont = loadFont('css/fonts/Lapicide-Light.ttf');
+  lapicideFont = loadFont('css/lapicide-light-webfont.woff');
 }
 
 // setup()
