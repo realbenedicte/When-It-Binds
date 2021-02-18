@@ -198,3 +198,13 @@ var scale = 0.6;
         // pop();
 
       }
+
+// pseudoCode for drawImage function
+//       drawImage(img, orderImg){
+//         push();
+//         texture(img);
+          // translate(0, 0, imgZOffest*orderImg);
+//         noStroke();
+//         plane(scale*width, scale*img.height*width/img.width);
+//         pop();
+//       }
