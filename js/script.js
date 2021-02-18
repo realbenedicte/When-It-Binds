@@ -39,19 +39,19 @@ let planeY;
 // preload()
 //
 //Preload Images and fonts
-function preload()
-{
-  // load images
-  img01 = loadImage('assets/images/Images_Layers/1creature.png');
-  img02 = loadImage('assets/images/Images_Layers/2wispsleft.png');
-  img03 = loadImage('assets/images/Images_Layers/3stars.png');
-  img04 = loadImage('assets/images/Images_Layers/4wispsright.png');
-  img05 = loadImage('assets/images/Images_Layers/5tail.png');
+function preload() {
+  // load images (right now using 1080x1080)
+  img01 = loadImage('assets/images/1080/1creature.png');
+  img02 = loadImage('assets/images/1080/2wispsleft.png');
+  img03 = loadImage('assets/images/1080/3stars.png');
+  img04 = loadImage('assets/images/1080/4wispsright.png');
+  img05 = loadImage('assets/images/1080/5tail.png');
   // img06 = loadImage('assets/images/Images_Layers/6blue.png');
-  img07 = loadImage('assets/images/Images_Layers/7blue.png');
-  img08 = loadImage('assets/images/Images_Layers/8white.png');
-  img09 = loadImage("assets/images/Images_Layers/9background.png");
+  img07 = loadImage('assets/images/1080/6blue.png');
+  img08 = loadImage('assets/images/1080/7white.png');
+  img09 = loadImage("assets/images/1080/8background.png");
 
+  //Title centered text
   whenItBinds = loadImage("assets/images/WhiteFont_SMALL.png");
 
   //benedicteText = loadImage("assets/images/benedicte.png");
@@ -64,11 +64,8 @@ function setup() {
   //create canvas and make it window sized
   var cnv = createCanvas(windowWidth, windowHeight, WEBGL);
   cnv.style('display', 'block');
-  cnv.position(0,0);
+  cnv.position(0, 0);
   cnv.style('z-index', '-1')
-   //formatting for css
-  // titleText = new BasicText(-windowWidth/2 + 150, -windowHeight/2 + 120, 'Bénédicte', 50, lapicideFont);
-  // albumTitle = new BasicText(0, 0, 'When It Binds', 50, lapicideFont);
 }
 
 // windowResized()
@@ -81,130 +78,92 @@ function windowResized() {
 // draw()
 //
 function draw() {
-//Zoom on z with mouse Y movement
-background(220);
-//scale for how the layered images should be scaled
-
-
+  //Zoom on z with mouse Y movement
+  background(220);
+  //scale for how the layered images should be scaled
   push();
-  if(windowWidth>700){
-  //mousemovements
-  translate((mouseX-width/2)/4,0, (mouseY-height/2));
-  //grey background
-var scale = 0.6;
-  //rotateY(frameCount * 0.002);
-}
- else{
-  rotateY(frameCount * 0.003);
-  var scale = 1.8;
- }
+  if (windowWidth > 700) {
+    //mousemovements
+    translate((mouseX - width / 2) / 4, 0, (mouseY - height / 2));
+    //grey background
+    var scale = 1;
+    //rotateY(frameCount * 0.002);
+  } else {
+    rotateY(frameCount * 0.003);
+    var scale = 1.8;
+  }
   //9th image
   push();
-    texture(img09);
-    translate(0, 0, imgZOffest*-8);
-    noStroke();
-    plane(scale*width, scale*img09.height*width/img09.width)
+  texture(img09);
+  translate(0, 0, imgZOffest * -8);
+  noStroke();
+  plane(scale * width, scale * img09.height * width / img09.width)
   pop();
 
   //8th image
   push();
-    texture(img08);
-    translate(0, 0, imgZOffest*-7);
-    noStroke();
-    plane(scale*width, scale*img08.height*width/img08.width)
+  texture(img08);
+  translate(0, 0, imgZOffest * -7);
+  noStroke();
+  plane(scale * width, scale * img08.height * width / img08.width)
   pop();
 
   //7th image
   push();
-    texture(img07);
-    translate(0, 0, imgZOffest*-6);
-    noStroke();
-    plane(scale*width, scale*img07.height*width/img07.width)
+  texture(img07);
+  translate(0, 0, imgZOffest * -6);
+  noStroke();
+  plane(scale * width, scale * img07.height * width / img07.width)
   pop();
 
   //5th image
   push();
-    texture(img05);
-    translate(0, 0, imgZOffest*-5);
-    noStroke();
-    plane(scale*width, scale*img05.height*width/img05.width)
+  texture(img05);
+  translate(0, 0, imgZOffest * -5);
+  noStroke();
+  plane(scale * width, scale * img05.height * width / img05.width)
   pop();
 
-//4th image
+  //4th image
   push();
-    texture(img04);
-    translate(0, 0, imgZOffest*-4);
-    noStroke();
-    plane(scale*width, scale*img04.height*width/img04.width)
+  texture(img04);
+  translate(0, 0, imgZOffest * -4);
+  noStroke();
+  plane(scale * width, scale * img04.height * width / img04.width)
   pop();
 
   //3rd image
-    push();
-      texture(img03);
-      translate(0, 0, imgZOffest*-3);
-      noStroke();
-      plane(scale*width, scale*img03.height*width/img03.width)
-    pop();
+  push();
+  texture(img03);
+  translate(0, 0, imgZOffest * -3);
+  noStroke();
+  plane(scale * width, scale * img03.height * width / img03.width)
+  pop();
 
-    //2nd image
-      push();
-        texture(img02);
-        translate(0, 0, imgZOffest*-2);
-        noStroke();
-        plane(scale*width, scale*img02.height*width/img02.width)
-      pop();
+  //2nd image
+  push();
+  texture(img02);
+  translate(0, 0, imgZOffest * -2);
+  noStroke();
+  plane(scale * width, scale * img02.height * width / img02.width)
+  pop();
 
-    //1st image
-        push();
-          texture(img01);
-          translate(0, 0, imgZOffest*-1);
-          noStroke();
-          plane(scale*width, scale*img01.height*width/img01.width)
-        pop();
-        pop();
+  //1st image
+  push();
+  texture(img01);
+  translate(0, 0, imgZOffest * -1);
+  noStroke();
+  plane(scale * width, scale * img01.height * width / img01.width)
+  pop();
+  pop();
 
-        // push();
-        // titleText.display();
-        // pop();
+  //album Title image
+  push();
+  let whenItBindsScale = 0.6;
+  texture(whenItBinds);
+  translate(0, 0, 100);
+  noStroke();
+  plane(whenItBindsScale * width, whenItBindsScale * whenItBinds.height * width / whenItBinds.width);
+  pop();
 
-        // push();
-        // textAlign(CENTER, CENTER);
-        // albumTitle.display();
-        // pop();
-
-        push();
-        let whenItBindsScale = 0.6;
-        texture(whenItBinds);
-        translate(0, 0, 100);
-        noStroke();
-        plane(whenItBindsScale*width, whenItBindsScale*whenItBinds.height*width/whenItBinds.width);
-        pop();
-        //
-        // push();
-        //   let benedicteScale = 0.15;
-        //   planeX = benedicteScale*windowWidth;
-        //   planeY = benedicteScale*benedicteText.height*windowWidth/benedicteText.width;
-        //   texture(benedicteText);
-        //   noStroke();
-        //   translate(-windowWidth/2 + (planeX + 30), -windowHeight/2 + (planeY+60), 100);
-        //   plane(planeX, planeY);
-        //
-        //
-        //
-        // //width = width of SCREEN
-        // //the plane will be some percentage of the screen width ie. 20percent
-        // //the height of the plane is determined by percentofScreen (imageheight*width of screen/image width)
-        // //basically get ratio of image (height over width)
-        // pop();
-
-      }
-
-// pseudoCode for drawImage function
-//       drawImage(img, orderImg){
-//         push();
-//         texture(img);
-          // translate(0, 0, imgZOffest*orderImg);
-//         noStroke();
-//         plane(scale*width, scale*img.height*width/img.width);
-//         pop();
-//       }
+}
