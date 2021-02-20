@@ -18,7 +18,7 @@
 }
 
 .blink_me {
-  animation: blinker 1s linear infinite;
+  animation: blinker 1s ease-in-out alternate infinite ease-in-out;
 }
 
 @keyframes blinker {
@@ -31,6 +31,116 @@ body {
   background-color: #dcdcdc;
 
 }
+
+nav {
+  display: none;
+}
+
+.layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.blur {
+  -webkit-animation: blur 6s alternate infinite ease-in-out;
+}
+
+@-webkit-keyframes blur {
+  0%, 100%  { -webkit-filter: blur(0px); }
+  50% { -webkit-filter: blur(10px); }
+}
+
+.hue {
+  -webkit-animation: hue 6s alternate infinite ease-in-out;
+}
+
+@-webkit-keyframes hue {
+  0%, 100%  { -webkit-filter: hue-rotate(0deg); }
+  50% { -webkit-filter: hue-rotate(180deg); }
+}
+
+.saturate {
+  -webkit-animation: saturate 6s alternate infinite ease-in-out;
+}
+
+@-webkit-keyframes saturate {
+  0%, 100%  { -webkit-filter: saturate(none); }
+  50% { -webkit-filter: saturate(10); }
+}
+
+.brightness {
+  -webkit-animation: brightness 6s alternate infinite ease-in-out;
+}
+
+@-webkit-keyframes brightness {
+  0%, 100%  { -webkit-filter: brightness(none); }
+  50% { -webkit-filter: brightness(10); }
+}
+
+.omgwtfbbq {
+  -webkit-animation: omgwtfbbq 6s alternate infinite ease-in-out;
+}
+
+@-webkit-keyframes omgwtfbbq {
+  0%  { -webkit-filter: blur(0px) brightness(none) hue-rotate(0deg) saturate(none); }
+  100% { -webkit-filter: brightness(10) blur(10px) hue-rotate(180deg) saturate(10); }
+}
+
+
+.layer > img {
+  /* position: absolute; */
+  position: absolute;
+  /* max-width: 100%; */
+  /* max-height: 100%; */
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+img.stretch {
+  width: 100%;
+  height: 100%;
+}
+
+img.full {
+  /* height: 150%; */
+  max-height: 150%
+}
+
+img.top {
+  align-self: flex-start;
+}
+img.bottom {
+  align-self: flex-end;
+}
+img.right {
+  right: 0;
+}
+img.left {
+  left: 0;
+}
+
+.layer.bg {
+  z-index: 10;
+}
+.layer.mg {
+  z-index: 20;
+  opacity: 0.5;
+}
+.layer.fg {
+  z-index: 30;
+  opacity: 0;
+
+}
+
 
 .main-nav {
   display: -webkit-flex;

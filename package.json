@@ -1,0 +1,23 @@
+{
+  "name": "when-it-binds",
+  "version": "1.0.0",
+  "description": "This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/realbenedicte/When-It-Binds.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/realbenedicte/When-It-Binds/issues"
+  },
+  "homepage": "https://github.com/realbenedicte/When-It-Binds#readme",
+  "dependencies": {
+    "http-server": "^0.12.3"
+  }
+}

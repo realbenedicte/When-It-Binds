@@ -3,10 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Bénédicte</title>
   <link rel="shortcut icon" href="assets/images/favicons/favicon.ico" />
 
@@ -14,25 +12,91 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" />
 
   <!-- Library script(s) -->
-  <script src="js/libraries/p5.min.js"></script>
+  <!-- <script src="js/libraries/p5.min.js"></script> -->
   <!-- <script src="js/libraries/p5.sound.min.js"></script> -->
 
   <!-- My script(s) -->
-  <script src="js/BasicText.js"></script>
-  <script src="js/script.js"></script>
+  <!-- <script src="js/BasicText.js"></script> -->
+  <!-- <script src="js/script.js"></script> -->
 
 </head>
 
 <body>
-  <nav>
+  <!-- <nav>
     <ul class="main-nav">
       <li><a href="#" class="logo">Bénédicte</a></li>
       <li><a href="#">Listen</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
     </ul>
-  </nav>
-  <div id="p5_loading" class="loadingclass"><div class = 'blink_me'>~loading~</div></div>
-</body>
+  </nav> -->
+  <!-- <div id="p5_loading" class="loadingclass"><div class = 'blink_me'>~loading~</div></div> -->
+  <div class="layer fg">
+    <img src="assets/images/640/2wispsleft.png" width="640px" height="640px" class="top left"/>
+    <img src="assets/images/640/1creature.png" width="640px" height="640px" class="bottom right"/>
+  </div>
+  <div class="layer mg">
+    <img src="assets/images/640/5tail.png" width="640px" height="640px" class="bottom"/>
+    <img src="assets/images/640/4wispsright.png" width="640px" height="640px" class="top right"/>
+    <img src="assets/images/640/3stars.png" width="640px" height="640px" class="bottom right"/>
+    <img id="butterfly" src="assets/images/640/7white.png" width="1280px" height="1280px" class="top left"/>
+  </div>
+  <div class="layer bg">
+    <img id="blob-bg" src="assets/images/640/6blue.png" width="640px" height="640px" class="animate-x blur stretch"/>
+  </div>
 
+
+</body>
+<script>
+
+  let SCREEN_W = window.innerWidth
+  let SCREEN_H = window.innerHeight
+
+  window.addEventListener("resize", (e) => {
+    SCREEN_W = window.innerWidth
+  })
+
+  console.log(SCREEN_W)
+  function animateImage(obj) {
+
+    let maxWidth = obj.stretch ? SCREEN_W : obj.w
+    obj.x += obj.speed;
+    if (obj.x > maxWidth) {
+      obj.x = -maxWidth
+    }
+
+    document.getElementById(obj.id).style.transform = `translateX(${obj.x}px)`;
+    // console.log("got obj x", obj.x)
+    // console.log("got img ", obj.img)
+    requestAnimationFrame(() => animateImage(obj))
+  }
+
+  let bg = document.getElementById("blob-bg")
+  let bfly = document.getElementById("butterfly")
+
+  let animationObj = {
+    img: bg,
+    stretch: true,
+    id: "blob-bg",
+    speed: 1,
+    x: 0,
+    y: 0,
+    h: bg.height,
+    w: bg.width
+  }
+
+  let animationObj2 = {
+    img: bfly,
+    stretch: false,
+    id: "butterfly",
+    speed: 2,
+    x: 0,
+    y: 0,
+    h: bfly.height,
+    w: bfly.width
+  }
+
+  testID = requestAnimationFrame(() => animateImage(animationObj))
+  testID2 = requestAnimationFrame(() => animateImage(animationObj2))
+</script>
 </html>
