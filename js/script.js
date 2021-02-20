@@ -92,7 +92,7 @@ function draw() {
     texture(img09);
     translate(0, 0, imgZOffest * -8);
     noStroke();
-    plane(scale2 * width, scale2 * img09.height * width / img09.width)
+    plane(700,700)
     pop();
 
     push();
@@ -108,7 +108,7 @@ function draw() {
       // noStroke();
       // plane(scale * width, scale * img08.height * width / img08.width)
       // pop();
-      // 
+      //
       // //7th image
       // push();
       // texture(img07);
