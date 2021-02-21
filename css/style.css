@@ -43,9 +43,6 @@ nav {
   top: 0;
   bottom: 0;
   margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 
@@ -100,9 +97,6 @@ nav {
   position: absolute;
   /* max-width: 100%; */
   /* max-height: 100%; */
-  align-self: flex-end;
-  margin-left: auto;
-  margin-right: 0;
 }
 
 img.stretch {
@@ -133,7 +127,7 @@ img.left {
 }
 .layer.mg {
   z-index: 20;
-  opacity: 0.5;
+  opacity: 1;
 }
 .layer.fg {
   z-index: 30;
