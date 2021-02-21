@@ -12,6 +12,15 @@
   font-family: 'lapicidelight';
 }
 
+.gp {
+  background-color: black;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .loadingclass{
   text-align: center;
   font-family: 'lapicidelight';
@@ -95,6 +104,7 @@ nav {
 .layer > img {
   /* position: absolute; */
   position: absolute;
+  will-change: transform;
   /* max-width: 100%; */
   /* max-height: 100%; */
 }
