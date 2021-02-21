@@ -140,6 +140,13 @@ img.left {
   align-items: center;
 }
 
+/* hide album art on small screen */
+@media only screen and (max-width: 480px) {
+    #album-art {
+        display: none;
+    }
+}
+
 #album-art{
   transition: 1s ease-in-out;
 
