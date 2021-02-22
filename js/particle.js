@@ -509,7 +509,7 @@ const test = (() => {
     }
   }
 
-  //generateField()
+  // generateField()
 
   function mouseMove(e) {
     mouse.set(e.clientX, e.clientY);

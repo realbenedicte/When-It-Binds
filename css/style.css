@@ -64,6 +64,8 @@ body, html {
 
 nav {
   /* display: none; */
+  position: relative;
+  z-index: 40;
 
 }
 
@@ -178,7 +180,7 @@ div.right {
   z-index: 10;
 }
 .layer.mg {
-  z-index: 100;
+  z-index: 30;
   opacity: 1;
 }
 
@@ -193,13 +195,15 @@ div.right {
 /* hide album art on small screen */
 @media only screen and (max-width: 480px) {
     #album-art {
-        display: none;
+        /* display: none; */
+
     }
 }
 
 #album-art{
-  display: none;
+  /* display: none; */
   transition: box-shadow .3s;
+  z-index: 150;
   /* box-shadow:
 
    0 0 30px 2px #FFFFFF /* outer cyan */ */
@@ -214,7 +218,7 @@ filter: brightness(1.5) ; */
 }
 
 .main-nav {
-  z-index: 40;
+  z-index: 150;
   display: -webkit-flex;
   display: flex;
 }
