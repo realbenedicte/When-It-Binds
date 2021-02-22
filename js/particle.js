@@ -35,6 +35,10 @@ Vector.scale = function (v, s) {
   return v.clone().scale(s)
 }
 
+Vector.directionTo = function (a) {
+  return new Vector(Math.cos(a), Math.sin(a))
+}
+
 Vector.random = function () {
   return new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1)
 }
@@ -157,19 +161,22 @@ Particle.prototype = (function (o) {
   },
 
   updateSpeed: function () {
-    if (this._speed.length() > 12) this._speed.normalize().scale(12)
+    if (this._speed.length() > 2) this._speed.normalize().scale(2)
   },
 
   update: function () {
-    if (this._speed.length() > 12) this._speed.normalize().scale(12)
+    if (this._speed.length() > 2) this._speed.normalize().scale(2)
 
     if (this._latest.x > screenWidth + Math.round(this._size.x / 2)
       || this._latest.y > screenHeight + Math.round(this._size.y / 2)
       || this._latest.y < Math.round(-this._size.y / 2)
       || this._latest.x < Math.round(-this._size.x)
     ) {
-      this.setInitialSpeed(new Vector(Math.random(), Math.random() * 0.5 - 0.25));
+      let cp = new Vector(screenWidth, screenHeight / 2)
       this.set(new Vector(-this._size.x, Math.random() * screenHeight / 2))
+      let direction = Vector.directionTo(this.angleTo(cp))
+      this.setInitialSpeed(direction.scale(0.5));
+      // this.setInitialSpeed(new Vector(Math.random(), Math.random() * 0.5 - 0.25));
     }
     this._latest.set(this)
     this.add(this._speed)
@@ -257,49 +264,57 @@ GravityPoint.prototype = (function (o) {
       i, len;
 
 
-    // for (i = 0, len = field.length; i < len; i++) {
-    //   field[i].addSpeed(Vector.sub(this, field[i]).normalize().scale(this.gravity));
-    // }
-
-    // for (i = 0, len = particles.length; i < len; i++) {
-    //   particles[i].addSpeed(Vector.sub(this, particles[i]).normalize().scale(this.gravity));
-    // }
-
-    let repulseRadius = 200
-    let velocity = 10
-
     for (i = 0, len = field.length; i < len; i++) {
-      let p = field[i]
-      let dx = p.x - this.x
-      let dy = p.y - this.y
-
-      let distToP = p.distanceTo(this)
-      let normVec = new Vector(dx / distToP, dy / distToP)
-      let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-
-      //let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
-      let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
-
-      // p.addSpeed(Vector.add(pos, p._initialSpeed))
-      p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
+      // field[i].addSpeed(Vector.sub(this, field[i]).normalize().scale(this.gravity));
+      let fp = field[i]
+      var magnitude = 80000 / fp.distanceToSq(this)
+      var direction = Vector.sub(this, fp).normalize().scale(magnitude);
+      fp.addSpeed(Vector.sub(fp._initialSpeed, direction))
     }
 
     for (i = 0, len = particles.length; i < len; i++) {
-      let p = particles[i]
-      let dx = p.x - this.x
-      let dy = p.y - this.y
-
-      let distToP = p.distanceTo(this)
-      let normVec = new Vector(dx / distToP, dy / distToP)
-      let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-
-      // let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
-      let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
-      //let pos = Vector.sub(this, p).scale(-repulseFactor)
-
-      p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
-
+      // particles[i].addSpeed(Vector.sub(this, particles[i]).normalize().scale(this.gravity));
+      let fp = particles[i]
+      var magnitude = 80000 / fp.distanceToSq(this)
+      var direction = Vector.sub(this, fp).normalize().scale(magnitude);
+      fp.addSpeed(Vector.sub(fp._initialSpeed, direction))
     }
+
+    // let repulseRadius = 200
+    // let velocity = 10
+
+    // for (i = 0, len = field.length; i < len; i++) {
+    //   let p = field[i]
+    //   let dx = p.x - this.x
+    //   let dy = p.y - this.y
+
+    //   let distToP = p.distanceTo(this)
+    //   let normVec = new Vector(dx / distToP, dy / distToP)
+    //   let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+
+    //   //let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
+    //   let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
+
+    //   // p.addSpeed(Vector.add(pos, p._initialSpeed))
+    //   p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
+    // }
+
+    // for (i = 0, len = particles.length; i < len; i++) {
+    //   let p = particles[i]
+    //   let dx = p.x - this.x
+    //   let dy = p.y - this.y
+
+    //   let distToP = p.distanceTo(this)
+    //   let normVec = new Vector(dx / distToP, dy / distToP)
+    //   let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+
+    //   // let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
+    //   let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
+    //   //let pos = Vector.sub(this, p).scale(-repulseFactor)
+
+    //   p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
+
+    // }
 
 
 
@@ -465,6 +480,7 @@ const test = (() => {
     console.log("got countY ", countY)
 
     let totalCount = countX * countY;
+    let cp = new Vector(screenWidth, screenHeight / 2)
 
     for (i = 0; i < totalCount; i++) {
       let fx = offset + (i % countX) * spacing
@@ -474,9 +490,13 @@ const test = (() => {
       fvEl.innerHTML = `&#8594`
       document.body.appendChild(fvEl)
       let fv = new Particle(fx, fy, PARTICLE_RADIUS, fvEl)
+      let direction = Vector.directionTo(fv.angleTo(cp))
+
       // this.setInitialSpeed(new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25).scale(0.5));
       // let speed = new Vector(1, 0)
-      let speed = new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25)
+      let speed = direction
+      // let speed = new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25)
+      // let speed = new Vector(0.5 + Math.random() * 0.5, Math.random() * 0.01)
       fv.setInitialSpeed(speed);
       // fieldVector.addSpeed(speed)
       let deg = (360 + Math.round(180 * speed.angle() / Math.PI)) % 360;
@@ -486,7 +506,7 @@ const test = (() => {
     }
   }
 
-  generateField()
+  // generateField()
 
   function mouseMove(e) {
     mouse.set(e.clientX, e.clientY);
@@ -556,7 +576,12 @@ const test = (() => {
       p.setSize(new Vector(img.width, img.height))
 
       console.log("crea")
-      p.setInitialSpeed(new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25));
+      let speed = new Vector(0.5 + Math.random() * 0.5, Math.random() * 0.01)
+      let cp = new Vector(screenWidth, screenHeight / 2)
+      let direction = Vector.directionTo(p.angleTo(cp))
+      p.setInitialSpeed(direction.scale(0.5));
+
+      // p.setInitialSpeed(speed);
       console.log("created particle ", p)
       particles.push(p);
     }
