@@ -195,7 +195,7 @@ div.right {
 /* hide album art on small screen */
 @media only screen and (max-width: 480px) {
     #album-art {
-        /* display: none; */
+        display: none;
 
     }
 }
