@@ -510,8 +510,10 @@ const test = (() => {
   }
 
   // generateField()
-  function touchMove(e){
-    mouse.set(e.clientX, e.clientY);
+  function touchStart(e){
+    let clientX = e.touches[0].clientX;
+    let clientY = e.touches[0].clientY;
+    mouse.set(clientX, clientY);
     if (gravities.length) {
       let g = gravities[0]
       g.set(mouse)
@@ -656,7 +658,7 @@ const test = (() => {
   // Init
   window.addEventListener('resize', resize, false);
   window.addEventListener('mousedown', mouseDown, false);
-  window.addEventListener('touchmove', touchMove, false);
+  window.addEventListener('touchstart', touchStart, false);
   // canvas.addEventListener('mouseup', mouseUp, false);
   // canvas.addEventListener('dblclick', doubleClick, false);
 
