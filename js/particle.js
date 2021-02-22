@@ -140,6 +140,7 @@ function Particle(x, y, radius, el = null) {
   this._speed = new Vector()
   this._size = new Vector()
   this._el = el;
+  this._cp = new Vector()
 }
 
 Particle.prototype = (function (o) {
@@ -149,8 +150,11 @@ Particle.prototype = (function (o) {
   return s
 })({
 
+  setCp: function (cp) {
+    this._cp = cp
+  },
   addSpeed: function (d) {
-    this._speed.add(d)
+    this._speed.add(d).scale(0.3)
   },
   setInitialSpeed: function (d) {
     this._initialSpeed = d;
@@ -160,26 +164,34 @@ Particle.prototype = (function (o) {
     this._size.set(v.x, v.y)
   },
 
+  updateInitialSpeed: function () {
+    let direction = Vector.directionTo(this.angleTo(this._cp))
+    this._speed.add(direction.scale(0.01))
+  },
+
   updateSpeed: function () {
-    if (this._speed.length() > 2) this._speed.normalize().scale(2)
+    if (this._speed.length() > 6) this._speed.normalize().scale(6)
   },
 
   update: function () {
-    if (this._speed.length() > 2) this._speed.normalize().scale(2)
+    if (this._speed.length() > 6) this._speed.normalize().scale(6)
+
+    this._latest.set(this)
+    this.add(this._speed)
+    this.add(this._initialSpeed)
 
     if (this._latest.x > screenWidth + Math.round(this._size.x / 2)
       || this._latest.y > screenHeight + Math.round(this._size.y / 2)
       || this._latest.y < Math.round(-this._size.y / 2)
       || this._latest.x < Math.round(-this._size.x)
     ) {
-      let cp = new Vector(screenWidth, screenHeight / 2)
+
       this.set(new Vector(-this._size.x, Math.random() * screenHeight / 2))
-      let direction = Vector.directionTo(this.angleTo(cp))
-      this.setInitialSpeed(direction.scale(0.5));
+      let direction = Vector.directionTo(this.angleTo(this._cp))
+      this.setInitialSpeed(direction.scale(0.2 + Math.random() / 2));
       // this.setInitialSpeed(new Vector(Math.random(), Math.random() * 0.5 - 0.25));
     }
-    this._latest.set(this)
-    this.add(this._speed)
+
   },
 })
 
@@ -249,13 +261,6 @@ GravityPoint.prototype = (function (o) {
     this._collapsing = true;
   },
 
-  destroyVectorField: function () {
-    for (i = 0; i < this.fieldVectors.length; i++) {
-      let fv = fieldVectors[i]
-      fv._el.remove()
-    }
-  },
-
   render: function (gp) {
     if (this.destroyed) return;
 
@@ -267,17 +272,14 @@ GravityPoint.prototype = (function (o) {
     for (i = 0, len = field.length; i < len; i++) {
       // field[i].addSpeed(Vector.sub(this, field[i]).normalize().scale(this.gravity));
       let fp = field[i]
-      var magnitude = 80000 / fp.distanceToSq(this)
-      var direction = Vector.sub(this, fp).normalize().scale(magnitude);
-      fp.addSpeed(Vector.sub(fp._initialSpeed, direction))
+      fp.addSpeed(Vector.sub(fp._initialSpeed, Vector.sub(this, fp).normalize().scale(80000 / fp.distanceToSq(this))))
     }
 
     for (i = 0, len = particles.length; i < len; i++) {
       // particles[i].addSpeed(Vector.sub(this, particles[i]).normalize().scale(this.gravity));
       let fp = particles[i]
-      var magnitude = 80000 / fp.distanceToSq(this)
-      var direction = Vector.sub(this, fp).normalize().scale(magnitude);
-      fp.addSpeed(Vector.sub(fp._initialSpeed, direction))
+      fp.updateInitialSpeed()
+      fp.addSpeed(Vector.sub(fp._initialSpeed, Vector.sub(this, fp).normalize().scale(80000 / fp.distanceToSq(this))))
     }
 
     // let repulseRadius = 200
@@ -497,7 +499,8 @@ const test = (() => {
       let speed = direction
       // let speed = new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25)
       // let speed = new Vector(0.5 + Math.random() * 0.5, Math.random() * 0.01)
-      fv.setInitialSpeed(speed);
+      fv.setCp(cp)
+      fv.setInitialSpeed(speed)
       // fieldVector.addSpeed(speed)
       let deg = (360 + Math.round(180 * speed.angle() / Math.PI)) % 360;
       field.push(fv)
@@ -506,7 +509,7 @@ const test = (() => {
     }
   }
 
-  // generateField()
+  //generateField()
 
   function mouseMove(e) {
     mouse.set(e.clientX, e.clientY);
@@ -554,6 +557,49 @@ const test = (() => {
 
   }
 
+  function generateGravityPoint() {
+
+    if (gravities.length > 0) return
+
+    let gpEl = document.createElement('div');
+    gpEl.className = "gp"
+    gpEl.setAttribute("style", `transform: translate(${mouse.x}px, ${mouse.y}px);`)
+    document.body.appendChild(gpEl)
+    gpEls.push(gpEl)
+
+    let gp = new GravityPoint(mouse.x, mouse.y, G_POINT_RADIUS, {
+      particles: particles,
+      gravities: gravities,
+      field: field,
+    })
+    gravities.push(gp);
+  }
+
+  generateGravityPoint()
+
+
+
+  function generateParticles(name, className, num = 100) {
+    let particleEls = document.getElementsByClassName(className)
+    console.log("got particles ", particleEls)
+    let particleContainer = document.getElementById("particles-mid")
+    for (let i = 0; i < num; i++) {
+      let rIdx = Math.floor(Math.random() * particleEls.length)
+      let particleEl = particleEls[rIdx]
+      let particleClone = particleEl.cloneNode(true)
+      particleClone.setAttribute("class", "left")
+      particleContainer.appendChild(particleClone)
+    }
+    let particles = particleContainer.getElementsByClassName(className)
+    addParticle(particles)
+  }
+  generateParticles("stars", "particle star s", 25)
+  generateParticles("stars", "particle star m", 10)
+  generateParticles("stars", "particle star l", 10)
+
+  generateParticles("dots", "particle dot s", 25)
+  generateParticles("dots", "particle dot m", 25)
+  generateParticles("dots", "particle dot l", 25)
   // function mouseUp(e) {
   //   for (let i = 0, len = gravities.length; i < len; i++) {
   //     if (gravities[i].dragging) {
@@ -569,17 +615,18 @@ const test = (() => {
     for (i = 0; i < imgs.length; i++) {
       img = imgs[i].firstElementChild
       p = new Particle(
-        Math.floor(Math.random() * screenWidth / 2),
-        Math.floor(Math.random() * screenHeight - screenHeight / 2),
+        Math.floor((Math.random() * (screenWidth - img.width / 2))),
+        Math.floor(img.height / 2 + (Math.random() * (screenHeight - img.height / 2))),
         PARTICLE_RADIUS
       );
       p.setSize(new Vector(img.width, img.height))
 
-      console.log("crea")
       let speed = new Vector(0.5 + Math.random() * 0.5, Math.random() * 0.01)
       let cp = new Vector(screenWidth, screenHeight / 2)
       let direction = Vector.directionTo(p.angleTo(cp))
-      p.setInitialSpeed(direction.scale(0.5));
+      p.setCp(cp)
+      p.setInitialSpeed(direction.scale(0.2 + Math.random() / 2));
+
 
       // p.setInitialSpeed(speed);
       console.log("created particle ", p)
