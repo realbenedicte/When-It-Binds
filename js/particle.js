@@ -77,7 +77,7 @@ Vector.prototype = {
   },
 
   normalize: function () {
-    var m = Math.sqrt(this.x * this.x + this.y * this.y)
+    let m = Math.sqrt(this.x * this.x + this.y * this.y)
     if (m) {
       this.x /= m
       this.y /= m
@@ -90,19 +90,19 @@ Vector.prototype = {
   },
 
   angleTo: function (v) {
-    var dx = v.x - this.x,
+    let dx = v.x - this.x,
       dy = v.y - this.y
     return Math.atan2(dy, dx)
   },
 
   distanceTo: function (v) {
-    var dx = v.x - this.x,
+    let dx = v.x - this.x,
       dy = v.y - this.y
     return Math.sqrt(dx * dx + dy * dy)
   },
 
   distanceToSq: function (v) {
-    var dx = v.x - this.x,
+    let dx = v.x - this.x,
       dy = v.y - this.y
     return dx * dx + dy * dy
   },
@@ -125,37 +125,50 @@ Vector.prototype = {
 /**
  * Particle
  */
-function Particle(x, y, radius) {
+function Particle(x, y, radius, el = null) {
   Vector.call(this, x, y)
   this.radius = radius
 
+  this._initialSpeed = new Vector()
+  this._initialX = x
+  this._initialY = y
   this._latest = new Vector()
   this._speed = new Vector()
   this._size = new Vector()
+  this._el = el;
 }
 
 Particle.prototype = (function (o) {
-  var s = new Vector(0, 0),
+  let s = new Vector(0, 0),
     p
   for (p in o) s[p] = o[p]
   return s
 })({
+
   addSpeed: function (d) {
     this._speed.add(d)
   },
-
+  setInitialSpeed: function (d) {
+    this._initialSpeed = d;
+    this._speed.add(d)
+  },
   setSize: function (v) {
     this._size.set(v.x, v.y)
   },
 
-
+  updateSpeed: function () {
+    if (this._speed.length() > 12) this._speed.normalize().scale(12)
+  },
 
   update: function () {
     if (this._speed.length() > 12) this._speed.normalize().scale(12)
 
-    if (this._latest.x > screenWidth
-      || this._latest.y > screenHeight
-      || this._latest.y < -this._size.y) {
+    if (this._latest.x > screenWidth + Math.round(this._size.x / 2)
+      || this._latest.y > screenHeight + Math.round(this._size.y / 2)
+      || this._latest.y < Math.round(-this._size.y / 2)
+      || this._latest.x < Math.round(-this._size.x)
+    ) {
+      this.setInitialSpeed(new Vector(Math.random(), Math.random() * 0.5 - 0.25));
       this.set(new Vector(-this._size.x, Math.random() * screenHeight / 2))
     }
     this._latest.set(this)
@@ -172,19 +185,20 @@ function GravityPoint(x, y, radius, targets) {
   Vector.call(this, x, y);
   this.radius = radius;
   this.currentRadius = radius * 0.5;
-
   this._targets = {
     particles: targets.particles || [],
     gravities: targets.gravities || [],
+    field: targets.field || [],
   };
   this._speed = new Vector();
+  this.fieldVectors = []
 }
 
 GravityPoint.RADIUS_LIMIT = 65;
 GravityPoint.interferenceToPoint = true;
 
 GravityPoint.prototype = (function (o) {
-  var s = new Vector(0, 0), p;
+  let s = new Vector(0, 0), p;
   for (p in o) s[p] = o[p];
   return s;
 })({
@@ -198,6 +212,10 @@ GravityPoint.prototype = (function (o) {
 
   hitTest: function (p) {
     return this.distanceTo(p) < this.radius;
+  },
+
+  clamp: function (number, min, max) {
+    return Math.min(Math.max(number, min), max);
   },
 
   startDrag: function (dragStartPoint) {
@@ -224,15 +242,66 @@ GravityPoint.prototype = (function (o) {
     this._collapsing = true;
   },
 
+  destroyVectorField: function () {
+    for (i = 0; i < this.fieldVectors.length; i++) {
+      let fv = fieldVectors[i]
+      fv._el.remove()
+    }
+  },
+
   render: function (gp) {
     if (this.destroyed) return;
 
-    var particles = this._targets.particles,
+    let field = this._targets.field
+    let particles = this._targets.particles,
       i, len;
 
-    for (i = 0, len = particles.length; i < len; i++) {
-      particles[i].addSpeed(Vector.sub(this, particles[i]).normalize().scale(this.gravity));
+
+    // for (i = 0, len = field.length; i < len; i++) {
+    //   field[i].addSpeed(Vector.sub(this, field[i]).normalize().scale(this.gravity));
+    // }
+
+    // for (i = 0, len = particles.length; i < len; i++) {
+    //   particles[i].addSpeed(Vector.sub(this, particles[i]).normalize().scale(this.gravity));
+    // }
+
+    let repulseRadius = 200
+    let velocity = 10
+
+    for (i = 0, len = field.length; i < len; i++) {
+      let p = field[i]
+      let dx = p.x - this.x
+      let dy = p.y - this.y
+
+      let distToP = p.distanceTo(this)
+      let normVec = new Vector(dx / distToP, dy / distToP)
+      let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+
+      //let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
+      let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
+
+      // p.addSpeed(Vector.add(pos, p._initialSpeed))
+      p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
     }
+
+    for (i = 0, len = particles.length; i < len; i++) {
+      let p = particles[i]
+      let dx = p.x - this.x
+      let dy = p.y - this.y
+
+      let distToP = p.distanceTo(this)
+      let normVec = new Vector(dx / distToP, dy / distToP)
+      let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
+
+      // let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
+      let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
+      //let pos = Vector.sub(this, p).scale(-repulseFactor)
+
+      p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
+
+    }
+
+
 
     this._easeRadius = (this._easeRadius + (this.radius - this.currentRadius) * 0.07) * 0.95;
     this.currentRadius += this._easeRadius;
@@ -245,7 +314,7 @@ GravityPoint.prototype = (function (o) {
       return;
     }
 
-    var gravities = this._targets.gravities,
+    let gravities = this._targets.gravities,
       gps = this._targets.gps,
       g, absorp,
       area = this.radius * this.radius * Math.PI, garea;
@@ -283,7 +352,7 @@ GravityPoint.prototype = (function (o) {
   },
 
   _draw: function (gp) {
-    var grd, r;
+    let grd, r;
 
     gp.setAttribute("style", `transform: translate(${this.x}px, ${this.y}px) scale(${this.radius / 5}, ${this.radius / 5});`)
     // ctx.save();
@@ -316,7 +385,13 @@ const test = (() => {
 
   // Configs
 
-  var BACKGROUND_COLOR = 'rgba(11, 51, 56, 1)',
+  screenWidth = window.innerWidth;
+  screenHeight = window.innerHeight;
+
+  console.log("got screenHeight ", screenHeight)
+  console.log("got screenWidth ", screenWidth)
+
+  let BACKGROUND_COLOR = 'rgba(11, 51, 56, 1)',
     PARTICLE_RADIUS = 1,
     G_POINT_RADIUS = 10,
     G_POINT_RADIUS_LIMITS = 65;
@@ -324,11 +399,12 @@ const test = (() => {
 
   // Vars
 
-  var mouse = new Vector(),
+  let mouse = new Vector(),
     gravities = [],
     particles = [],
     imgs = [],
-    gps = [];
+    gpEls = [],
+    field = [];
 
 
   // Event Listeners
@@ -337,7 +413,7 @@ const test = (() => {
     screenWidth = window.innerWidth;
     screenHeight = window.innerHeight;
 
-    // var cx = canvas.width * 0.5,
+    // let cx = canvas.width * 0.5,
     //   cy = canvas.height * 0.5;
 
     // grad = context.createRadialGradient(cx, cy, 0, cx, cy, Math.sqrt(cx * cx + cy * cy));
@@ -345,11 +421,82 @@ const test = (() => {
     // grad.addColorStop(1, 'rgba(0, 0, 0, 0.35)');
   }
 
+  // function generateSquareField(count = 64) {
+
+  //   let spacing = 100
+  //   let pos = new Vector(Math.floor(screenWidth / 2), Math.floor(screenHeight / 2))
+
+  //   let fieldW, fieldH
+  //   fieldW = fieldH = Math.round(Math.sqrt(count))
+  //   let offset = -(fieldW / 2) * spacing + spacing / 2 + 2
+
+  //   console.log("got field w, h", fieldW, fieldH)
+  //   for (i = 0; i < count; i++) {
+  //     let fx = offset + pos.x + (i % fieldW) * spacing
+  //     let fy = offset + pos.y + Math.floor(i / fieldH) * spacing
+  //     let fvEl = document.createElement('div');
+  //     fvEl.className = "fv"
+  //     fvEl.innerHTML = `&#8594`
+  //     document.body.appendChild(fvEl)
+  //     let fv = new Particle(fx, fy, PARTICLE_RADIUS, fvEl)
+  //     let speed = new Vector(1, 0)
+  //     // fieldVector.addSpeed(speed)
+  //     let deg = (360 + Math.round(180 * speed.angle() / Math.PI)) % 360;
+  //     field.push(fv)
+  //     fvEl.setAttribute("style", `transform: translate(${fx}px, ${fy}px) rotate(${deg}deg); `)
+
+  //   }
+  // }
+
+  function generateField() {
+
+
+    // let pos = new Vector(Math.floor(screenWidth / 2), Math.floor(screenHeight / 2))
+
+    // let fieldW, fieldH
+    // fieldW = fieldH = Math.round(Math.sqrt(count))
+    // let offset = -(fieldW / 2) * spacing + spacing / 2 + 2
+
+    let spacing = 50;
+    let countX = Math.round(screenWidth / spacing);
+    let countY = Math.round(screenHeight / spacing);
+    let offset = spacing / 2
+    console.log("got countX ", countX)
+    console.log("got countY ", countY)
+
+    let totalCount = countX * countY;
+
+    for (i = 0; i < totalCount; i++) {
+      let fx = offset + (i % countX) * spacing
+      let fy = offset + Math.floor(i / countX) * spacing
+      let fvEl = document.createElement('div');
+      fvEl.className = "fv"
+      fvEl.innerHTML = `&#8594`
+      document.body.appendChild(fvEl)
+      let fv = new Particle(fx, fy, PARTICLE_RADIUS, fvEl)
+      // this.setInitialSpeed(new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25).scale(0.5));
+      // let speed = new Vector(1, 0)
+      let speed = new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25)
+      fv.setInitialSpeed(speed);
+      // fieldVector.addSpeed(speed)
+      let deg = (360 + Math.round(180 * speed.angle() / Math.PI)) % 360;
+      field.push(fv)
+      fvEl.setAttribute("style", `transform: translate(${fx}px, ${fy}px) rotate(${deg}deg); `)
+
+    }
+  }
+
+  generateField()
+
   function mouseMove(e) {
     mouse.set(e.clientX, e.clientY);
 
-    console.log("got mousex mousey", e.clientX, e.clientY)
-    // var i, g, hit = false;
+    if (gravities.length) {
+      let g = gravities[0]
+      g.set(mouse)
+    }
+    // console.log("got mousex mousey", e.clientX, e.clientY)
+    // let i, g, hit = false;
     // for (i = gravities.length - 1; i >= 0; i--) {
     //   g = gravities[i];
     //   if ((!hit && g.hitTest(mouse)) || g.dragging)
@@ -360,31 +507,35 @@ const test = (() => {
 
     // canvas.style.cursor = hit ? 'pointer' : 'default';
   }
-
+  let maxGravityPoints = 1;
   function mouseDown(e) {
-    // for (var i = gravities.length - 1; i >= 0; i--) {
+    // for (let i = gravities.length - 1; i >= 0; i--) {
     //   if (gravities[i].isMouseOver) {
     //     gravities[i].startDrag(mouse);
     //     return;
     //   }
     // }
+    if (gravities.length > 0) return
 
     console.log(" MOUSE DOWN ", e.clientX, e.clientY)
-    let gp = document.createElement('div');
-    gp.className = "gp"
-    gp.setAttribute("style", `transform: translate(${e.clientX}px, ${e.clientY}px);`)
-    document.body.appendChild(gp)
-    gps.push(gp)
+    let mpos = new Vector(e.clientX, e.clientY)
+    let gpEl = document.createElement('div');
+    gpEl.className = "gp"
+    gpEl.setAttribute("style", `transform: translate(${mpos.x}px, ${mpos.y}px);`)
+    document.body.appendChild(gpEl)
+    gpEls.push(gpEl)
 
-    gravities.push(new GravityPoint(e.clientX, e.clientY, G_POINT_RADIUS, {
+    let gp = new GravityPoint(mpos.x, mpos.y, G_POINT_RADIUS, {
       particles: particles,
-      gravities: gravities
-    }));
+      gravities: gravities,
+      field: field,
+    })
+    gravities.push(gp);
 
   }
 
   // function mouseUp(e) {
-  //   for (var i = 0, len = gravities.length; i < len; i++) {
+  //   for (let i = 0, len = gravities.length; i < len; i++) {
   //     if (gravities[i].dragging) {
   //       gravities[i].endDrag();
   //       break;
@@ -394,16 +545,18 @@ const test = (() => {
 
   // Functions
   function addParticle(imgs) {
-    var i, p, img;
+    let i, p, img;
     for (i = 0; i < imgs.length; i++) {
-      img = imgs[i]
+      img = imgs[i].firstElementChild
       p = new Particle(
         Math.floor(Math.random() * screenWidth / 2),
         Math.floor(Math.random() * screenHeight - screenHeight / 2),
         PARTICLE_RADIUS
       );
       p.setSize(new Vector(img.width, img.height))
-      p.addSpeed(new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25));
+
+      console.log("crea")
+      p.setInitialSpeed(new Vector(Math.random() + 1, Math.random() * 0.5 - 0.25));
       console.log("created particle ", p)
       particles.push(p);
     }
@@ -411,13 +564,10 @@ const test = (() => {
 
   function removeParticle(num) {
     if (particles.length < num) num = particles.length;
-    for (var i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
       particles.pop();
     }
   }
-
-
-
 
   resize(null);
 
@@ -432,8 +582,8 @@ const test = (() => {
 
   // Start Update
 
-  var loop = function () {
-    var i, len, g, p, context;
+  let loop = function () {
+    let i, len, g, p, context;
 
     // context.save();
     // context.fillStyle = BACKGROUND_COLOR;
@@ -453,16 +603,23 @@ const test = (() => {
     //   }
     // }
 
+    for (i = 0, len = field.length; i < len; i++) {
+      let fv = field[i]
+      fv.updateSpeed()
+      let deg = (360 + Math.round(180 * fv._speed.angle() / Math.PI)) % 360;
+      fv._el.setAttribute("style", `transform: translate(${fv._initialX}px, ${fv._initialY}px) rotate(${deg}deg); `)
+    }
+
+
     for (i = 0, len = gravities.length; i < len; i++) {
       g = gravities[i];
-      gp = gps[i];
+      gpEl = gpEls[i];
       if (g.dragging) g.drag(mouse);
-      g.render(gp);
-
+      g.render(gpEl);
       if (g.destroyed) {
         gravities.splice(i, 1);
-        gps.splice(i, 1)
-        gp.remove()
+        gpEls.splice(i, 1)
+        gpEl.remove()
         len--;
         i--;
       }
@@ -485,6 +642,7 @@ const test = (() => {
     // bufferCtx.lineCap = bufferCtx.lineJoin = 'round';
     // bufferCtx.lineWidth = PARTICLE_RADIUS * 2;
     // bufferCtx.beginPath();
+
     for (i = 0; i < len; i++) {
       p = particles[i];
       p.update();
