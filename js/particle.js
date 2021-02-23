@@ -398,7 +398,7 @@ GravityPoint.prototype = (function (o) {
 
 
 // Initialize
-const test = (() => {
+const testy = (() => {
 
   // Configs
 
@@ -508,8 +508,8 @@ const test = (() => {
 
     }
   }
+  generateField()
 
-  // generateField()
   function touchStart(e) {
     let clientX = e.touches[0].clientX;
     let clientY = e.touches[0].clientY;
