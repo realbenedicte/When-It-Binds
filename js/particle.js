@@ -508,7 +508,7 @@ const testy = (() => {
 
     }
   }
-  generateField()
+  // generateField()
 
   function touchStart(e) {
     let clientX = e.touches[0].clientX;
