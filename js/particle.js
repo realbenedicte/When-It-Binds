@@ -465,7 +465,7 @@ const test = (() => {
   //   }
   // }
 
-  function generateField() {
+  const generateField = () => {
 
 
     // let pos = new Vector(Math.floor(screenWidth / 2), Math.floor(screenHeight / 2))
@@ -510,7 +510,7 @@ const test = (() => {
   }
 
   // generateField()
-  function touchStart(e){
+  function touchStart(e) {
     let clientX = e.touches[0].clientX;
     let clientY = e.touches[0].clientY;
     mouse.set(clientX, clientY);
@@ -748,4 +748,6 @@ const test = (() => {
     requestAnimationFrame(loop);
   };
   loop();
+
+  return { "gen": function () { return generateField; } };
 })();
