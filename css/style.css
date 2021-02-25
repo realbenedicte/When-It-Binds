@@ -66,7 +66,6 @@ nav {
 }
 
 /* content layers */
-
 #content {
   z-index: 35;
   opacity: 1;
@@ -75,6 +74,65 @@ nav {
   align-items: center;
   min-height: 100vh;
   position: relative;
+}
+
+.page {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1024px;
+  min-width: 300px;
+}
+
+/* about page */
+#about > * {
+  margin: 0 1em;
+}
+.about-photo {
+  max-width: 25vw;
+  height: auto;
+  border: 2px solid rgba(44, 47, 48, 0.897);
+}
+.about-info {
+  min-width: 200px;
+  width: 350px;
+  max-width: 40vw;
+  height: fit-content;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(44, 47, 48, 0.897);
+  font-family: "lapicidelight";
+}
+
+/* listen page */
+.album {
+  margin: 0 2em;
+}
+
+.album-art:hover {
+  box-shadow: 0 0 15px rgba(33, 33, 33, 1);
+}
+
+.album .album-art {
+  max-width: 200px;
+  max-height: 200px;
+  transition: box-shadow 0.3s;
+}
+
+.album .description {
+  margin-top: 0.5em;
+}
+
+.album .description .title {
+  font-weight: normal;
+  font-size: 1em;
+  font-style: italic;
+}
+
+.album .description > p,
+.album .description > h3 {
+  margin: 0;
+  padding: 0;
+  color: rgba(44, 47, 48, 0.897);
 }
 
 .layer {
@@ -110,44 +168,6 @@ nav {
   align-items: center;
 }
 
-.page {
-  display: flex;
-  flex-flow: row wrap;
-  max-width: 1024px;
-  min-width: 300px;
-}
-
-.album {
-  margin: 0 2em;
-}
-
-.album-art:hover {
-  box-shadow: 0 0 15px rgba(33, 33, 33, 1);
-}
-
-.album .album-art {
-  max-width: 200px;
-  max-height: 200px;
-  transition: box-shadow 0.3s;
-}
-
-.album .description {
-  margin-top: 0.5em;
-}
-
-.album .description .title {
-  font-weight: normal;
-  font-size: 1em;
-  font-style: italic;
-}
-
-.album .description > p,
-.album .description > h3 {
-  margin: 0;
-  padding: 0;
-  color: rgba(44, 47, 48, 0.897);
-}
-
 /* nova stuff */
 .gp {
   background-color: black;
@@ -177,6 +197,10 @@ nav {
   width: 0;
   position: absolute;
   overflow: hidden;
+  display: none;
+}
+
+.hidden {
   display: none;
 }
 

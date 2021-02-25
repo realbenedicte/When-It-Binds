@@ -584,7 +584,7 @@ const testy = (() => {
 
 
       // p.setInitialSpeed(speed);
-      console.log("created particle ", p)
+      // console.log("created particle ", p)
       particles.push(p);
     }
   }

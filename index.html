@@ -13,10 +13,18 @@
   <body>
     <nav>
       <ul class="main-nav">
-        <li><a href="#" class="logo">Bénédicte</a></li>
-        <li><a href="#">Listen</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li>
+          <a href="#" data-page="listen" class="link logo">Bénédicte</a>
+        </li>
+        <li>
+          <a href="#" data-page="listen" class="link listen">Listen</a>
+        </li>
+        <li>
+          <a href="#" data-page="about" class="link about">About</a>
+        </li>
+        <li>
+          <a href="#" data-page="contact" class="link contact">Contact</a>
+        </li>
       </ul>
     </nav>
 
@@ -86,6 +94,31 @@
           </div>
         </article>
       </section>
+      <section class="page hidden" id="about">
+        <img
+          class="about-photo"
+          src="assets/images/PR-801-931.jpg"
+          width="801px"
+          height="931px"
+        />
+        <div class="about-info">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            tristique purus quam. Nulla at nibh congue, mollis nibh ac, varius
+            libero. Pellentesque rutrum condimentum risus, eget lobortis orci.
+            Donec vitae sem in nunc sagittis tempor vel sed lectus. Cras porta
+            ornare magna. efficitur.
+          </p>
+          <p>
+            Curabitur sit amet nisl quis ligula mollis rutrum sed non
+            felis.Vestibulum vulputate magna sed faucibus commodo. Proin vitae
+            tortor ut purus maximus posuere. Nullam ultricies consequat tortor,
+            eu scelerisque felis dignissim quis. Integer sodales interdum nibh
+            ac egestas. Curabitur tempor ligula in arcu imperdiet
+          </p>
+        </div>
+      </section>
+      <section class="page hidden" id="contact"></section>
     </div>
 
     <div id="nova-mid" class="layer mg"></div>
@@ -180,5 +213,26 @@
     </div>
 
     <script src="js/particle.js"></script>
+    <script>
+      const links = document.querySelectorAll(".link")
+      console.log("got links ", links)
+      let activePage = "listen"
+      const setActivePage = (event) => {
+        console.log("clicked link ", event)
+        let targetPage = event.target.dataset.page
+        if (activePage === targetPage) return
+
+        document.getElementById(activePage).classList.add("hidden")
+        document.getElementById(targetPage).classList.remove("hidden")
+
+        activePage = targetPage
+      }
+      // for (let link in links) {
+      //   link.addEventListener("click", setActivePage)
+      // }
+      links.forEach((element) => {
+        element.addEventListener("click", setActivePage)
+      })
+    </script>
   </body>
 </html>
