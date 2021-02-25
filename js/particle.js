@@ -549,18 +549,20 @@ const testy = (() => {
     addParticle(particles)
   }
   // novas behind
-  generateParticles("stars", "particle star s", 15)
-  generateParticles("stars", "particle star m", 5)
-  generateParticles("stars", "particle star l", 5)
+  generateParticles("stars", "particle star s", 10)
+  generateParticles("stars", "particle star m", 10)
+  generateParticles("stars", "particle star l", 10)
   generateParticles("dots", "particle dot s", 15)
   generateParticles("dots", "particle dot m", 20)
   generateParticles("dots", "particle dot l", 25)
 
   // novas infront
-  generateParticles("stars", "particle star s", 10, "nova-top")
-  generateParticles("stars", "particle star m", 5, "nova-top")
+  generateParticles("stars", "particle star s", 15, "nova-top")
+  generateParticles("stars", "particle star m", 10, "nova-top")
+  generateParticles("stars", "particle star l", 5, "nova-top")
   generateParticles("dots", "particle dot s", 15, "nova-top")
-  generateParticles("dots", "particle dot m", 5, "nova-top")
+  generateParticles("dots", "particle dot m", 10, "nova-top")
+  generateParticles("dots", "particle dot l", 5, "nova-top")
 
   // Functions
   function addParticle(imgs) {
