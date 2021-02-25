@@ -430,50 +430,12 @@ const testy = (() => {
     screenWidth = window.innerWidth;
     screenHeight = window.innerHeight;
 
-    // let cx = canvas.width * 0.5,
-    //   cy = canvas.height * 0.5;
 
-    // grad = context.createRadialGradient(cx, cy, 0, cx, cy, Math.sqrt(cx * cx + cy * cy));
-    // grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
-    // grad.addColorStop(1, 'rgba(0, 0, 0, 0.35)');
   }
 
-  // function generateSquareField(count = 64) {
 
-  //   let spacing = 100
-  //   let pos = new Vector(Math.floor(screenWidth / 2), Math.floor(screenHeight / 2))
-
-  //   let fieldW, fieldH
-  //   fieldW = fieldH = Math.round(Math.sqrt(count))
-  //   let offset = -(fieldW / 2) * spacing + spacing / 2 + 2
-
-  //   console.log("got field w, h", fieldW, fieldH)
-  //   for (i = 0; i < count; i++) {
-  //     let fx = offset + pos.x + (i % fieldW) * spacing
-  //     let fy = offset + pos.y + Math.floor(i / fieldH) * spacing
-  //     let fvEl = document.createElement('div');
-  //     fvEl.className = "fv"
-  //     fvEl.innerHTML = `&#8594`
-  //     document.body.appendChild(fvEl)
-  //     let fv = new Particle(fx, fy, PARTICLE_RADIUS, fvEl)
-  //     let speed = new Vector(1, 0)
-  //     // fieldVector.addSpeed(speed)
-  //     let deg = (360 + Math.round(180 * speed.angle() / Math.PI)) % 360;
-  //     field.push(fv)
-  //     fvEl.setAttribute("style", `transform: translate(${fx}px, ${fy}px) rotate(${deg}deg); `)
-
-  //   }
-  // }
 
   const generateField = () => {
-
-
-    // let pos = new Vector(Math.floor(screenWidth / 2), Math.floor(screenHeight / 2))
-
-    // let fieldW, fieldH
-    // fieldW = fieldH = Math.round(Math.sqrt(count))
-    // let offset = -(fieldW / 2) * spacing + spacing / 2 + 2
-
     let spacing = 50;
     let countX = Math.round(screenWidth / spacing);
     let countY = Math.round(screenHeight / spacing);
@@ -527,26 +489,11 @@ const testy = (() => {
       let g = gravities[0]
       g.set(mouse)
     }
-    // console.log("got mousex mousey", e.clientX, e.clientY)
-    // let i, g, hit = false;
-    // for (i = gravities.length - 1; i >= 0; i--) {
-    //   g = gravities[i];
-    //   if ((!hit && g.hitTest(mouse)) || g.dragging)
-    //     g.isMouseOver = hit = true;
-    //   else
-    //     g.isMouseOver = false;
-    // }
 
-    // canvas.style.cursor = hit ? 'pointer' : 'default';
   }
   let maxGravityPoints = 1;
   function mouseDown(e) {
-    // for (let i = gravities.length - 1; i >= 0; i--) {
-    //   if (gravities[i].isMouseOver) {
-    //     gravities[i].startDrag(mouse);
-    //     return;
-    //   }
-    // }
+
     if (gravities.length > 0) return
 
     console.log(" MOUSE DOWN ", e.clientX, e.clientY)
@@ -588,35 +535,34 @@ const testy = (() => {
 
 
 
-  function generateParticles(name, className, num = 100) {
+  function generateParticles(name, className, num = 100, containerId = "nova-mid") {
     let particleEls = document.getElementsByClassName(className)
-    console.log("got particles ", particleEls)
-    let particleContainer = document.getElementById("particles-mid")
+    let particleContainer = document.getElementById(containerId)
     for (let i = 0; i < num; i++) {
       let rIdx = Math.floor(Math.random() * particleEls.length)
       let particleEl = particleEls[rIdx]
       let particleClone = particleEl.cloneNode(true)
-      particleClone.setAttribute("class", "left")
+      particleClone.setAttribute("class", "nova")
       particleContainer.appendChild(particleClone)
     }
     let particles = particleContainer.getElementsByClassName(className)
     addParticle(particles)
   }
-  generateParticles("stars", "particle star s", 25)
-  generateParticles("stars", "particle star m", 10)
-  generateParticles("stars", "particle star l", 10)
+  // novas behind
+  generateParticles("stars", "particle star s", 15)
+  generateParticles("stars", "particle star m", 5)
+  generateParticles("stars", "particle star l", 5)
+  generateParticles("dots", "particle dot s", 15)
+  generateParticles("dots", "particle dot m", 20)
+  generateParticles("dots", "particle dot l", 20)
 
-  generateParticles("dots", "particle dot s", 25)
-  generateParticles("dots", "particle dot m", 25)
-  generateParticles("dots", "particle dot l", 25)
-  // function mouseUp(e) {
-  //   for (let i = 0, len = gravities.length; i < len; i++) {
-  //     if (gravities[i].dragging) {
-  //       gravities[i].endDrag();
-  //       break;
-  //     }
-  //   }
-  // }
+  // novas infront
+  generateParticles("stars", "particle star s", 10, "nova-top")
+  generateParticles("stars", "particle star m", 5, "nova-top")
+  generateParticles("stars", "particle star l", 5, "nova-top")
+  generateParticles("dots", "particle dot s", 10, "nova-top")
+  generateParticles("dots", "particle dot m", 5, "nova-top")
+  generateParticles("dots", "particle dot l", 5, "nova-top")
 
   // Functions
   function addParticle(imgs) {
@@ -652,7 +598,7 @@ const testy = (() => {
 
   resize(null);
 
-  imgs = document.getElementsByClassName("left")
+  imgs = document.getElementsByClassName("nova")
   addParticle(imgs);
   window.addEventListener('mousemove', mouseMove, false);
   // Init
