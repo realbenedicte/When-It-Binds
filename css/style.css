@@ -91,6 +91,7 @@ nav {
   max-width: 25vw;
   height: auto;
   border: 2px solid rgba(44, 47, 48, 0.897);
+  opacity: 0.9;
 }
 .about-info {
   min-width: 200px;
@@ -110,12 +111,14 @@ nav {
 
 .album-art:hover {
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
+  opacity: 1;
 }
 
 .album .album-art {
   max-width: 200px;
   max-height: 200px;
   transition: box-shadow 0.3s;
+  opacity: 0.8;
 }
 
 .album .description {
