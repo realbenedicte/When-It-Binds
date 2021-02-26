@@ -232,7 +232,8 @@ nav {
   margin: 1rem 2rem;
 }
 
-.album-art:hover {
+.album-art:hover,
+.feature-album:hover {
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
   opacity: 0.9;
 }
