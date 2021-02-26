@@ -11,6 +11,10 @@
   font-weight: lighter;
 }
 
+*:focus {
+  outline: none;
+}
+
 /* general */
 body,
 html {
@@ -119,8 +123,8 @@ nav {
 .about-info,
 .contact-info,
 .main-nav {
-  font-family: "Montserrat", sans-serif;
-  font-weight: lighter;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
 .main-nav > li.logo > a {
@@ -131,6 +135,11 @@ nav {
 #mobile-title {
   font-size: 40px;
   font-family: "lapicidelight";
+}
+
+.description > *,
+.social > a {
+  font-family: "Roboto", sans-serif;
 }
 
 .main-nav > li > a {
@@ -144,6 +153,23 @@ nav {
   max-height: 300px;
   transition: box-shadow 0.3s;
   opacity: 1;
+}
+.feature {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.feature .listen-here {
+  color: rgb(39, 39, 39);
+  /* background-color: rgba(213, 228, 230, 0.363); */
+  text-shadow: 0 0 5px rgba(2, 2, 2, 0.911);
+  font-family: "lapicidelight";
+  font-weight: lighter;
+  padding: 0.25em 0.5em;
+  position: absolute;
+  border-radius: 2px;
+  text-decoration: none;
 }
 
 /* about page */
@@ -186,6 +212,15 @@ nav {
   margin: 0.25em;
   white-space: nowrap;
   width: min-content;
+  color: rgb(39, 39, 39);
+  font-size: 0.9em;
+}
+
+.contact-info a {
+  margin: 0.5em;
+  font-size: 13px;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
 }
 
 .about-info > p {
@@ -224,6 +259,27 @@ nav {
   margin: 0;
   padding: 0;
   color: rgba(44, 47, 48, 0.897);
+}
+
+/* social */
+
+.social {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+  bottom: 20px;
+}
+.social > a {
+  margin: 0.5em;
+  font-size: 13px;
+  text-decoration: none;
+  color: rgba(2, 2, 2, 0.911);
+}
+
+.social > a:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .layer {
@@ -314,7 +370,7 @@ nav {
   #about {
     flex-direction: column-reverse;
   }
-  #listen {
+  #releases {
     flex-direction: column;
   }
   .album .album-art {
@@ -355,6 +411,9 @@ nav {
     text-align: center;
     padding: 0;
     margin: 0;
+  }
+  #home .feature {
+    pointer-events: none;
   }
 }
 
