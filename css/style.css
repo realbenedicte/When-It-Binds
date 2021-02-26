@@ -39,30 +39,27 @@ nav {
   margin: auto;
 }
 
-.main-nav .logo {
-  font-size: 60px;
-  margin: 0;
-  padding: 0;
-}
-
-.main-nav li:first-child {
-  margin-right: auto;
-  list-style-type: none;
-}
-
 .main-nav li {
   list-style-type: none;
-  font-family: "lapicidelight";
 }
 
 .main-nav a {
   margin: 10px;
   border-radius: 5px;
-  color: #000000;
   display: block;
   padding: 15px;
   text-decoration: none;
-  font-size: 20px;
+}
+
+.main-nav .logo {
+  padding: 0;
+  margin: 0 auto 0 0;
+  list-style-type: none;
+}
+
+.main-nav .logo > a {
+  margin: 0;
+  padding: 0;
 }
 
 /* content layers */
@@ -83,6 +80,33 @@ nav {
   min-width: 300px;
 }
 
+/* font stuff */
+
+.about-info,
+.contact-info,
+.main-nav {
+  font-family: "Montserrat", sans-serif;
+  font-weight: lighter;
+}
+
+.main-nav > li.logo > a {
+  font-size: 60px;
+  font-family: "lapicidelight";
+}
+
+.main-nav > li > a {
+  color: #000000;
+  font-size: 20px;
+}
+
+/* home page */
+#home .album .album-art {
+  max-width: 300px;
+  max-height: 300px;
+  transition: box-shadow 0.3s;
+  opacity: 1;
+}
+
 /* about page */
 #about > * {
   margin: 0 1em;
@@ -91,9 +115,10 @@ nav {
   max-width: 25vw;
   height: auto;
   border: 2px solid rgba(44, 47, 48, 0.897);
-  opacity: 0.9;
+  opacity: 1;
 }
-.about-info {
+.about-info,
+.contact-info {
   min-width: 200px;
   width: 350px;
   max-width: 40vw;
@@ -101,7 +126,7 @@ nav {
   padding: 1em;
   background-color: rgba(255, 255, 255, 0.9);
   border: 2px solid rgba(44, 47, 48, 0.897);
-  font-family: "lapicidelight";
+  font-weight: lighter;
 }
 
 /* listen page */
@@ -111,14 +136,14 @@ nav {
 
 .album-art:hover {
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
-  opacity: 1;
+  opacity: 0.9;
 }
 
 .album .album-art {
   max-width: 200px;
   max-height: 200px;
   transition: box-shadow 0.3s;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .album .description {

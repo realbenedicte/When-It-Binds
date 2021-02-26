@@ -282,44 +282,6 @@ GravityPoint.prototype = (function (o) {
       fp.addSpeed(Vector.sub(fp._initialSpeed, Vector.sub(this, fp).normalize().scale(80000 / fp.distanceToSq(this))))
     }
 
-    // let repulseRadius = 200
-    // let velocity = 10
-
-    // for (i = 0, len = field.length; i < len; i++) {
-    //   let p = field[i]
-    //   let dx = p.x - this.x
-    //   let dy = p.y - this.y
-
-    //   let distToP = p.distanceTo(this)
-    //   let normVec = new Vector(dx / distToP, dy / distToP)
-    //   let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-
-    //   //let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
-    //   let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
-
-    //   // p.addSpeed(Vector.add(pos, p._initialSpeed))
-    //   p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
-    // }
-
-    // for (i = 0, len = particles.length; i < len; i++) {
-    //   let p = particles[i]
-    //   let dx = p.x - this.x
-    //   let dy = p.y - this.y
-
-    //   let distToP = p.distanceTo(this)
-    //   let normVec = new Vector(dx / distToP, dy / distToP)
-    //   let repulseFactor = this.clamp((1 / repulseRadius) * (-1 * Math.pow(distToP / repulseRadius, 2) + 1) * repulseRadius * velocity, 0, 50);
-
-    //   // let pos = new Vector(p.x + normVec.x * repulseFactor, p.y + normVec.y * repulseFactor)
-    //   let pos = Vector.add(normVec, Vector.sub(this, p)).scale(-repulseFactor * 4)
-    //   //let pos = Vector.sub(this, p).scale(-repulseFactor)
-
-    //   p.addSpeed(Vector.add(pos, p._initialSpeed).scale(0.4))
-
-    // }
-
-
-
     this._easeRadius = (this._easeRadius + (this.radius - this.currentRadius) * 0.07) * 0.95;
     this.currentRadius += this._easeRadius;
     if (this.currentRadius < 0) this.currentRadius = 0;
@@ -394,17 +356,12 @@ GravityPoint.prototype = (function (o) {
   }
 });
 
-
-
-
 // Initialize
 const testy = (() => {
 
   // Configs
-
   screenWidth = window.innerWidth;
   screenHeight = window.innerHeight;
-
   console.log("got screenHeight ", screenHeight)
   console.log("got screenWidth ", screenWidth)
 
@@ -413,9 +370,6 @@ const testy = (() => {
     G_POINT_RADIUS = 10,
     G_POINT_RADIUS_LIMITS = 65;
 
-
-  // Vars
-
   let mouse = new Vector(),
     gravities = [],
     particles = [],
@@ -423,18 +377,10 @@ const testy = (() => {
     gpEls = [],
     field = [];
 
-
-  // Event Listeners
-
   function resize(e) {
     screenWidth = window.innerWidth;
     screenHeight = window.innerHeight;
-
-
   }
-
-
-
   const generateField = () => {
     let spacing = 50;
     let countX = Math.round(screenWidth / spacing);
@@ -530,10 +476,7 @@ const testy = (() => {
     })
     gravities.push(gp);
   }
-
   generateGravityPoint()
-
-
 
   function generateParticles(name, className, num = 100, containerId = "nova-mid") {
     let particleEls = document.getElementsByClassName(className)
@@ -595,7 +538,6 @@ const testy = (() => {
       particles.pop();
     }
   }
-
   resize(null);
 
   imgs = document.getElementsByClassName("nova")
@@ -609,7 +551,6 @@ const testy = (() => {
   // canvas.addEventListener('dblclick', doubleClick, false);
 
   // Start Update
-
   let loop = function () {
     let i, len, g, p, context;
 
@@ -652,7 +593,6 @@ const testy = (() => {
         i--;
       }
     }
-
 
     // bufferCtx.save();
     // bufferCtx.globalCompositeOperation = 'destination-out';
