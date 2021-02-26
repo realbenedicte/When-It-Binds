@@ -27,9 +27,6 @@ html {
   top: 0;
   bottom: 0;
   margin: auto;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
 }
 
 body.no-scroll {
