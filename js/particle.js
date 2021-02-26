@@ -421,10 +421,15 @@ const testy = (() => {
   }
   // generateField()
 
-  function touchStart(e) {
-    let clientX = e.touches[0].clientX;
-    let clientY = e.touches[0].clientY;
-    mouse.set(clientX, clientY);
+  function touchMove(e) {
+
+    if (!e.changedTouches && e.changedTouches.length) {
+      return
+    }
+    var touch = e.changedTouches[0];
+    clientX = touch.pageX
+    clientY = touch.pageY
+    mouse.set(clientX, clientY)
     if (gravities.length) {
       let g = gravities[0]
       g.set(mouse)
@@ -549,7 +554,8 @@ const testy = (() => {
   // Init
   window.addEventListener('resize', resize, false);
   window.addEventListener('mousedown', mouseDown, false);
-  window.addEventListener('touchstart', touchStart, false);
+
+  window.addEventListener('touchmove', touchMove, false);
   // canvas.addEventListener('mouseup', mouseUp, false);
   // canvas.addEventListener('dblclick', doubleClick, false);
 
