@@ -380,6 +380,9 @@ const testy = (() => {
   function resize(e) {
     screenWidth = window.innerWidth;
     screenHeight = window.innerHeight;
+    // We execute the same script as before
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
   const generateField = () => {
     let spacing = 50;
