@@ -21,25 +21,43 @@
 
   <body>
     <nav>
-      <ul class="main-nav">
+      <h1 id="mobile-title">Bénédicte</h1>
+      <label id="mobile-menu" for="mobile-toggle">
+        <img src="assets/images/menu.svg" width="80px" height="80px" />
+      </label>
+      <input type="checkbox" id="mobile-toggle" />
+      <ul id="menu" class="main-nav">
+        <li class="mobile-home">
+          <a href="#" data-page="home" data-title="Bénédicte" class="link"
+            >Home</a
+          >
+        </li>
         <li class="logo">
-          <a href="#" data-page="home" class="link">Bénédicte</a>
+          <a href="#" data-page="home" data-title="Bénédicte" class="link"
+            >Bénédicte</a
+          >
         </li>
         <li>
-          <a href="#" data-page="listen" class="link">Listen</a>
+          <a href="#" data-page="listen" data-title="Listen" class="link"
+            >Listen</a
+          >
         </li>
         <li>
-          <a href="#" data-page="about" class="link">About</a>
+          <a href="#" data-page="about" data-title="About" class="link"
+            >About</a
+          >
         </li>
         <li>
-          <a href="#" data-page="contact" class="link">Contact</a>
+          <a href="#" data-page="contact" data-title="Contact" class="link"
+            >Contact</a
+          >
         </li>
       </ul>
     </nav>
 
     <div id="content">
       <section class="page" id="home">
-        <article class="album">
+        <article class="feature">
           <a
             class="cover"
             href="https://benedictemusic.bandcamp.com/"
@@ -47,7 +65,7 @@
             rel="noopener noreferrer"
           >
             <img
-              class="album-art"
+              class="feature-album"
               src="assets/images/WIB-540.png"
               width="300px"
               height="300px"
@@ -121,32 +139,30 @@
         </article>
       </section>
       <section class="page hidden" id="about">
-        <img
-          class="about-photo"
-          src="assets/images/PR-801-931.jpg"
-          width="801px"
-          height="931px"
-        />
+        <div class="about-photo"></div>
         <div class="about-info">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            tristique purus quam. Nulla at nibh congue, mollis nibh ac, varius
-            libero. Pellentesque rutrum condimentum risus, eget lobortis orci.
-            Donec vitae sem in nunc sagittis tempor vel sed lectus. Cras porta
-            ornare magna. efficitur.
+            Bénédicte is the musical project of Montreal-based producer and
+            sound artist Maxime Gordon. Bénédicte’s music is a study of
+            restrained feeling, containing soaring synths within a landscape
+            that is strictly minimalist. She distorts field-recordings and vocal
+            samples, splicing the human and familiar with the unnatural.
           </p>
           <p>
-            Curabitur sit amet nisl quis ligula mollis rutrum sed non
-            felis.Vestibulum vulputate magna sed faucibus commodo. Proin vitae
-            tortor ut purus maximus posuere. Nullam ultricies consequat tortor,
-            eu scelerisque felis dignissim quis. Integer sodales interdum nibh
-            ac egestas. Curabitur tempor ligula in arcu imperdiet
+            Her most recent release is the EP When It Binds on Blueberry
+            Records. When It Binds is a collection of songs composed over the
+            last 3 years, and serves as Bénédicte’s personal exploration of what
+            happens after an emotional connection is established with someone.
           </p>
         </div>
       </section>
       <section class="page hidden" id="contact">
         <div class="contact-info">
           <p>Email: <span>email@email.com</span></p>
+          <p>Other: <span>Some other contact stuff</span></p>
+          <p>
+            Link: <span><a href="#">http://linkstuff.com/asfasdf</a></span>
+          </p>
         </div>
       </section>
     </div>
@@ -244,24 +260,35 @@
 
     <script src="js/particle.js"></script>
     <script>
-      const links = document.querySelectorAll(".link")
-      console.log("got links ", links)
+      // active page
       let activePage = "home"
+      // mobile menu
+      const mobileMenuToggle = document.querySelector("#mobile-toggle")
+      const mobileTitle = document.querySelector("#mobile-title")
+      // menu links
+      const links = document.querySelectorAll(".link")
+
       const setActivePage = (event) => {
         console.log("clicked link ", event)
+        document.body.classList.remove("no-scroll")
+        mobileMenuToggle.checked = false
         let targetPage = event.target.dataset.page
+        let targetTitle = event.target.dataset.title
         if (activePage === targetPage) return
-
+        mobileTitle.innerHTML = targetTitle
         document.getElementById(activePage).classList.add("hidden")
         document.getElementById(targetPage).classList.remove("hidden")
-
         activePage = targetPage
       }
-      // for (let link in links) {
-      //   link.addEventListener("click", setActivePage)
-      // }
+
+      // add event listeners
       links.forEach((element) => {
         element.addEventListener("click", setActivePage)
+      })
+
+      mobileMenuToggle.addEventListener("change", (event) => {
+        console.log(`input changed to: ${event.target.checked}`)
+        document.body.classList.add("no-scroll")
       })
     </script>
   </body>

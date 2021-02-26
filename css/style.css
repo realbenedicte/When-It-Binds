@@ -7,6 +7,10 @@
   font-display: swap;
 }
 
+* {
+  font-weight: lighter;
+}
+
 /* general */
 body,
 html {
@@ -19,6 +23,9 @@ html {
   top: 0;
   bottom: 0;
   margin: auto;
+}
+
+body.no-scroll {
   overflow: hidden;
 }
 
@@ -26,6 +33,43 @@ html {
 nav {
   position: relative;
   z-index: 40;
+  display: flex;
+}
+
+#mobile-title {
+  display: none;
+  font-size: 40px;
+  font-family: "lapicidelight";
+  padding: 0;
+  bottom: 12px;
+  width: min-content;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: min-content;
+}
+#mobile-toggle {
+  display: none;
+}
+#mobile-menu {
+  display: none;
+  max-height: 80px;
+  margin-left: auto;
+  cursor: pointer;
+}
+#mobile-menu > img {
+  width: 80px;
+  height: 80px;
+}
+
+.mobile-home {
+  display: none;
+}
+
+.mobile-nav ul {
+  margin: 0;
+  padding: 0;
 }
 
 .main-nav {
@@ -76,6 +120,7 @@ nav {
 .page {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   max-width: 1024px;
   min-width: 300px;
 }
@@ -94,13 +139,18 @@ nav {
   font-family: "lapicidelight";
 }
 
+#mobile-title {
+  font-size: 40px;
+  font-family: "lapicidelight";
+}
+
 .main-nav > li > a {
   color: #000000;
   font-size: 20px;
 }
 
 /* home page */
-#home .album .album-art {
+#home .feature .feature-album {
   max-width: 300px;
   max-height: 300px;
   transition: box-shadow 0.3s;
@@ -109,29 +159,53 @@ nav {
 
 /* about page */
 #about > * {
-  margin: 0 1em;
+  margin: 1rem;
 }
+
+#about {
+}
+
 .about-photo {
-  max-width: 25vw;
-  height: auto;
+  box-sizing: border-box;
+  background-image: url("../assets/images/PR-801-931.jpg");
+  background-position: center center;
+  background-size: cover;
+  min-height: 372px;
+  width: 340px;
   border: 2px solid rgba(44, 47, 48, 0.897);
-  opacity: 1;
 }
 .about-info,
 .contact-info {
-  min-width: 200px;
-  width: 350px;
-  max-width: 40vw;
-  height: fit-content;
-  padding: 1em;
+  box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.9);
   border: 2px solid rgba(44, 47, 48, 0.897);
-  font-weight: lighter;
+  padding: 1em;
+  width: 340px;
+  font-size: 15px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.contact-info {
+  width: min-content;
+  padding: 0.5em;
+}
+
+.contact-info > p {
+  padding: 0;
+  margin: 0.25em;
+  white-space: nowrap;
+  width: min-content;
+}
+
+.about-info > p {
+  margin: 1em 0;
 }
 
 /* listen page */
 .album {
-  margin: 0 2em;
+  margin: 1rem 2rem;
 }
 
 .album-art:hover {
@@ -140,8 +214,8 @@ nav {
 }
 
 .album .album-art {
-  max-width: 200px;
-  max-height: 200px;
+  width: 240px;
+  height: 240px;
   transition: box-shadow 0.3s;
   opacity: 1;
 }
@@ -232,21 +306,67 @@ nav {
   display: none;
 }
 
-/* hide album art on small screen */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 910px) {
+  .album .album-art {
+    width: 180px;
+    height: 180px;
+  }
 }
 
-@media screen and (max-width: 700px) {
+/* hide album art on small screen */
+@media only screen and (max-width: 745px) {
+  #content {
+    min-height: calc(100vh - 160px);
+  }
+  .page {
+    margin: 0;
+  }
+  #about {
+    flex-direction: column-reverse;
+  }
+  #listen {
+    flex-direction: column;
+  }
+  .album .album-art {
+    width: 240px;
+    height: 240px;
+  }
+  .main-nav {
+    display: none;
+  }
+  #mobile-menu {
+    display: block;
+  }
+  #mobile-title {
+    display: block;
+  }
+  #mobile-toggle:checked ~ .main-nav {
+    display: flex !important;
+  }
+  .mobile-home {
+    display: block;
+  }
+  .main-nav .logo {
+    display: none;
+  }
   .main-nav {
     flex-direction: column !important; /* change the direction of the container */
+    background-color: black;
+    min-height: 100vh;
+    justify-content: space-evenly;
   }
-
-  .main-nav a {
+  .main-nav > li > a {
     flex-direction: column !important;
     margin-left: 0px;
     padding-left: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: white;
     text-align: center;
   }
+}
+
+@media screen and (max-width: 745px) {
 }
