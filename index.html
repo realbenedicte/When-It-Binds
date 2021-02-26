@@ -260,6 +260,10 @@
 
     <script src="js/particle.js"></script>
     <script>
+      // set mobile viewport
+      let vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty("--vh", `${vh}px`)
+
       // active page
       let activePage = "home"
       // mobile menu
