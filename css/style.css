@@ -114,7 +114,7 @@ nav {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  max-width: 1024px;
+  max-width: 960px;
   min-width: 300px;
 }
 
@@ -253,6 +253,7 @@ nav {
   font-weight: normal;
   font-size: 1em;
   font-style: italic;
+  max-width: 190px;
 }
 
 .album .description > p,
