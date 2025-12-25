@@ -1,9 +1,8 @@
 /* Live page styles copied from 2025_maxime_editsz */
+/* Ensure live page content sits above particle layers */
 #content .page#live {
-  /* Your styles here */
-  /* background-color: #6274c4; */
-  /* justify-content: space-between; */
-  /* width: 100%;  */
+  position: relative;
+  z-index: 50;
 }
 
 .live-container {
@@ -20,21 +19,18 @@
 .live-info > p {
   padding: 0;
   margin: 0.25em;
-  white-space: nowrap;
-  width: min-content;
+  white-space: normal; /* allow wrapping */
+  width: auto;
   font-family: 'Mundial Narrow Variable', sans-serif;
 
 }
 
 .live-content {
-  /* flex: 1; */
-  /* Fills the remaining width */
-  overflow-y: auto;
-  /* Enables vertical scrolling for this section */
-  /* padding: 20px; */
-  height: 100vh;
+  /* Make the live section static within the page flow */
+  overflow: visible; /* avoid inner scrollbars */
+  height: auto;
   width: 100%;
-  /* Makes the container fill the viewport height */
+  max-height: none;
 }
 .live-text-section {
   display: flex;
@@ -46,7 +42,7 @@
   margin-bottom: 10px; /* Adds space between lines */
   padding: 0;
   margin: 0.25em;
-  white-space: nowrap;
+  white-space: normal; /* allow wrapping */
   color: rgb(39, 39, 39);
   font-size: 0.8em;
   font-family: Arial, Helvetica, sans-serif;
