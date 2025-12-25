@@ -1,0 +1,116 @@
+/* Live page styles copied from 2025_maxime_editsz */
+#content .page#live {
+  /* Your styles here */
+  /* background-color: #6274c4; */
+  /* justify-content: space-between; */
+  /* width: 100%;  */
+}
+
+.live-container {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  /* max-width: 1200px;  *//* Optional: limits the width */
+  margin: 20px auto; /* Centers the container */
+  padding: 20px;
+  gap: 20px; /* Space between text and images */
+  justify-content:center; /* Distribute items to either end */
+  width: 100%; /* Ensure the container spans the full width of the section */
+}
+
+.live-info > p {
+  padding: 0;
+  margin: 0.25em;
+  white-space: nowrap;
+  width: min-content;
+  font-family: 'Mundial Narrow Variable', sans-serif;
+
+}
+
+.live-content {
+  /* flex: 1; */
+  /* Fills the remaining width */
+  overflow-y: auto;
+  /* Enables vertical scrolling for this section */
+  /* padding: 20px; */
+  height: 100vh;
+  width: 100%;
+  /* Makes the container fill the viewport height */
+}
+.live-text-section {
+  display: flex;
+  flex: 1; /* Makes the text take available space */
+  width: 100%;
+}
+
+.live-text-line {
+  margin-bottom: 10px; /* Adds space between lines */
+  padding: 0;
+  margin: 0.25em;
+  white-space: nowrap;
+  color: rgb(39, 39, 39);
+  font-size: 0.8em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* hyperlink styling */
+.live-text-line > a{
+  color: rgb(39, 39, 39);
+}
+
+.live-image-section {
+  flex: 1; /* Adjust to share space equally */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between images */
+  width: 100%;
+  /* margin-left: auto; Push this div fully to the right */
+}
+
+.live-image-section img {
+  max-width: 100%;
+  height: auto; /* Maintains aspect ratio */
+  padding: 20px;
+}
+
+.live-image-01{
+  background-image: url("../assets/images/1024_768_live/live_01_1024.png");
+  background-position: center center;
+  background-size: cover;
+  min-height: 384px;
+  width: 512px;
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
+}
+
+
+.live-image-02{
+  background-image: url("../assets/images/1024_768_live/live_02_1024.png");
+  background-position: center center;
+  background-size: cover;
+  min-height: 384px;
+  width: 512px;
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
+}
+
+.live-image-03{
+  background-image: url("../assets/images/1024_768_live/live_03_1024.png");
+  background-position: center center;
+  background-size: cover;
+  min-height: 384px;
+  width: 512px;
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
+}
+
+.live-image-04{
+  background-image: url("../assets/images/webimages_live/live-04.png");
+  background-position: center center;
+  background-size: cover;
+  min-height: 384px;
+  width: 512px;
+}
+.live-image-05{
+  background-image: url("../assets/images/webimages_live/dj.png");
+  background-position: center center;
+  background-size: cover;
+  min-height: 340px;
+  width: 340px;
+}
