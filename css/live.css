@@ -102,21 +102,24 @@
 }
 
 .live-image-section {
-  flex: 1 1 auto; /* expand to fill available space */
+  flex: 0 0 auto; /* Don't grow, fixed size */
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: auto; /* let it size to its content */
-  max-width: 1300px; /* much larger images */
+  width: 400px; /* Adjusted width to match image size */
+  max-width: 400px; /* Constrain maximum size */
   align-items: flex-end; /* stick to right margin */
   margin-top: 0; /* ensure images start at same vertical position as text */
   margin-left: auto; /* push to the right */
 }
 
 .live-image-section img {
-  max-width: 100%;
+  max-width: 380px; /* Moderate size to prevent overflow */
+  width: 100%;
   height: auto; /* Maintains aspect ratio */
-  padding: 20px;
+  padding: 0; /* Remove padding so shadow is directly on image */
+  margin: 8px; /* Use margin instead for spacing between images */
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1); /* Box shadow like other images */
 }
 
 .live-image-01{
@@ -225,6 +228,11 @@
     padding: 0; /* no extra padding around images */
     margin-left: 0; /* remove right-push for mobile */
     width: 100%; /* full width for mobile */
+    max-width: 100%; /* allow full width on mobile */
+  }
+  .live-image-section img {
+    max-width: 100%; /* Allow images to scale to container width on mobile */
+    padding: 4px; /* Smaller padding on mobile */
   }
   .live-image-01,
   .live-image-02,
