@@ -394,23 +394,82 @@
       const links = document.querySelectorAll(".link")
       const contentEl = document.querySelector("#content")
 
-      const setActivePage = (event) => {
-        console.log("clicked link ", event)
-        document.body.classList.remove("no-scroll")
-        mobileMenuToggle.checked = false
-        let targetPage = event.target.dataset.page
-        let targetTitle = event.target.dataset.title
+      // Function to get the current page from URL hash
+      function getPageFromUrl() {
+        const hash = window.location.hash.substring(1) // Remove the '#'
+        const validPages = ['home', 'releases', 'about', 'live', 'contact']
+        return validPages.includes(hash) ? hash : 'home'
+      }
+
+      // Function to update the URL without reloading the page
+      function updateUrl(page) {
+        const url = page === 'home' ? '#home' : `#${page}`
+        window.history.pushState({ page: page }, '', url)
+      }
+
+      // Function to get title for a page
+      function getTitleForPage(page) {
+        const titleMap = {
+          'home': 'Bénédicte',
+          'releases': 'Releases',
+          'about': 'About',
+          'live': 'Live',
+          'contact': 'Contact'
+        }
+        return titleMap[page] || 'Bénédicte'
+      }
+
+      // Function to navigate to a specific page
+      function navigateToPage(targetPage, targetTitle = null, pushToHistory = true) {
         if (activePage === targetPage) return
+        
+        if (!targetTitle) {
+          targetTitle = getTitleForPage(targetPage)
+        }
+        
         mobileTitle.innerHTML = targetTitle
         document.getElementById(activePage).classList.add("hidden")
         document.getElementById(targetPage).classList.remove("hidden")
         activePage = targetPage
+        
         if (activePage === "live") {
           contentEl.classList.add("content-live")
         } else {
           contentEl.classList.remove("content-live")
         }
+
+        // Update URL
+        if (pushToHistory) {
+          updateUrl(targetPage)
+        }
       }
+
+      const setActivePage = (event) => {
+        event.preventDefault()
+        console.log("clicked link ", event)
+        document.body.classList.remove("no-scroll")
+        mobileMenuToggle.checked = false
+        let targetPage = event.target.dataset.page
+        let targetTitle = event.target.dataset.title
+        navigateToPage(targetPage, targetTitle)
+      }
+
+      // Handle browser back/forward buttons
+      window.addEventListener('popstate', function(event) {
+        const page = event.state ? event.state.page : getPageFromUrl()
+        navigateToPage(page, getTitleForPage(page), false)
+      })
+
+      // Initialize page based on URL on page load
+      window.addEventListener('DOMContentLoaded', function() {
+        const initialPage = getPageFromUrl()
+        if (initialPage !== 'home') {
+          navigateToPage(initialPage, getTitleForPage(initialPage), false)
+        } else {
+          // Set initial URL for home page
+          updateUrl('home')
+        }
+      })
 
       // add event listeners
       links.forEach((element) => {
