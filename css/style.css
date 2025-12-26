@@ -7,6 +7,12 @@
   font-display: swap;
 }
 
+:root {
+  /* Site-wide horizontal gutter for consistent margins */
+  --site-gutter: 2rem;
+  --site-gutter-sm: 0.75rem;
+}
+
 * {
   font-weight: lighter;
 }
@@ -89,7 +95,7 @@ nav {
 
 .main-nav .logo {
   padding: 0;
-  margin: 0 auto 0 1em;
+  margin: 0 auto 0 var(--site-gutter);
   list-style-type: none;
 }
 
@@ -116,6 +122,9 @@ nav {
   justify-content: center;
   max-width: 960px;
   min-width: 300px;
+  /* Use site gutter for consistent side margins */
+  width: calc(100% - (var(--site-gutter) * 2));
+  margin: 0 var(--site-gutter);
 }
 
 /* font stuff */
@@ -367,7 +376,8 @@ nav {
     min-height: calc((var(--vh, 1vh) * 100) - 120px);
   }
   .page {
-    margin: 0;
+    margin: 0 var(--site-gutter-sm);
+    width: calc(100% - (var(--site-gutter-sm) * 2));
   }
   #about {
     flex-direction: column-reverse;
