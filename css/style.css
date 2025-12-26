@@ -441,7 +441,7 @@ nav {
     margin: 0;
   }
   #home .feature {
-    pointer-events: none;
+    /* pointer-events: none; - Commented out to allow clicking on mobile */
   }
 }
 

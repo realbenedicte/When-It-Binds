@@ -232,7 +232,9 @@
   }
   .live-image-section img {
     max-width: 100%; /* Allow images to scale to container width on mobile */
-    padding: 4px; /* Smaller padding on mobile */
+    padding: 0; /* Remove padding on mobile */
+    margin: 4px; /* Use margin instead for spacing */
+    box-shadow: 0 0 3px rgba(33, 33, 33, 0.8); /* Visible but softer shadow on mobile */
   }
   .live-image-01,
   .live-image-02,
