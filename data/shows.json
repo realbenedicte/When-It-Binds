@@ -1,0 +1,264 @@
+{
+  "shows": [
+    {
+      "year": "2025",
+      "events": [
+        {
+          "date": "May 16",
+          "venue": "Eastern Bloc x World Creation Studio",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "May 1",
+          "venue": "Substrat",
+          "location": "SAT - Satosphere - Montreal, Canada",
+          "isDJ": false,
+          "link": "https://sat.qc.ca/en/events/substrat-sound-series-irl-benedicte-michael-gary-dean-freddy-speer"
+        },
+        {
+          "date": "April 19",
+          "venue": "World Creation Studio",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "events": [
+        {
+          "date": "November 24",
+          "venue": "Exposé Noire",
+          "location": "Les 7 doigts de la main - Montreal, Canada",
+          "isDJ": true,
+          "link": "https://ra.co/events/2028872"
+        },
+        {
+          "date": "September 22",
+          "venue": "Between Wings",
+          "location": "La Sotterenea - Montreal, Canada",
+          "isDJ": false,
+          "link": "https://ra.co/events/2000908"
+        },
+        {
+          "date": "August 22",
+          "venue": "MUTEK",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": "https://montreal.mutek.org/en/artists/benedicte"
+        },
+        {
+          "date": "June 24",
+          "venue": "POP Montreal & Heavy Trip present: ML Buch + Bénédicte",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": "https://fb.me/e/4zEmNcMx9"
+        },
+        {
+          "date": "March 2",
+          "venue": "MBAM - Musée de Beaux-Arts Montréal - Nuit Blanche",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        }
+      ]
+    },
+    {
+      "year": "2023",
+      "events": [
+        {
+          "date": "November 16",
+          "venue": "Datcha",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "September 23",
+          "venue": "Ursa",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "September 16",
+          "venue": "Oxygen x Entrepot 77",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "June 30",
+          "venue": "Anteism Books - Juliette Duhé exhibition",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "June 10",
+          "venue": "Online Threat - EP Release Party - outdoors",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "June 2",
+          "venue": "Nouvel Établissement",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "February 25",
+          "venue": "Eastern Bloc x Nuit Blanche",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "January 20",
+          "venue": "La Sotterenea",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "year": "2022",
+      "events": [
+        {
+          "date": "September 22",
+          "venue": "Église Saint-Edouard",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "September 10",
+          "venue": "Glory Affairs x Punctum",
+          "location": "Prague, Czech Republic",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "August 31",
+          "venue": "Bar Repeat",
+          "location": "Berlin, Germany",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "August 27",
+          "venue": "OIIOIOOI",
+          "location": "Stadt Wehlen, Germany",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "June 3",
+          "venue": "Nimbus x Soundbath",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "May 13",
+          "venue": "Nouvel Établissement",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "April 30",
+          "venue": "Sandwich District",
+          "location": "Toronto, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "April 23",
+          "venue": "Ursa",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "year": "2021",
+      "events": [
+        {
+          "date": "August 28",
+          "venue": "MUTEK",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        }
+      ]
+    },
+    {
+      "year": "2020",
+      "events": [
+        {
+          "date": "February 21",
+          "venue": "Unit 2 x Raven's Vision",
+          "location": "Toronto, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "March 24",
+          "venue": "Club Quarantine",
+          "location": "online",
+          "isDJ": true,
+          "link": null
+        }
+      ]
+    },
+    {
+      "year": "2019",
+      "events": [
+        {
+          "date": "December 3",
+          "venue": "Café Résonance",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "August 17",
+          "venue": "Spirit",
+          "location": "Prague, Czech Republic",
+          "isDJ": false,
+          "link": null
+        },
+        {
+          "date": "May 30",
+          "venue": "The Embassy Bar",
+          "location": "Toronto, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "May 15",
+          "venue": "The Lot Radio",
+          "location": "New York City, USA",
+          "isDJ": true,
+          "link": null
+        },
+        {
+          "date": "May 12",
+          "venue": "H0L0",
+          "location": "New York City, USA",
+          "isDJ": false,
+          "link": null
+        }
+      ]
+    }
+  ],
+  "footerMessage": "And many more!"
+}
