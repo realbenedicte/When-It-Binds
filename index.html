@@ -430,6 +430,7 @@
       const mobileTitle = document.querySelector("#mobile-title")
       // menu links
       const links = document.querySelectorAll(".link")
+      const contentEl = document.querySelector("#content")
 
       const setActivePage = (event) => {
         console.log("clicked link ", event)
@@ -442,12 +443,22 @@
         document.getElementById(activePage).classList.add("hidden")
         document.getElementById(targetPage).classList.remove("hidden")
         activePage = targetPage
+        if (activePage === "live") {
+          contentEl.classList.add("content-live")
+        } else {
+          contentEl.classList.remove("content-live")
+        }
       }
 
       // add event listeners
       links.forEach((element) => {
         element.addEventListener("click", setActivePage)
       })
+
+      // set initial alignment
+      if (activePage === "live") {
+        contentEl.classList.add("content-live")
+      }
 
       mobileMenuToggle.addEventListener("change", (event) => {
         console.log(`input changed to: ${event.target.checked}`)

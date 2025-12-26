@@ -3,26 +3,52 @@
 #content .page#live {
   position: relative;
   z-index: 50;
+  max-width: none; /* use full width of viewport */
+  width: calc(100% - 2em); /* match brand left/right offset */
+  margin: 0 1em; /* align left with logo's 1em offset, balanced right */
+}
+
+/* When live is active, keep standard centering */
+#content.content-live {
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .live-container {
   display: flex;
   align-items: flex-start; /* Align items to the top */
-  /* max-width: 1200px;  *//* Optional: limits the width */
-  margin: 20px auto; /* Centers the container */
-  padding: 20px;
-  gap: 20px; /* Space between text and images */
-  justify-content:center; /* Distribute items to either end */
-  width: 100%; /* Ensure the container spans the full width of the section */
+  margin: 48px 0 24px 0; /* push content lower on page, no auto centering */
+  padding: 0 4px 20px 4px; /* minimal side padding */
+  gap: 32px; /* similar to about page spacing */
+  justify-content: flex-start;
+  width: 100%;
+  max-width: none; /* allow full width */
+  flex-wrap: wrap;
+}
+
+.live-info {
+  flex: 1 1 520px;
+  max-width: 620px;
+  margin: 0 !important; /* remove all margin */
+  padding: 0 !important; /* remove all padding */
+  display: block;
+  line-height: 1;
 }
 
 .live-info > p {
   padding: 0;
-  margin: 0.25em;
+  margin: 0;
   white-space: normal; /* allow wrapping */
   width: auto;
   font-family: 'Mundial Narrow Variable', sans-serif;
 
+}
+
+.live-info > div {
+  margin: 0;
+  padding: 0;
 }
 
 .live-content {
@@ -31,21 +57,39 @@
   height: auto;
   width: 100%;
   max-height: none;
+  margin: 0;
+  padding: 0;
 }
 .live-text-section {
   display: flex;
   flex: 1; /* Makes the text take available space */
   width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.live-text-section > p {
+  margin: 0;
+  padding: 0;
+}
+
+.live-text-section > p:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 .live-text-line {
-  margin-bottom: 10px; /* Adds space between lines */
   padding: 0;
-  margin: 0.25em;
+  margin: 0 0.25em 10px 0.25em; /* top right bottom left - no top margin */
   white-space: normal; /* allow wrapping */
   color: rgb(39, 39, 39);
   font-size: 0.8em;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.live-text-line:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* hyperlink styling */
@@ -54,12 +98,13 @@
 }
 
 .live-image-section {
-  flex: 1; /* Adjust to share space equally */
+  flex: 0 0 480px; /* wider column for larger images */
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Space between images */
+  gap: 16px;
   width: 100%;
-  /* margin-left: auto; Push this div fully to the right */
+  align-items: flex-start;
+  margin-top: 0; /* ensure images start at same vertical position as text */
 }
 
 .live-image-section img {
@@ -70,43 +115,80 @@
 
 .live-image-01{
   background-image: url("../assets/images/1024_768_live/live_01_1024.png");
-  background-position: center center;
+  background-position: center bottom; /* keep bottom visible */
   background-size: cover;
-  min-height: 384px;
-  width: 512px;
+  aspect-ratio: 4 / 3;
+  width: 480px;
   box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
 
 .live-image-02{
   background-image: url("../assets/images/1024_768_live/live_02_1024.png");
-  background-position: center center;
+  background-position: center bottom; /* keep bottom visible */
   background-size: cover;
-  min-height: 384px;
-  width: 512px;
+  aspect-ratio: 4 / 3;
+  width: 480px;
   box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
 .live-image-03{
   background-image: url("../assets/images/1024_768_live/live_03_1024.png");
-  background-position: center center;
+  background-position: center bottom; /* keep bottom visible */
   background-size: cover;
-  min-height: 384px;
-  width: 512px;
+  aspect-ratio: 4 / 3;
+  width: 480px;
   box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
 .live-image-04{
   background-image: url("../assets/images/webimages_live/live-04.png");
-  background-position: center center;
+  background-position: center bottom; /* keep bottom visible */
   background-size: cover;
-  min-height: 384px;
-  width: 512px;
+  aspect-ratio: 4 / 3;
+  width: 480px;
 }
 .live-image-05{
   background-image: url("../assets/images/webimages_live/dj.png");
-  background-position: center center;
+  background-position: center bottom; /* keep bottom visible */
   background-size: cover;
-  min-height: 340px;
-  width: 340px;
+  aspect-ratio: 16 / 9;
+  width: 480px;
+}
+
+@media only screen and (max-width: 960px) {
+  #content.content-live {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .live-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 12px 0 20px 0; /* remove side padding so images can truly center */
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto 16px auto; /* center stack like about */
+    align-items: center;
+  }
+  .live-info,
+  .live-image-section {
+    max-width: 100%;
+  }
+  .live-image-section {
+    align-items: center;
+    padding: 0; /* no extra padding around images */
+  }
+  .live-image-01,
+  .live-image-02,
+  .live-image-03,
+  .live-image-04,
+  .live-image-05 {
+    width: 100%;
+    max-width: 300px; /* slightly narrower so it fits comfortably */
+    min-height: 180px;
+    background-size: cover;
+    background-position: center center;
+    margin: 0 auto; /* center each image block */
+    box-shadow: 0 0 4px rgba(33,33,33,0.6); /* softer shadow to reduce visual padding */
+  }
 }
