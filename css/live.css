@@ -120,7 +120,7 @@
 }
 
 .live-image-01{
-  background-image: url("../assets/images/1024_768_live/live_01_1024.png");
+  background-image: url("../assets/images/Live/Frame 378.png");
   background-position: center bottom;
   background-size: cover;
   aspect-ratio: 4 / 3;
@@ -131,7 +131,7 @@
 
 
 .live-image-02{
-  background-image: url("../assets/images/1024_768_live/live_02_1024.png");
+  background-image: url("../assets/images/Live/Frame 379.png");
   background-position: center bottom;
   background-size: cover;
   aspect-ratio: 4 / 3;
@@ -160,6 +160,38 @@
 }
 .live-image-05{
   background-image: url("../assets/images/webimages_live/dj.png");
+  background-position: center bottom;
+  background-size: cover;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 1100px;
+}
+.live-image-06{
+  background-image: url("../assets/images/Live/Frame 381.png");
+  background-position: center bottom;
+  background-size: cover;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 1100px;
+}
+.live-image-08{
+  background-image: url("../assets/images/Live/Frame 382.png");
+  background-position: center center;
+  background-size: 300%; /* zoom in on center */
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 1100px;
+}
+.live-image-09{
+  background-image: url("../assets/images/Live/Frame 387.png");
+  background-position: center bottom;
+  background-size: cover;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 1100px;
+}
+.live-image-10{
+  background-image: url("../assets/images/Live/Frame 388.png");
   background-position: center bottom;
   background-size: cover;
   aspect-ratio: 16 / 9;
