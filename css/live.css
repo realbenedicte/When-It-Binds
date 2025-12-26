@@ -4,8 +4,8 @@
   position: relative;
   z-index: 50;
   max-width: none; /* use full width of viewport */
-  width: calc(100% - 2em); /* match brand left/right offset */
-  margin: 0 1em; /* align left with logo's 1em offset, balanced right */
+  width: calc(100% - (var(--site-gutter) * 2)); /* match header gutter */
+  margin: 0 var(--site-gutter); /* equal side margins aligned to header */
 }
 
 /* When live is active, keep standard centering */
