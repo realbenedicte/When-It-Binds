@@ -13,6 +13,11 @@
   --site-gutter-sm: 0.75rem;
 }
 
+/* Prevent browser hash scroll from positioning incorrectly */
+#home, #releases, #about, #live, #contact {
+  scroll-margin-top: 0;
+}
+
 * {
   font-weight: lighter;
 }

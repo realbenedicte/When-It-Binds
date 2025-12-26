@@ -23,6 +23,16 @@
     <link rel="stylesheet" type="text/css" href="css/live.css" />
     <!-- JavaScript -->
     <script src="js/shows.js"></script>
+    <script>
+      // Fix direct hash URL positioning
+      if (window.location.hash) {
+        window.addEventListener('load', function() {
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 0);
+        });
+      }
+    </script>
   </head>
   <body>
     <nav>
