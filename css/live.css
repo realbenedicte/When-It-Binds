@@ -3,9 +3,9 @@
 #content .page#live {
   position: relative;
   z-index: 50;
-  max-width: none; /* use full width of viewport */
-  width: calc(100% - (var(--site-gutter) * 2)); /* match header gutter */
-  margin: 0 var(--site-gutter); /* equal side margins aligned to header */
+  max-width: 960px; /* match other pages */
+  width: 100%;
+  margin: 0 auto; /* center like other pages */
 }
 
 /* When live is active, keep standard centering */
@@ -19,18 +19,18 @@
 .live-container {
   display: flex;
   align-items: flex-start; /* Align items to the top */
-  margin: 48px 0 24px 0; /* push content lower on page, no auto centering */
+  margin: 48px auto 24px; /* centered within page */
   padding: 0 4px 20px 4px; /* minimal side padding */
   gap: 32px; /* similar to about page spacing */
-  justify-content: flex-start;
+  justify-content: center; /* center content within */
   width: 100%;
-  max-width: none; /* allow full width */
+  max-width: 1600px; /* allow much larger images */
   flex-wrap: wrap;
 }
 
 .live-info {
-  flex: 1 1 520px;
-  max-width: 620px;
+  flex: 0 0 400px; /* fixed width so images get more room */
+  max-width: 500px; /* tighter constraint */
   margin: 0 !important; /* remove all margin */
   padding: 0 !important; /* remove all padding */
   display: block;
@@ -81,10 +81,14 @@
 .live-text-line {
   padding: 0;
   margin: 0 0.25em 10px 0.25em; /* top right bottom left - no top margin */
-  white-space: normal; /* allow wrapping */
+  white-space: nowrap; /* keep on single line */
   color: rgb(39, 39, 39);
   font-size: 0.8em;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.live-text-line strong {
+  font-weight: bold;
 }
 
 .live-text-line:first-child {
@@ -98,13 +102,15 @@
 }
 
 .live-image-section {
-  flex: 0 0 480px; /* wider column for larger images */
+  flex: 1 1 auto; /* expand to fill available space */
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 100%;
-  align-items: flex-start;
+  width: auto; /* let it size to its content */
+  max-width: 1300px; /* much larger images */
+  align-items: flex-end; /* stick to right margin */
   margin-top: 0; /* ensure images start at same vertical position as text */
+  margin-left: auto; /* push to the right */
 }
 
 .live-image-section img {
@@ -115,51 +121,59 @@
 
 .live-image-01{
   background-image: url("../assets/images/1024_768_live/live_01_1024.png");
-  background-position: center bottom; /* keep bottom visible */
+  background-position: center bottom;
   background-size: cover;
   aspect-ratio: 4 / 3;
-  width: 480px;
+  width: 100%;
+  max-width: 1100px;
   box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
 
 .live-image-02{
   background-image: url("../assets/images/1024_768_live/live_02_1024.png");
-  background-position: center bottom; /* keep bottom visible */
+  background-position: center bottom;
   background-size: cover;
   aspect-ratio: 4 / 3;
-  width: 480px;
+  width: 100%;
+  max-width: 1100px;
   box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
 .live-image-03{
   background-image: url("../assets/images/1024_768_live/live_03_1024.png");
-  background-position: center bottom; /* keep bottom visible */
+  background-position: center bottom;
   background-size: cover;
   aspect-ratio: 4 / 3;
-  width: 480px;
+  width: 100%;
+  max-width: 1100px;
   box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
 .live-image-04{
   background-image: url("../assets/images/webimages_live/live-04.png");
-  background-position: center bottom; /* keep bottom visible */
+  background-position: center bottom;
   background-size: cover;
   aspect-ratio: 4 / 3;
-  width: 480px;
+  width: 100%;
+  max-width: 1100px;
 }
 .live-image-05{
   background-image: url("../assets/images/webimages_live/dj.png");
-  background-position: center bottom; /* keep bottom visible */
+  background-position: center bottom;
   background-size: cover;
   aspect-ratio: 16 / 9;
-  width: 480px;
+  width: 100%;
+  max-width: 1100px;
 }
 
 @media only screen and (max-width: 960px) {
   #content.content-live {
     padding-left: 12px;
     padding-right: 12px;
+  }
+  .live-text-line {
+    white-space: normal; /* allow wrapping on mobile */
   }
   .live-container {
     flex-direction: column;
@@ -177,14 +191,16 @@
   .live-image-section {
     align-items: center;
     padding: 0; /* no extra padding around images */
+    margin-left: 0; /* remove right-push for mobile */
+    width: 100%; /* full width for mobile */
   }
   .live-image-01,
   .live-image-02,
   .live-image-03,
   .live-image-04,
   .live-image-05 {
-    width: 100%;
-    max-width: 300px; /* slightly narrower so it fits comfortably */
+    width: 100%; /* stretch to full width on mobile */
+    max-width: none; /* no limit, reach margins */
     min-height: 180px;
     background-size: cover;
     background-position: center center;

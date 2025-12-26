@@ -122,9 +122,8 @@ nav {
   justify-content: center;
   max-width: 960px;
   min-width: 300px;
-  /* Use site gutter for consistent side margins */
-  width: calc(100% - (var(--site-gutter) * 2));
-  margin: 0 var(--site-gutter);
+  margin: 0 auto; /* center on desktop */
+  width: 100%;
 }
 
 /* font stuff */
@@ -239,6 +238,7 @@ nav {
 /* listen page */
 .album {
   margin: 1rem 2rem;
+  width: fit-content; /* only take width of content */
 }
 
 .album-art:hover,
@@ -376,11 +376,27 @@ nav {
     min-height: calc((var(--vh, 1vh) * 100) - 120px);
   }
   .page {
-    margin: 0 var(--site-gutter-sm);
-    width: calc(100% - (var(--site-gutter-sm) * 2));
+    margin: 0 auto; /* center with auto margins */
+    width: 100%;
+    max-width: calc(100% - 24px); /* small side padding */
+    box-sizing: border-box;
+  }
+  .album {
+    margin: 1rem auto; /* center with auto margins */
+    width: fit-content;
   }
   #about {
     flex-direction: column-reverse;
+    justify-content: center;
+  }
+  #about > * {
+    margin: 1rem auto; /* override parent rule to center */
+  }
+  .about-photo,
+  .about-info {
+    width: 100%;
+    max-width: 340px; /* match original width */
+    box-sizing: border-box;
   }
   #releases {
     flex-direction: column;
