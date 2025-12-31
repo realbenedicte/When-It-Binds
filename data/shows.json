@@ -4,6 +4,13 @@
       "year": "2025",
       "events": [
         {
+          "date": "September 20",
+          "venue": "Église Saint-Denis, Meesh Sara Fradkin Album Launch",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+        {
           "date": "May 16",
           "venue": "Eastern Bloc x World Creation Studio",
           "location": "Montreal, Canada",
