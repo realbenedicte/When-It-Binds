@@ -10,6 +10,13 @@
           "isDJ": true,
           "link": null
         },
+          {
+          "date": "August 31st",
+          "venue": "Best Out Of Town Festival",
+          "location": "Sudbury, Canada",
+          "isDJ": false,
+          "link": null
+        },
         {
           "date": "May 16",
           "venue": "Eastern Bloc x World Creation Studio",
@@ -27,6 +34,13 @@
         {
           "date": "April 19",
           "venue": "World Creation Studio",
+          "location": "Montreal, Canada",
+          "isDJ": true,
+          "link": null
+        },
+          {
+          "date": "March 27th",
+          "venue": "Ausgang Plaza, N NAO Album Launch",
           "location": "Montreal, Canada",
           "isDJ": true,
           "link": null
