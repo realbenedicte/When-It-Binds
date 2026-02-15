@@ -3,21 +3,21 @@
 {
       "year": "2026",
       "events": [
-
+ {
+          "date": "February 13",
+          "venue": "Kohlenstoff presents Cymatiques IV, PHI - Espace 1 ",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": "https://phi.ca/en/events/kohlenstoff-cymatiques-iv/"
+        }  ,
          {
           "date": "February 1",
           "venue": "present form(s): Atau Tanaka + more at World Creation Studio",
           "location": "Montreal, Canada",
           "isDJ": false,
           "link": "https://worldcreation.studio/event/present-forms-atau-tanaka/"
-        } ,
-        {
-          "date": "February 13",
-          "venue": "Kohlenstoff presents Cymatiques IV, PHI - Espace 1 ",
-          "location": "Montreal, Canada",
-          "isDJ": false,
-          "link": "https://phi.ca/en/events/kohlenstoff-cymatiques-iv/"
-        }  
+        } 
+       
       ]
     },
 
