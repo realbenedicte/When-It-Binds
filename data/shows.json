@@ -3,6 +3,27 @@
 {
       "year": "2026",
       "events": [
+            {
+          "date": "June 11",
+          "venue": "SIGHT + SOUND Festival, Ateliers Belleville",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": "https://lab545.com/en/program/sight-sound-festival-june-11/benedicte-%cb%96%e2%81%ba-%e0%bc%b6-%e2%8b%86%cb%99flavie-2026/"
+        }  ,
+          {
+          "date": "May 29",
+          "venue": "CANALS Album Launch, World Creation Studio",
+          "location": "Montreal, Canada",
+          "isDJ": false,
+          "link": null
+        }  ,
+        {
+          "date": "February 20",
+          "venue": "Immersive Labs, CULTVR ",
+          "location": "Cardiff, Wales",
+          "isDJ": false,
+          "link": "https://www.cultvr.cymru/events/immersive-labs/"
+        }  ,
  {
           "date": "February 13",
           "venue": "Kohlenstoff presents Cymatiques IV, PHI - Espace 1 ",
