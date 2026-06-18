@@ -162,9 +162,9 @@ nav {
 
 /* home page */
 #home .feature .feature-album {
-  max-width: 300px;
-  max-height: 300px;
-  transition: box-shadow 0.3s;
+  max-width: 530px;
+  max-height: none;
+  box-shadow: 0 0 15px rgba(33, 33, 33, 1);
   opacity: 1;
 }
 .feature {
@@ -246,8 +246,7 @@ nav {
   width: fit-content; /* only take width of content */
 }
 
-.album-art:hover,
-.feature-album:hover {
+.album-art:hover {
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
   opacity: 0.9;
 }
