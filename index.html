@@ -83,14 +83,24 @@
             target="_blank"
             rel="noopener noreferrer"
           > -->
-            <img
-              class="feature-album"
-              src="assets/images/Live/Sight_Sound_June2026_Live.jpeg"
-              alt="Sight+Sound 2026"
-              fetchpriority="high"
-              decoding="async"
-              style="width:100%;max-width:650px;height:auto;"
-            />
+            <picture>
+              <source
+                srcset="assets/images/Live/Sight_Sound_June2026_Live-1300.avif"
+                type="image/avif"
+              />
+              <source
+                srcset="assets/images/Live/Sight_Sound_June2026_Live-1300.webp"
+                type="image/webp"
+              />
+              <img
+                class="feature-album"
+                src="assets/images/Live/Sight_Sound_June2026_Live.jpeg"
+                alt="Sight+Sound 2026"
+                fetchpriority="high"
+                decoding="async"
+                style="width:100%;max-width:650px;height:auto;"
+              />
+            </picture>
           <!-- </a> -->
           <!-- <a class="listen-here" href="https://ffm.to/e1odxno" class=""
             >LISTEN</a> -->
