@@ -187,6 +187,7 @@ nav {
 #home .feature .feature-album {
   width: 100%;
   max-width: 650px;
+  height: auto;
   max-height: none;
   filter: brightness(1.2) contrast(1.1);
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
