@@ -322,7 +322,7 @@ nav {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1.375rem 1.65rem;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .release-row .album {

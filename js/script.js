@@ -40,15 +40,17 @@ let planeY;
 //
 //Preload Images and fonts
 function preload() {
-  // load images (right now using 1080x1080)
-  img01 = loadImage('assets/images/1080/1creature.png');
-  img02 = loadImage('assets/images/1080/2wispsleft.png');
-  img03 = loadImage('assets/images/1080/3stars.png');
-  img04 = loadImage('assets/images/1080/4wispsright.png');
-  img05 = loadImage('assets/images/1080/5tail.png');
+  const layerSize = window.innerWidth <= 480 ? 320 : window.innerWidth <= 1200 ? 640 : 1080;
+  const layerPath = (name) => `assets/images/${layerSize}/${name}.png`;
+
+  img01 = loadImage(layerPath('1creature'));
+  img02 = loadImage(layerPath('2wispsleft'));
+  img03 = loadImage(layerPath('3stars'));
+  img04 = loadImage(layerPath('4wispsright'));
+  img05 = loadImage(layerPath('5tail'));
   // img06 = loadImage('assets/images/Images_Layers/6blue.png');
-  img07 = loadImage('assets/images/1080/6blue.png');
-  img08 = loadImage('assets/images/1080/7white.png');
+  img07 = loadImage(layerPath('6blue'));
+  img08 = loadImage(layerPath('7white'));
   // img09 = loadImage("assets/images/1080/8background.png");
   img09 = loadImage("assets/images/1080/WIB-1080.png");
   //Title centered text
