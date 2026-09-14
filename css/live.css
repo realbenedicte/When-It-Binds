@@ -113,13 +113,21 @@
   margin-left: auto; /* push to the right */
 }
 
+.live-image-section picture {
+  /* carries the box model so wrapped and unwrapped images align identically */
+  display: block;
+  max-width: 380px;
+  width: 100%;
+  margin: 8px;
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
+}
+
 .live-image-section img {
-  max-width: 380px; /* Moderate size to prevent overflow */
+  display: block;
   width: 100%;
   height: auto; /* Maintains aspect ratio */
-  padding: 0; /* Remove padding so shadow is directly on image */
-  margin: 8px; /* Use margin instead for spacing between images */
-  box-shadow: 0 0 5px rgba(33, 33, 33, 1); /* Box shadow like other images */
+  margin: 0;
+  padding: 0;
 }
 
 .live-image-01{
@@ -230,11 +238,16 @@
     width: 100%; /* full width for mobile */
     max-width: 100%; /* allow full width on mobile */
   }
+  .live-image-section picture {
+    max-width: 100%;
+    margin: 4px; /* Use margin instead for spacing */
+    box-shadow: 0 0 3px rgba(33, 33, 33, 0.8); /* Visible but softer shadow on mobile */
+  }
   .live-image-section img {
     max-width: 100%; /* Allow images to scale to container width on mobile */
     padding: 0; /* Remove padding on mobile */
-    margin: 4px; /* Use margin instead for spacing */
-    box-shadow: 0 0 3px rgba(33, 33, 33, 0.8); /* Visible but softer shadow on mobile */
+    margin: 0;
+    box-shadow: none;
   }
   .live-image-01,
   .live-image-02,
