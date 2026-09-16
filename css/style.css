@@ -289,6 +289,14 @@ nav {
   align-items: flex-start;
 }
 
+.featured-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
 .featured-album {
   display: flex;
   flex-direction: column;
@@ -298,18 +306,43 @@ nav {
   margin: 0;
 }
 
-.featured-album .album-art {
-  width: 198px;
-  height: 198px;
+.press-quote {
+  margin: 0;
+  padding-left: 1.1rem;
+  max-width: 360px;
+  border-left: 1px solid rgba(44, 47, 48, 0.75);
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  font-size: 0.95em;
+  line-height: 1.55;
+  color: rgba(44, 47, 48, 0.897);
 }
 
-.featured-album .description {
+.press-quote p {
+  margin: 0;
+}
+
+.press-quote cite {
+  display: block;
+  margin-top: 0.75em;
+  font-style: normal;
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+}
+
+.featured-row .featured-album .album-art {
+  width: 266px;
+  height: 266px;
+}
+
+.featured-row .featured-album .description {
   margin-top: 0;
-  max-width: 198px;
+  max-width: 266px;
 }
 
-.featured-album .description .title {
-  font-size: 1.45em;
+.featured-row .featured-album .description .title {
+  font-size: 1em;
+  font-style: italic;
   max-width: 100%;
 }
 
@@ -480,13 +513,13 @@ nav {
     height: 145px;
   }
 
-  .featured-album .album-art {
-    width: 209px;
-    height: 209px;
+  .featured-row .featured-album .album-art {
+    width: 224px;
+    height: 224px;
   }
 
-  .featured-album .description {
-    max-width: 209px;
+  .featured-row .featured-album .description {
+    max-width: 224px;
   }
 }
 
@@ -509,6 +542,11 @@ nav {
   .releases-inner {
     width: 100%;
     padding-inline: var(--site-gutter-sm);
+    /* the remix grid's two 165px covers + a 0.935rem gap leave a
+       small leftover that its items' auto margins split four ways;
+       reuse that same offset so everything else lines up with it
+       instead of the raw page gutter */
+    --release-lead: calc((100% - 330px - 0.935rem) / 4);
   }
   .album {
     margin: 1rem auto; /* center with auto margins */
@@ -537,18 +575,31 @@ nav {
   }
   .release-group-title {
     margin: 1rem 0 0.75rem;
-    text-align: center;
+    text-align: left;
+    align-self: flex-start;
+    margin-left: var(--release-lead);
+  }
+  .featured-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    width: 100%;
   }
   .featured-album {
     gap: 0.66rem;
-    align-items: center;
+    align-items: flex-start;
+    margin: 0;
+    margin-left: var(--release-lead);
   }
-  .featured-album .album-art {
-    width: 187px;
-    height: 187px;
+  .featured-row .featured-album .album-art {
+    width: 248px;
+    height: 248px;
   }
-  .featured-album .description {
-    max-width: none;
+  .featured-row .featured-album .description {
+    max-width: 248px;
+  }
+  .press-quote {
+    display: none;
   }
   .release-row {
     gap: 0.825rem 0.935rem;
