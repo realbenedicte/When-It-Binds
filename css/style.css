@@ -7,6 +7,34 @@
   font-display: swap;
 }
 
+/* ABC Areal, Dinamo web license (self-hosted WOFF2, @font-face) */
+@font-face {
+  font-family: "ABC Areal";
+  src: url("../assets/fonts/ABCArealSuperfamilyVariable.woff2") format("woff2-variations"),
+    url("../assets/fonts/ABCArealSuperfamilyVariable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Areal Mono";
+  src: url("../assets/fonts/ABCArealMonoVariable.woff2") format("woff2-variations"),
+    url("../assets/fonts/ABCArealMonoVariable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ABC Areal Semi Mono";
+  src: url("../assets/fonts/ABCArealSemiMonoVariable.woff2") format("woff2-variations"),
+    url("../assets/fonts/ABCArealSemiMonoVariable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Site-wide horizontal gutter for consistent margins */
   --site-gutter: 2rem;
@@ -148,7 +176,7 @@ nav {
   flex-direction: column;
   align-items: flex-start;
   gap: 1.5rem;
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   padding-inline: var(--site-gutter);
   box-sizing: border-box;
@@ -157,10 +185,14 @@ nav {
 /* font stuff */
 
 .about-info,
-.contact-info,
-.main-nav {
-  font-family: "Roboto", sans-serif;
+.contact-info {
+  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
   font-weight: 400;
+}
+
+.main-nav {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
 .main-nav > li.logo > a {
@@ -175,7 +207,8 @@ nav {
 
 .description > *,
 .social > a {
-  font-family: "Roboto", sans-serif;
+  font-family: "Arial";
+  font-weight: lighter;
 }
 
 .main-nav > li > a {
@@ -184,12 +217,16 @@ nav {
 }
 
 /* home page */
+#home {
+  max-width: none;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
+}
 #home .feature .feature-album {
   width: 100%;
-  max-width: 650px;
+  max-width: 1000px;
   height: auto;
   max-height: none;
-  filter: brightness(1.2) contrast(1.1);
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
   opacity: 1;
 }
@@ -221,12 +258,33 @@ nav {
 
 .about-photo {
   box-sizing: border-box;
+  /* Fallback for older browsers */
   background-image: url("../assets/images/PR-801-931.jpg");
   background-position: center center;
   background-size: cover;
   min-height: 372px;
   width: 340px;
   border: 2px solid rgba(44, 47, 48, 0.897);
+}
+
+/* Modern browsers: use optimized AVIF/WebP formats */
+@supports (background-image: image-set(url("test.avif") type("image/avif"))) {
+  .about-photo {
+    background-image: image-set(
+      url("../assets/images/PR-801-931.avif") type("image/avif"),
+      url("../assets/images/PR-801-931.webp") type("image/webp"),
+      url("../assets/images/PR-801-931.jpg") type("image/jpeg")
+    );
+  }
+}
+
+@supports (background-image: -webkit-image-set(url("test.webp") type("image/webp"))) {
+  .about-photo {
+    background-image: -webkit-image-set(
+      url("../assets/images/PR-801-931.webp") type("image/webp"),
+      url("../assets/images/PR-801-931.jpg") type("image/jpeg")
+    );
+  }
 }
 .about-info,
 .contact-info {
@@ -274,10 +332,10 @@ nav {
 
 .release-group-title {
   margin: 1rem 0 0.75rem;
-  color: rgba(44, 47, 48, 0.897);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
   font-size: 1.05em;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: none;
 }
@@ -305,18 +363,19 @@ nav {
   padding: 0;
   margin: 0;
 }
-
+/* 
 .press-quote {
   margin: 0;
   padding-left: 1.1rem;
-  max-width: 360px;
+  max-width: 460px;
   border-left: 1px solid rgba(44, 47, 48, 0.75);
-  font-family: "Roboto", sans-serif;
-  font-style: italic;
-  font-size: 0.95em;
+  font-family:  Arial, Helvetica, sans-serif;
+  font-style: normal;
+  /* font-variation-settings: "slnt" -12; */
+  font-size: 0.9em;
   line-height: 1.55;
-  color: rgba(44, 47, 48, 0.897);
-}
+  color: #000;
+} */
 
 .press-quote p {
   margin: 0;
@@ -331,18 +390,26 @@ nav {
 }
 
 .featured-row .featured-album .album-art {
-  width: 266px;
-  height: 266px;
+  box-sizing: border-box;
+  width: 440px;
+  height: 440px;
+  border: 2px solid rgba(44, 47, 48, 0.897);
+}
+
+#releases .description > * {
+  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 .featured-row .featured-album .description {
   margin-top: 0;
-  max-width: 266px;
+  max-width: 440px;
 }
 
 .featured-row .featured-album .description .title {
   font-size: 1em;
-  font-style: italic;
+  font-style: normal;
+  font-variation-settings: "slnt" -12;
   max-width: 100%;
 }
 
@@ -350,32 +417,81 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
-.release-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1.375rem 1.65rem;
-  justify-content: flex-start;
+/* remixes / compilations / live: ruled text list instead of covers */
+/* same panel as the about page: light fill, chunky border */
+.release-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.25em 1em;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(44, 47, 48, 0.897);
+  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 0.9em;
+  color: #000;
 }
 
-.release-row .album {
-  flex: 0 0 auto;
+.release-list > li + li > .release-item {
+  border-top: 0.5px solid rgba(0, 0, 0, 0.35);
 }
 
-.release-grid-group .description {
+/* columns: title, album, type, label, date, arrow */
+.release-head,
+.release-item {
+  display: grid;
+  grid-template-columns: 1.6fr 1.3fr 1fr 1fr 0.6fr 1rem;
+  align-items: baseline;
+  gap: 0 0.75rem;
+  padding: 0.55rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.release-head {
+  font-family: "ABC Areal Mono", "Courier New", monospace;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.release-head::after {
+  content: "";
+}
+
+.release-item::after {
+  content: "\2197";
+  justify-self: end;
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(7px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.release-grid-group .cover:hover + .description,
-.release-grid-group .cover:focus + .description {
+.release-item:hover::after,
+.release-item:focus-visible::after {
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  transform: none;
+}
+
+/* album / type / label stay grid columns on desktop; on mobile they
+   collapse into one wrapping line */
+.release-meta {
+  display: contents;
+}
+
+.release-title {
+  font-style: italic;
+}
+
+.release-date {
+  font-family: "ABC Areal Mono", "Courier New", monospace;
+  font-size: 0.85em;
+  font-variant-numeric: tabular-nums;
 }
 
 .album {
@@ -395,10 +511,6 @@ nav {
   opacity: 1;
 }
 
-.release-grid-group .album .description {
-  max-width: 165px;
-}
-
 .album .description {
   margin-top: 0.55em;
 }
@@ -414,7 +526,7 @@ nav {
 .album .description > h3 {
   margin: 0;
   padding: 0;
-  color: rgba(44, 47, 48, 0.897);
+  color: #000;
 }
 
 /* social */
@@ -508,18 +620,13 @@ nav {
 }
 
 @media only screen and (max-width: 910px) {
-  .album .album-art {
-    width: 145px;
-    height: 145px;
-  }
-
   .featured-row .featured-album .album-art {
-    width: 224px;
-    height: 224px;
+    width: 360px;
+    height: 360px;
   }
 
   .featured-row .featured-album .description {
-    max-width: 224px;
+    max-width: 360px;
   }
 }
 
@@ -542,10 +649,10 @@ nav {
   .releases-inner {
     width: 100%;
     padding-inline: var(--site-gutter-sm);
-    /* the remix grid's two 165px covers + a 0.935rem gap leave a
+    /* the old remix grid's two 165px covers + a 0.935rem gap left a
        small leftover that its items' auto margins split four ways;
-       reuse that same offset so everything else lines up with it
-       instead of the raw page gutter */
+       keep that same offset so everything lines up with it instead
+       of the raw page gutter */
     --release-lead: calc((100% - 330px - 0.935rem) / 4);
   }
   .album {
@@ -591,28 +698,60 @@ nav {
     margin: 0;
     margin-left: var(--release-lead);
   }
+  .featured-album {
+    width: calc(100% - 2 * var(--release-lead));
+  }
   .featured-row .featured-album .album-art {
-    width: 248px;
-    height: 248px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
   }
   .featured-row .featured-album .description {
-    max-width: 248px;
+    max-width: none;
   }
   .press-quote {
     display: none;
   }
-  .release-row {
-    gap: 0.825rem 0.935rem;
-    justify-content: center;
+  .release-list {
+    width: auto;
+    align-self: stretch;
+    margin-inline: var(--release-lead);
   }
-  .release-grid-group .description {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
+  /* two lines per row: title + date, then the rest */
+  /* column headers don't fit the stacked layout */
+  .release-head {
+    display: none;
   }
-  .album .album-art {
-    width: 264px;
-    height: 264px;
+  .release-list > .release-head + li > .release-item {
+    border-top: none;
+  }
+  .release-item {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title date"
+      "meta meta";
+    gap: 0.15rem 0.6rem;
+    padding: 0.5rem 0;
+  }
+  .release-item::after {
+    display: none;
+  }
+  .release-title {
+    grid-area: title;
+  }
+  .release-date {
+    grid-area: date;
+  }
+  .release-meta {
+    display: block;
+    grid-area: meta;
+    font-size: 0.85em;
+  }
+  .release-meta > :empty {
+    display: none;
+  }
+  .release-meta > :not(:empty) ~ :not(:empty)::before {
+    content: "\00b7\00a0";
   }
   .main-nav {
     display: none;
@@ -648,6 +787,9 @@ nav {
     text-align: center;
     padding: 0;
     margin: 0;
+  }
+  #home {
+    padding-inline: 0;
   }
   #home .feature {
     /* pointer-events: none; - Commented out to allow clicking on mobile */

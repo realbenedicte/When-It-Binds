@@ -12,13 +12,17 @@
     <meta name="language" content="English">
 
     <title>Bénédicte</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,300;1,400&display=swap"
-      rel="stylesheet"
-    />
     <link rel="shortcut icon" href="assets/images/favicons/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=16" />
+    <!-- Preload critical fonts for faster initial render -->
+    <link rel="preload" href="css/lapicide-light-webfont.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/ABCArealSuperfamilyVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="//ffm.to" />
+    <link rel="dns-prefetch" href="//bandcamp.com" />
+    <link rel="dns-prefetch" href="//instagram.com" />
+    <link rel="dns-prefetch" href="//facebook.com" />
+    <link rel="dns-prefetch" href="//soundcloud.com" />
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=48" />
     <link rel="stylesheet" type="text/css" href="css/live.css?v=14" />
     <!-- JavaScript -->
     <script src="js/shows.js?v=1" defer></script>
@@ -85,19 +89,23 @@
           > -->
             <picture>
               <source
-                srcset="assets/images/Live/Sight_Sound_June2026_Live-1300.avif"
+                srcset="assets/images/camille_dubuc_7561-1300.avif 1300w, assets/images/camille_dubuc_7561-2000.avif 2000w, assets/images/camille_dubuc_7561-2600.avif 2600w"
+                sizes="(max-width: 745px) calc(100vw - 24px), (max-width: 1064px) calc(100vw - 4rem), 1000px"
                 type="image/avif"
               >
               <source
-                srcset="assets/images/Live/Sight_Sound_June2026_Live-1300.webp"
+                srcset="assets/images/camille_dubuc_7561-1300.webp 1300w, assets/images/camille_dubuc_7561-2000.webp 2000w, assets/images/camille_dubuc_7561-2600.webp 2600w"
+                sizes="(max-width: 745px) calc(100vw - 24px), (max-width: 1064px) calc(100vw - 4rem), 1000px"
                 type="image/webp"
               >
               <img
                 class="feature-album"
-                src="assets/images/Live/Sight_Sound_June2026_Live-650.jpg"
-                alt="Sight and Sound 2026"
+                src="assets/images/camille_dubuc_7561-1300.jpg"
+                srcset="assets/images/camille_dubuc_7561-1300.jpg 1300w, assets/images/camille_dubuc_7561-2000.jpg 2000w, assets/images/camille_dubuc_7561-2600.jpg 2600w"
+                sizes="(max-width: 745px) calc(100vw - 24px), (max-width: 1064px) calc(100vw - 4rem), 1000px"
+                alt="Bénédicte performing live, photo by Camille Dubuc"
                 width="1300"
-                height="975"
+                height="867"
                 fetchpriority="high"
                 decoding="async"
               >
@@ -120,7 +128,7 @@
                   rel="noopener noreferrer"
                 >
                   <picture>
-                    <source srcset="assets/images/WIB-540-200.webp 200w, assets/images/WIB-540-300.webp 300w, assets/images/WIB-540-450.webp 450w, assets/images/WIB-540-600.webp 600w" sizes="(max-width: 745px) 248px, (max-width: 910px) 224px, 266px" type="image/webp" />
+                    <source srcset="assets/images/WIB-540-300.webp 300w, assets/images/WIB-540-450.webp 450w, assets/images/WIB-540-600.webp 600w, assets/images/WIB-1080-900.webp 900w, assets/images/WIB-1080-1080.webp 1080w" sizes="(max-width: 745px) calc(100vw - 48px), (max-width: 910px) 360px, 440px" type="image/webp" />
                     <img
                       class="album-art"
                       src="assets/images/WIB-540.png"
@@ -138,185 +146,91 @@
                   <p class="date">02.26.2021</p>
                 </div>
               </article>
-              <blockquote class="press-quote">
-                <p>Through field recordings and severed vocal samples, she creates a restrained world, rife with feeling, and lifted skyward with soaring ambient columns. Coming across her music is like finding an entirely new species in your backyard.</p>
-                <cite>&mdash; Daryl Keating for Exclaim!</cite>
-              </blockquote>
+              <!-- <blockquote class="press-quote">
+                <p>When It Binds serves as Bénédicte’s personal exploration of what happens after an emotional connection is established with someone. How does this change who we are? How are our emotional landscapes altered with this new form of inter-subjectivity? Each song on the album is a different and searching sonic interpretation of these questions and a response to ever-changing emotional shifts.
+</p>
+               <cite>&mdash; Daryl Keating for Exclaim!</cite> -->
+              <!-- </blockquote> --> 
             </div>
           </div>
 
           <div class="release-group release-grid-group">
             <h2 class="release-group-title remix-title">Remixes / Compilations / Live</h2>
-            <div class="release-row">
-              <article class="album">
-                <a
-                  class="cover"
-                  href="https://nnao.bandcamp.com/track/cha-teau-deau-be-ne-dicte-remix"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <picture>
-                    <source srcset="assets/images/NNAO-200.webp 200w, assets/images/NNAO-300.webp 300w, assets/images/NNAO-450.webp 450w, assets/images/NNAO-600.webp 600w" sizes="(max-width: 745px) 264px, (max-width: 910px) 145px, 165px" type="image/webp" />
-                    <img
-                      class="album-art"
-                      src="assets/images/NNAO.jpg"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      style="width: 165px; height: 165px;"
-                    />
-                  </picture>
+            <ul class="release-list">
+              <li class="release-head">
+                <span>Song title</span>
+                <span>Album</span>
+                <span>Type</span>
+                <span>Label</span>
+                <span>Release date</span>
+              </li>
+              <li>
+                <a class="release-item" href="https://nnao.bandcamp.com/track/cha-teau-deau-be-ne-dicte-remix" target="_blank" rel="noopener noreferrer">
+                  <span class="release-title">Château d'eau (Bénédicte Remix)</span>
+                  <span class="release-meta">
+                    <span class="release-record">Nouveaux Langages (N NAO)</span>
+                    <span class="release-type">Remix</span>
+                    <span class="release-label">Mothland</span>
+                  </span>
+                  <span class="release-date">07.17.2026</span>
                 </a>
-                <div class="description">
-                  <h3 class="title">Château d'eau (Bénédicte Remix)</h3>
-                  <p>Nouveaux Langages</p>
-                  <p class="artist">N NAO</p>
-                  <p class="label">Mothland</p>
-                  <p class="date">07.17.2026</p>
-                </div>
-              </article>
-              <article class="album">
-                <a
-                  class="cover"
-                  href="https://ffm.to/ajvnagn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <picture>
-                    <source srcset="assets/images/CausalChain-200.webp 200w, assets/images/CausalChain-300.webp 300w, assets/images/CausalChain-450.webp 450w, assets/images/CausalChain-600.webp 600w" sizes="(max-width: 745px) 264px, (max-width: 910px) 145px, 165px" type="image/webp" />
-                    <img
-                      class="album-art"
-                      src="assets/images/CausalChain.jpeg"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      style="width: 165px; height: 165px;"
-                    />
-                  </picture>
+              </li>
+              <li>
+                <a class="release-item" href="https://ffm.to/ajvnagn" target="_blank" rel="noopener noreferrer">
+                  <span class="release-title">If I Were To Meet The Water</span>
+                  <span class="release-meta">
+                    <span class="release-record">Évoque</span>
+                    <span class="release-type">Compilation</span>
+                    <span class="release-label">Causal Chain</span>
+                  </span>
+                  <span class="release-date">05.05.2023</span>
                 </a>
-                <div class="description">
-                  <h3 class="title">If I Were To Meet The Water</h3>
-                  <p>Évoque</p>
-                  <p class="artist">Compilation</p>
-                  <p class="label">Causal Chain</p>
-                  <p class="date">05.05.2023</p>
-                </div>
-              </article>
-              <article class="album">
-                <a
-                  class="cover"
-                  href="https://ffm.to/1l49pkl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <picture>
-                    <source srcset="assets/images/Eduard-200.webp 200w, assets/images/Eduard-300.webp 300w, assets/images/Eduard-450.webp 450w, assets/images/Eduard-600.webp 600w" sizes="(max-width: 745px) 264px, (max-width: 910px) 145px, 165px" type="image/webp" />
-                    <img
-                      class="album-art"
-                      src="assets/images/Eduard.jpeg"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      style="width: 165px; height: 165px;"
-                    />
-                  </picture>
+              </li>
+              <li>
+                <a class="release-item" href="https://ffm.to/1l49pkl" target="_blank" rel="noopener noreferrer">
+                  <span class="release-title">Bénédicte Live at Église Saint-Edouard</span>
+                  <span class="release-meta">
+                    <span class="release-record"></span>
+                    <span class="release-type">Live</span>
+                    <span class="release-label"></span>
+                  </span>
+                  <span class="release-date">09.22.2022</span>
                 </a>
-                <div class="description">
-                  <h3 class="title">B​é​n​é​dicte Live at Église Saint​-​Edouard </h3>
-                  <!-- <h3 class="title"></h3> -->
-                  <p class="artist">B​é​n​é​dicte</p>
-                  <!-- <p class="label">Raven's Vision</p> -->
-                  <p class="date">09.22.2022</p>
-                </div>
-              </article>
-              <article class="album">
-                <a
-                  class="cover"
-                  href="https://ffm.to/jxbqdvv"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <picture>
-                    <source srcset="assets/images/Folia540-200.webp 200w, assets/images/Folia540-300.webp 300w, assets/images/Folia540-450.webp 450w, assets/images/Folia540-600.webp 600w" sizes="(max-width: 745px) 264px, (max-width: 910px) 145px, 165px" type="image/webp" />
-                    <img
-                      class="album-art"
-                      src="assets/images/Folia540.png"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      style="width: 165px; height: 165px;"
-                    />
-                  </picture>
+              </li>
+              <li>
+                <a class="release-item" href="https://ffm.to/jxbqdvv" target="_blank" rel="noopener noreferrer">
+                  <span class="release-title">Folia</span>
+                  <span class="release-meta">
+                    <span class="release-record">CC003</span>
+                    <span class="release-type">Compilation</span>
+                    <span class="release-label">Causal Chain</span>
+                  </span>
+                  <span class="release-date">04.06.2021</span>
                 </a>
-                <div class="description">
-                  <h3 class="title">Folia</h3>
-                  <p>CC003</p>
-                  <p class="artist">Compilation</p>
-                  <p class="label">Causal Chain</p>
-                  <p class="date">04.06.2021</p>
-                </div>
-              </article>
-              <article class="album">
-                <a
-                  class="cover"
-                  href="https://ffm.to/gba17vr.owe"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <picture>
-                    <source srcset="assets/images/UDL-1079-200.webp 200w, assets/images/UDL-1079-300.webp 300w, assets/images/UDL-1079-450.webp 450w, assets/images/UDL-1079-600.webp 600w" sizes="(max-width: 745px) 264px, (max-width: 910px) 145px, 165px" type="image/webp" />
-                    <img
-                      class="album-art"
-                      src="assets/images/UDL-1079.png"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      style="width: 165px; height: 165px;"
-                    />
-                  </picture>
+              </li>
+              <li>
+                <a class="release-item" href="https://ffm.to/gba17vr.owe" target="_blank" rel="noopener noreferrer">
+                  <span class="release-title">SoftIllusion</span>
+                  <span class="release-meta">
+                    <span class="release-record">Unbroken Dreams of Light</span>
+                    <span class="release-type">Compilation</span>
+                    <span class="release-label">Blueberry Records</span>
+                  </span>
+                  <span class="release-date">06.05.2020</span>
                 </a>
-                <div class="description">
-                  <h3 class="title">SoftIllusion</h3>
-                  <p>Unbroken Dreams of Light</p>
-                  <p class="artist">Compilation</p>
-                  <p class="label">Blueberry Records</p>
-                  <p class="date">06.05.2020</p>
-                </div>
-              </article>
-              <article class="album">
-                <a
-                  class="cover"
-                  href="https://ffm.to/67dmypk.owe"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <picture>
-                    <source srcset="assets/images/SAL-988-200.webp 200w, assets/images/SAL-988-300.webp 300w, assets/images/SAL-988-450.webp 450w, assets/images/SAL-988-600.webp 600w" sizes="(max-width: 745px) 264px, (max-width: 910px) 145px, 165px" type="image/webp" />
-                    <img
-                      class="album-art"
-                      src="assets/images/SAL-988.png"
-                      loading="lazy"
-                      decoding="async"
-                      width="300"
-                      height="300"
-                      style="width: 165px; height: 165px;"
-                    />
-                  </picture>
+              </li>
+              <li>
+                <a class="release-item" href="https://ffm.to/67dmypk.owe" target="_blank" rel="noopener noreferrer">
+                  <span class="release-title">Stirring The Thaw</span>
+                  <span class="release-meta">
+                    <span class="release-record">silk &amp; lace</span>
+                    <span class="release-type">Compilation</span>
+                    <span class="release-label">Raven's Vision</span>
+                  </span>
+                  <span class="release-date">02.20.2020</span>
                 </a>
-                <div class="description">
-                  <h3 class="title">Stirring The Thaw</h3>
-                  <p>silk &amp; lace</p>
-                  <p class="artist">Compilation</p>
-                  <p class="label">Raven's Vision</p>
-                  <p class="date">02.20.2020</p>
-                </div>
-              </article>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       
@@ -398,6 +312,7 @@
     <div id="nova-mid" class="layer mg"></div>
     <div id="nova-top" class="layer fg"></div>
 
+    <!--
     <div id="nova-buffer">
       <div
         style="transform: translateX(0) translateY(0)"
@@ -487,6 +402,7 @@
     </div>
 
     <script src="js/particle.js?v=1"></script>
+    -->
     <script>
       // set mobile viewport
       let vh = window.innerHeight * 0.01
