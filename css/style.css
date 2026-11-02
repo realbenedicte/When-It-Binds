@@ -7,38 +7,13 @@
   font-display: swap;
 }
 
-/* ABC Areal, Dinamo web license (self-hosted WOFF2, @font-face) */
-@font-face {
-  font-family: "ABC Areal";
-  src: url("../assets/fonts/ABCArealSuperfamilyVariable.woff2") format("woff2-variations"),
-    url("../assets/fonts/ABCArealSuperfamilyVariable.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ABC Areal Mono";
-  src: url("../assets/fonts/ABCArealMonoVariable.woff2") format("woff2-variations"),
-    url("../assets/fonts/ABCArealMonoVariable.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ABC Areal Semi Mono";
-  src: url("../assets/fonts/ABCArealSemiMonoVariable.woff2") format("woff2-variations"),
-    url("../assets/fonts/ABCArealSemiMonoVariable.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* Site-wide horizontal gutter for consistent margins */
   --site-gutter: 2rem;
-  --site-gutter-sm: 0.75rem;
+  /* mobile gutter: page headers and every page's content start here */
+  --site-gutter-sm: 20px;
+  /* shared centre column every page and the nav line up to */
+  --page-width: 1000px;
 }
 
 /* Prevent browser hash scroll from positioning incorrectly */
@@ -137,6 +112,45 @@ nav {
   padding: 0;
 }
 
+/* desktop: the nav spans the same centred column as each page's
+   content, so the logo and links sit in the same place everywhere */
+@media only screen and (min-width: 746px) {
+  /* a little breathing room above the logo and links; the negative
+     margin keeps each page's content where it was, so the gap under
+     the nav shrinks instead of everything moving down */
+  nav {
+    padding-top: 32px;
+    margin-bottom: -32px;
+  }
+  .main-nav {
+    width: min(var(--page-width), 100% - 2 * var(--site-gutter));
+  }
+  .main-nav .logo {
+    margin-left: 0;
+  }
+  /* menu links sit on the same baseline as the Bénédicte logo */
+  .main-nav {
+    align-items: baseline;
+  }
+  .main-nav > li:last-child > a {
+    margin-right: 0;
+    padding-right: 0;
+  }
+  /* home photo starts at the same height as the releases page */
+  body.home-active #content {
+    margin-top: 0;
+    align-items: flex-start;
+  }
+  /* the photo keeps the page column's width, lined up with the logo
+     and links. It's centred between the top and bottom of the window
+     when there's room; otherwise it sits 85px under the nav rather
+     than riding up into it. #home starts 60px down, under the nav,
+     and the photo is 3:2. */
+  body.home-active #home {
+    padding-top: max(85px, calc((100vh - min(1000px, 100vw - 4rem) * 2 / 3) / 2 - 60px));
+  }
+}
+
 /* content layers */
 #content {
   z-index: 35;
@@ -169,6 +183,18 @@ nav {
   margin: 0;
   padding-left: 0;
   padding-right: 0;
+  /* base size for the page's text; everything inside is in em */
+  font-size: 1.1em;
+}
+
+/* pin the releases page to the top, starting at the same height as
+   the live page instead of centring vertically */
+#content.content-releases {
+  align-items: flex-start;
+}
+
+#content.content-releases .releases-inner {
+  margin-top: 56px;
 }
 
 .releases-inner {
@@ -185,19 +211,31 @@ nav {
 /* font stuff */
 
 .about-info,
-.contact-info {
-  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
+.contact-info,
 .main-nav {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: normal;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
 .main-nav > li.logo > a {
   font-size: 60px;
   font-family: "lapicidelight";
+}
+
+/* menu links: Helvetica Neue (system font on Mac/iOS; others fall back) */
+.main-nav > li:not(.logo) > a {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* desktop: menu links 20% up from the base 19px */
+@media only screen and (min-width: 746px) {
+  .main-nav > li:not(.logo) > a {
+    font-size: 22.8px;
+  }
 }
 
 #mobile-title {
@@ -207,8 +245,7 @@ nav {
 
 .description > *,
 .social > a {
-  font-family: "Arial";
-  font-weight: lighter;
+  font-family: "Roboto", sans-serif;
 }
 
 .main-nav > li > a {
@@ -224,7 +261,7 @@ nav {
 }
 #home .feature .feature-album {
   width: 100%;
-  max-width: 1000px;
+  max-width: var(--page-width);
   height: auto;
   max-height: none;
   box-shadow: 0 0 15px rgba(33, 33, 33, 1);
@@ -258,39 +295,24 @@ nav {
 
 .about-photo {
   box-sizing: border-box;
-  /* Fallback for older browsers */
-  background-image: url("../assets/images/PR-801-931.jpg");
+  /* landscape live shot (Sight + Sound 2026), same file as the live page */
+  background-image: url("../assets/images/Live/Sight_Sound_June2026_Live-650.jpg");
+  background-image: image-set(
+    url("../assets/images/Live/Sight_Sound_June2026_Live-650.jpg") 1x,
+    url("../assets/images/Live/Sight_Sound_June2026_Live-1300.jpg") 2x
+  );
   background-position: center center;
   background-size: cover;
-  min-height: 372px;
+  aspect-ratio: 650 / 487;
   width: 340px;
-  border: 2px solid rgba(44, 47, 48, 0.897);
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
 }
 
-/* Modern browsers: use optimized AVIF/WebP formats */
-@supports (background-image: image-set(url("test.avif") type("image/avif"))) {
-  .about-photo {
-    background-image: image-set(
-      url("../assets/images/PR-801-931.avif") type("image/avif"),
-      url("../assets/images/PR-801-931.webp") type("image/webp"),
-      url("../assets/images/PR-801-931.jpg") type("image/jpeg")
-    );
-  }
-}
-
-@supports (background-image: -webkit-image-set(url("test.webp") type("image/webp"))) {
-  .about-photo {
-    background-image: -webkit-image-set(
-      url("../assets/images/PR-801-931.webp") type("image/webp"),
-      url("../assets/images/PR-801-931.jpg") type("image/jpeg")
-    );
-  }
-}
 .about-info,
 .contact-info {
   box-sizing: border-box;
   background-color: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(44, 47, 48, 0.897);
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
   padding: 1em;
   width: 340px;
   font-size: 15px;
@@ -333,18 +355,20 @@ nav {
 .release-group-title {
   margin: 1rem 0 0.75rem;
   color: #000;
-  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.05em;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
   text-transform: none;
 }
 
 .featured-group {
-  margin-bottom: 1.65rem;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  /* cover + info sit centred on the page */
+  align-self: center;
 }
 
 .featured-row {
@@ -363,54 +387,84 @@ nav {
   padding: 0;
   margin: 0;
 }
-/* 
+/* Exclaim! quote, under the album blurb: plain text, just drop the
+   browser's blockquote indent */
 .press-quote {
-  margin: 0;
-  padding-left: 1.1rem;
-  max-width: 460px;
-  border-left: 1px solid rgba(44, 47, 48, 0.75);
-  font-family:  Arial, Helvetica, sans-serif;
-  font-style: normal;
-  /* font-variation-settings: "slnt" -12; */
-  font-size: 0.9em;
-  line-height: 1.55;
-  color: #000;
-} */
-
-.press-quote p {
   margin: 0;
 }
 
+.press-quote p {
+  font-style: italic;
+}
+
 .press-quote cite {
-  display: block;
-  margin-top: 0.75em;
   font-style: normal;
-  font-size: 0.85em;
-  letter-spacing: 0.02em;
 }
 
 .featured-row .featured-album .album-art {
   box-sizing: border-box;
   width: 440px;
   height: 440px;
-  border: 2px solid rgba(44, 47, 48, 0.897);
+  box-shadow: 0 0 5px rgba(33, 33, 33, 1);
+}
+
+.featured-row .featured-album .album-art:hover {
+  box-shadow: 0 0 15px rgba(33, 33, 33, 1);
 }
 
 #releases .description > * {
-  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
-  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
 
-.featured-row .featured-album .description {
-  margin-top: 0;
-  max-width: 440px;
+/* title block, blurb and credits, beside the cover */
+.featured-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  /* wide enough that the text column ends level with the 440px cover */
+  flex: 1 1 320px;
+  max-width: 450px;
 }
 
-.featured-row .featured-album .description .title {
-  font-size: 1em;
+.featured-info .description > p,
+.featured-info .description > h2 {
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+
+.release-notes {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 0.85em;
+  line-height: 1.55;
+  color: #000;
+}
+
+.release-notes p {
+  margin: 0 0 1em;
+}
+
+.release-credits {
+  list-style: none;
+  margin: 0 0 1em;
+  padding: 0;
+}
+
+/* same look as the .release-group-title headings */
+#releases .featured-info .description .title {
+  margin-bottom: 0.35em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.05em;
+  font-weight: 500;
   font-style: normal;
-  font-variation-settings: "slnt" -12;
+  letter-spacing: 0;
   max-width: 100%;
+}
+
+.featured-info .description .release-meta-line {
+  font-size: 0.85em;
 }
 
 .release-grid-group {
@@ -421,16 +475,13 @@ nav {
 }
 
 /* remixes / compilations / live: ruled text list instead of covers */
-/* same panel as the about page: light fill, chunky border */
 .release-list {
   list-style: none;
   margin: 0;
-  padding: 0.25em 1em;
+  padding: 0.25em 0;
   width: 100%;
   box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(44, 47, 48, 0.897);
-  font-family: "ABC Areal", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 0.9em;
   color: #000;
@@ -440,11 +491,11 @@ nav {
   border-top: 0.5px solid rgba(0, 0, 0, 0.35);
 }
 
-/* columns: title, album, type, label, date, arrow */
+/* columns: title, album, type, label, date */
 .release-head,
 .release-item {
   display: grid;
-  grid-template-columns: 1.6fr 1.3fr 1fr 1fr 0.6fr 1rem;
+  grid-template-columns: 1.6fr 1.3fr 1fr 1fr 0.6fr;
   align-items: baseline;
   gap: 0 0.75rem;
   padding: 0.55rem 0;
@@ -453,29 +504,20 @@ nav {
 }
 
 .release-head {
-  font-family: "ABC Areal Mono", "Courier New", monospace;
+  font-family: "Roboto", sans-serif;
   font-size: 0.7em;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgba(0, 0, 0, 0.55);
 }
 
-.release-head::after {
-  content: "";
+.release-item {
+  transition: color 0.2s ease;
 }
 
-.release-item::after {
-  content: "\2197";
-  justify-self: end;
-  opacity: 0;
-  transform: translate(-4px, 4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.release-item:hover::after,
-.release-item:focus-visible::after {
-  opacity: 1;
-  transform: none;
+.release-item:hover,
+.release-item:focus-visible {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* album / type / label stay grid columns on desktop; on mobile they
@@ -489,7 +531,7 @@ nav {
 }
 
 .release-date {
-  font-family: "ABC Areal Mono", "Courier New", monospace;
+  font-family: "Roboto", sans-serif;
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
 }
@@ -568,8 +610,10 @@ nav {
 .layer.mg {
   z-index: 20;
 }
+/* the "front" layer sits behind the content too, so no particle covers
+   the photos or text */
 .layer.fg {
-  z-index: 40;
+  z-index: 30;
 }
 
 .layer > div {
@@ -619,46 +663,138 @@ nav {
   display: none;
 }
 
-@media only screen and (max-width: 910px) {
-  .featured-row .featured-album .album-art {
-    width: 360px;
-    height: 360px;
-  }
+/* centred single-column layout at every width, like the phone view:
+   cover, then its text, then the stacked release list */
+.releases-inner {
+  max-width: calc(440px + 2 * var(--site-gutter));
+  margin-inline: auto;
+}
 
-  .featured-row .featured-album .description {
-    max-width: 360px;
+.release-group {
+  width: 100%;
+}
+
+.featured-row {
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.featured-info {
+  flex: none;
+  max-width: none;
+}
+
+/* two lines per row: title + date, then the rest */
+/* column headers don't fit the stacked layout */
+.release-head {
+  display: none;
+}
+.release-list > .release-head + li > .release-item {
+  border-top: none;
+}
+.release-item {
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title date"
+    "meta meta";
+  gap: 0.15rem 0.6rem;
+  padding: 0.5rem 0;
+}
+.release-title {
+  grid-area: title;
+}
+.release-date {
+  grid-area: date;
+}
+.release-meta {
+  display: block;
+  grid-area: meta;
+  font-size: 0.85em;
+}
+.release-meta > :empty {
+  display: none;
+}
+.release-meta > :not(:empty) ~ :not(:empty)::before {
+  content: "\00b7\00a0";
+}
+
+/* wide screens: like the live page but mirrored, cover on the left and
+   album info on the right, with the release list across both below. The wrappers are
+   flattened so their children can sit in the grid directly. */
+@media only screen and (min-width: 961px) {
+  .releases-inner {
+    display: grid;
+    grid-template-columns: 440px minmax(0, 1fr);
+    align-items: start;
+    gap: 2.5rem 32px;
+    max-width: calc(var(--page-width) + 2 * var(--site-gutter));
+  }
+  .featured-group,
+  .featured-row {
+    display: contents;
+  }
+  .featured-group > .release-group-title {
+    display: none;
+  }
+  .featured-info {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .release-grid-group {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .featured-album {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .featured-row .featured-album .album-art {
+    width: 440px;
+    height: 440px;
   }
 }
 
-/* hide album art on small screen */
-@media only screen and (max-width: 745px) {
-  #content {
-    min-height: 100vh;
-    min-height: calc((var(--vh, 1vh) * 100) - 120px);
-  }
-  .page {
-    margin: 0 auto; /* center with auto margins */
-    width: 100%;
-    max-width: calc(100% - 24px); /* small side padding */
+/* about: side by side only once the full 600px photo, 32px gap and
+   340px text box fit inside the gutters; any narrower and they stack
+   straight away instead of squishing */
+@media only screen and (min-width: 1036px) {
+  /* photo and text box sit on the column's two edges */
+  #about {
+    max-width: none;
+    width: min(var(--page-width), 100% - 2 * var(--site-gutter));
+    padding: 0;
     box-sizing: border-box;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
   }
-  #releases {
-    padding-left: 0;
-    padding-right: 0;
+  #content #about > * {
+    margin: 0;
   }
-  .releases-inner {
-    width: 100%;
-    padding-inline: var(--site-gutter-sm);
-    /* the old remix grid's two 165px covers + a 0.935rem gap left a
-       small leftover that its items' auto margins split four ways;
-       keep that same offset so everything lines up with it instead
-       of the raw page gutter */
-    --release-lead: calc((100% - 330px - 0.935rem) / 4);
+  /* landscape photo takes the wider share; text box keeps 340px */
+  #about .about-photo {
+    flex: 0 0 600px;
+    width: auto;
   }
-  .album {
-    margin: 1rem auto; /* center with auto margins */
-    width: fit-content;
+  #about .about-info {
+    flex: 0 0 340px;
+    width: auto;
+    /* match the photo's height */
+    align-self: stretch;
+    font-size: 16.2px;
+    /* about a line and a half of space above and below the text */
+    padding-block: 1.7em;
   }
+  #about .about-info > p:first-child {
+    margin-top: 0;
+  }
+  #about .about-info > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 1035px) {
   #about {
     flex-direction: column-reverse;
     justify-content: center;
@@ -671,6 +807,47 @@ nav {
     width: 100%;
     max-width: 340px; /* match original width */
     box-sizing: border-box;
+  }
+}
+
+/* phones: the about boxes fill the column so they start on the
+   same gutter as every other page */
+@media only screen and (max-width: 745px) {
+  .about-photo,
+  .about-info {
+    max-width: none;
+  }
+  #about > * {
+    margin: 1rem 0;
+  }
+}
+
+/* hide album art on small screen */
+@media only screen and (max-width: 745px) {
+  #content {
+    min-height: 100vh;
+    min-height: calc((var(--vh, 1vh) * 100) - 120px);
+  }
+  .page {
+    margin: 0 auto; /* center with auto margins */
+    width: 100%;
+    max-width: calc(100% - 2 * var(--site-gutter-sm));
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  #releases {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .releases-inner {
+    width: 100%;
+    padding-inline: var(--site-gutter-sm);
+    /* everything starts right on the gutter, like the other pages */
+    --release-lead: 0px;
+  }
+  .album {
+    margin: 1rem auto; /* center with auto margins */
+    width: fit-content;
   }
   #releases {
     flex-direction: column;
@@ -706,10 +883,46 @@ nav {
     height: auto;
     aspect-ratio: 1;
   }
-  .featured-row .featured-album .description {
-    max-width: none;
+  /* the cover's link and picture shrink-wrap otherwise, so the 100%
+     above stops short of the right gutter */
+  .featured-album > .cover,
+  .featured-album > .cover > picture {
+    display: block;
+    align-self: stretch;
   }
-  .press-quote {
+  .featured-info {
+    max-width: none;
+    width: calc(100% - 2 * var(--release-lead));
+    margin-left: var(--release-lead);
+  }
+  #content.content-releases .releases-inner {
+    margin-top: 0;
+  }
+  /* contact: the email box sits in the middle of the screen, not of
+     the space under the header (the social links are fixed too) */
+  .contact-info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  /* everything on contact is pinned, so it's exactly one screen with
+     nothing to scroll */
+  body.contact-active {
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+  }
+  body.contact-active #content {
+    min-height: 0;
+  }
+  /* and no rubber-band bounce dragging the pinned box around */
+  html:has(body.contact-active),
+  body.contact-active {
+    overscroll-behavior: none;
+  }
+  /* the hidden EP label would still hold space above the cover */
+  .featured-group > .release-group-title {
     display: none;
   }
   .release-list {
@@ -717,79 +930,146 @@ nav {
     align-self: stretch;
     margin-inline: var(--release-lead);
   }
-  /* two lines per row: title + date, then the rest */
-  /* column headers don't fit the stacked layout */
-  .release-head {
-    display: none;
-  }
-  .release-list > .release-head + li > .release-item {
-    border-top: none;
-  }
-  .release-item {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "title date"
-      "meta meta";
-    gap: 0.15rem 0.6rem;
-    padding: 0.5rem 0;
-  }
-  .release-item::after {
-    display: none;
-  }
-  .release-title {
-    grid-area: title;
-  }
-  .release-date {
-    grid-area: date;
-  }
-  .release-meta {
-    display: block;
-    grid-area: meta;
-    font-size: 0.85em;
-  }
-  .release-meta > :empty {
-    display: none;
-  }
-  .release-meta > :not(:empty) ~ :not(:empty)::before {
-    content: "\00b7\00a0";
-  }
   .main-nav {
     display: none;
   }
   #mobile-menu {
     display: block;
+    /* the icon's lines sit 12px inside its box; this puts them on
+       the right gutter */
+    margin-right: calc(var(--site-gutter-sm) - 12px);
   }
   #mobile-title {
     display: block;
   }
-  #mobile-toggle:checked ~ .main-nav {
-    display: flex !important;
+  /* page headers (Releases, About...) use the mobile nav's Degular
+     (Adobe Fonts kit); only the Bénédicte wordmark on home keeps
+     Lapicide */
+  body:not(.home-active) #mobile-title {
+    margin-left: var(--site-gutter-sm);
+    font-family: "degular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  .mobile-home {
-    display: block;
+  /* open menu: one centred column as wide as the Bénédicte wordmark,
+     with the page links left-aligned under it */
+  #mobile-toggle:checked ~ .main-nav {
+    display: grid !important;
   }
   .main-nav .logo {
-    display: none;
+    order: -1;
+    margin: 0;
+  }
+  .main-nav > li.logo > a {
+    font-size: 48px;
   }
   .main-nav {
-    flex-direction: column !important; /* change the direction of the container */
-    background-color: black;
+    grid-auto-rows: min-content;
+    justify-content: center;
+    align-content: center;
+    row-gap: 1rem;
+    background-color: #dedede;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
-    justify-content: space-evenly;
     position: absolute;
   }
   .main-nav > li > a {
-    flex-direction: column !important;
     font-size: 2em;
-    text-transform: uppercase;
-    color: white;
-    text-align: center;
+    color: #000;
+    text-align: left;
     padding: 0;
     margin: 0;
   }
+  /* home: one screen tall, the title at the top, the page links in a
+     row at the bottom and the framed photo filling the space between.
+     The nav's box is dropped so its pieces join #content in one
+     column. */
+  body.home-active {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+  }
+  body.home-active nav {
+    display: contents;
+  }
+  body.home-active #mobile-title {
+    order: 0;
+    margin: 20px 0 0 20px;
+    /* "Bénédicte" is 4.49em wide in Lapicide, so this spans the frame
+       inside the 20px insets */
+    font-size: calc((100vw - 40px) / 4.6);
+    line-height: 1;
+  }
+  /* the photo takes the height left between title and links, at the
+     same width as before (10px from each side), cropped to fit */
+  body.home-active #content {
+    order: 1;
+    flex: 1 1 0;
+    min-height: 0;
+    margin: 0;
+    padding: 14px 10px;
+    box-sizing: border-box;
+    align-items: stretch;
+  }
   #home {
     padding-inline: 0;
+  }
+  body.home-active #home {
+    display: flex;
+    min-height: 0;
+  }
+  #home .feature {
+    flex: 1;
+    align-items: stretch;
+    box-shadow: 0 0 5px rgba(33, 33, 33, 1);
+  }
+  #home .feature picture {
+    display: contents;
+  }
+  #home .feature .feature-album {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: 55% center;
+    box-shadow: none;
+  }
+  /* the hamburger only returns home, so it's pointless here */
+  body.home-active #mobile-menu {
+    display: none;
+  }
+  /* the links in one row along the bottom, spread across the page */
+  body.home-active .main-nav {
+    order: 2;
+    /* in the flow, not the old overlay menu's absolute positioning */
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0 20px 22px;
+    background: none;
+  }
+  body.home-active .main-nav > .logo,
+  body.home-active .main-nav > .mobile-home {
+    display: none;
+  }
+  body.home-active .main-nav > li > a {
+    color: #000;
+    font-family: "degular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 7vw;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+    padding: 0;
+    margin: 0;
   }
   #home .feature {
     /* pointer-events: none; - Commented out to allow clicking on mobile */

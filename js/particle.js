@@ -370,7 +370,7 @@ const testy = (() => {
     G_POINT_RADIUS = 10,
     G_POINT_RADIUS_LIMITS = 65;
 
-  let mouse = new Vector(),
+  let mouse = new Vector(-9999, -9999),
     gravities = [],
     particles = [],
     imgs = [],
@@ -478,7 +478,7 @@ const testy = (() => {
     gpEls.push(gpEl)
 
     let gp = new GravityPoint(mouse.x, mouse.y, G_POINT_RADIUS, {
-      particles: particles,
+      particles: [],
       gravities: gravities,
       field: field,
     })
@@ -499,21 +499,11 @@ const testy = (() => {
     let particles = particleContainer.getElementsByClassName(className)
     addParticle(particles)
   }
-  // novas behind
-  generateParticles("stars", "particle star s", 10)
-  generateParticles("stars", "particle star m", 10)
+  // white sparkles only (no dark dots)
+  generateParticles("stars", "particle star s", 60)
+  generateParticles("stars", "particle star m", 28)
   generateParticles("stars", "particle star l", 10)
-  generateParticles("dots", "particle dot s", 15)
-  generateParticles("dots", "particle dot m", 20)
-  generateParticles("dots", "particle dot l", 25)
-
-  // novas infront
-  generateParticles("stars", "particle star s", 15, "nova-top")
-  generateParticles("stars", "particle star m", 10, "nova-top")
-  generateParticles("stars", "particle star l", 5, "nova-top")
-  generateParticles("dots", "particle dot s", 15, "nova-top")
-  generateParticles("dots", "particle dot m", 10, "nova-top")
-  generateParticles("dots", "particle dot l", 5, "nova-top")
+  generateParticles("stars", "particle star s", 30, "nova-top")
 
   // Functions
   function addParticle(imgs) {
@@ -551,6 +541,8 @@ const testy = (() => {
   imgs = document.getElementsByClassName("nova")
   addParticle(imgs);
   window.addEventListener('mousemove', mouseMove, false);
+  // pointer leaves the window: let every particle settle back home
+  document.addEventListener('mouseleave', function () { mouse.set(-9999, -9999) }, false);
   // Init
   window.addEventListener('resize', resize, false);
   window.addEventListener('mousedown', mouseDown, false);
@@ -558,6 +550,54 @@ const testy = (() => {
   window.addEventListener('touchmove', touchMove, false);
   // canvas.addEventListener('mouseup', mouseUp, false);
   // canvas.addEventListener('dblclick', doubleClick, false);
+
+  /**
+   * Still spiral: particles are placed once along a few curved arms of a
+   * logarithmic spiral centred on the screen, and stay put until the
+   * pointer comes near; then they drift aside and ease back home. Home
+   * spots are recomputed from the window size each frame, so the spiral
+   * re-centres when the window is resized.
+   */
+  let SPIRAL_ARMS = 4, // number of curved arms
+    SPIRAL_TWIST = 1.6, // how tightly the arms curl (bigger = tighter)
+    SPIRAL_JITTER = 0.05, // how far a particle sits off its arm (radians)
+    HOVER_RADIUS = 140, // how close the pointer must be to move a particle (px)
+    HOVER_PUSH = 60, // how far a particle is pushed at most (px)
+    HOVER_EASE = 0.06; // how quickly particles move away and settle back
+
+  function windStep(t) {}
+
+  function windUpdate(p) {
+    let cx = screenWidth / 2,
+      cy = screenHeight / 2,
+      maxRadius = Math.hypot(screenWidth, screenHeight) / 2;
+    // first frame: pick an arm and a spot along it (as a share of the
+    // screen, so it scales with the window)
+    if (p._arm === undefined) {
+      p._arm = Math.floor(Math.random() * SPIRAL_ARMS);
+      p._jitter = (Math.random() - 0.5) * 2 * SPIRAL_JITTER;
+      p._reach = 0.05 + Math.random() * 0.95;
+    }
+    let r = 40 + p._reach * maxRadius,
+      angle = (p._arm / SPIRAL_ARMS) * Math.PI * 2
+        + SPIRAL_TWIST * Math.log(r)
+        + p._jitter;
+    let home = new Vector(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r),
+      target = home.clone();
+
+    // pointer nearby: push the target away from it, more strongly when closer
+    let away = Vector.sub(home, mouse), dist = away.length();
+    if (dist && dist < HOVER_RADIUS) {
+      let strength = 1 - dist / HOVER_RADIUS;
+      target.add(away.scale(strength * strength * HOVER_PUSH / dist));
+    }
+
+    if (p._placed) p.lerp(target, HOVER_EASE);
+    else {
+      p.set(home);
+      p._placed = true;
+    }
+  }
 
   // Start Update
   let loop = function () {
@@ -620,9 +660,10 @@ const testy = (() => {
     // bufferCtx.lineWidth = PARTICLE_RADIUS * 2;
     // bufferCtx.beginPath();
 
+    windStep(performance.now());
     for (i = 0; i < len; i++) {
       p = particles[i];
-      p.update();
+      windUpdate(p);
       imgs[i].setAttribute("style", `transform: translate(${p.x}px, ${p.y}px);`);
       // bufferCtx.moveTo(p.x, p.y);
       // bufferCtx.lineTo(p._latest.x, p._latest.y);

@@ -12,18 +12,22 @@
     <meta name="language" content="English">
 
     <title>Bénédicte</title>
+    <!-- Adobe Fonts kit: Degular (menu font audition) -->
+    <link rel="stylesheet" href="https://use.typekit.net/xgl6okp.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="shortcut icon" href="assets/images/favicons/favicon.ico" />
-    <!-- Preload critical fonts for faster initial render -->
-    <link rel="preload" href="css/lapicide-light-webfont.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="assets/fonts/ABCArealSuperfamilyVariable.woff2" as="font" type="font/woff2" crossorigin />
     <!-- DNS prefetch for external domains -->
     <link rel="dns-prefetch" href="//ffm.to" />
     <link rel="dns-prefetch" href="//bandcamp.com" />
     <link rel="dns-prefetch" href="//instagram.com" />
     <link rel="dns-prefetch" href="//facebook.com" />
     <link rel="dns-prefetch" href="//soundcloud.com" />
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=48" />
-    <link rel="stylesheet" type="text/css" href="css/live.css?v=14" />
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=81" />
+    <link rel="stylesheet" type="text/css" href="css/live.css?v=17" />
     <!-- JavaScript -->
     <script src="js/shows.js?v=1" defer></script>
     <script>
@@ -118,7 +122,8 @@
       <section class="page hidden" id="releases">
         <div class="releases-inner">
           <div class="release-group featured-group">
-            <h2 class="release-group-title">EP</h2>
+            <!-- EP label hidden for now; visibility keeps the space so nothing shifts -->
+            <h2 class="release-group-title" style="visibility: hidden">EP</h2>
             <div class="featured-row">
               <article class="album featured-album">
                 <a
@@ -139,18 +144,24 @@
                     />
                   </picture>
                 </a>
-                <div class="description">
-                  <h3 class="title">When It Binds</h3>
-                  <p class="artist">Bénédicte</p>
-                  <p class="label">Blueberry Records</p>
-                  <p class="date">02.26.2021</p>
-                </div>
               </article>
-              <!-- <blockquote class="press-quote">
-                <p>When It Binds serves as Bénédicte’s personal exploration of what happens after an emotional connection is established with someone. How does this change who we are? How are our emotional landscapes altered with this new form of inter-subjectivity? Each song on the album is a different and searching sonic interpretation of these questions and a response to ever-changing emotional shifts.
-</p>
-               <cite>&mdash; Daryl Keating for Exclaim!</cite> -->
-              <!-- </blockquote> --> 
+              <div class="featured-info">
+                <div class="description">
+                  <h2 class="title">When It Binds</h2>
+                  <p class="release-meta-line">Blueberry Records</p>
+                  <p class="release-meta-line">26.02.2021</p>
+                </div>
+                <div class="release-notes">
+                  <p><em>When It Binds</em> is a collection of songs composed over 3 years, and serves as Bénédicte’s personal exploration of what happens after an emotional connection is established with someone. How does this change who we are? How are our emotional landscapes altered with this new form of inter-subjectivity? Each song on the album is a different and searching sonic interpretation of these questions and a response to ever-changing emotional shifts.</p>
+                  <ul class="release-credits">
+                    <li>Written, produced and mixed by Bénédicte</li>
+                    <li>Production on "Drift" by Bénédicte and XGLARE</li>
+                  </ul>
+                  <blockquote class="press-quote">
+                    <p>Through field recordings and severed vocal samples, she creates a restrained world, rife with feeling, and lifted skyward with soaring ambient columns. Coming across her music is like finding an entirely new species in your backyard. <cite>&mdash; Daryl Keating for Exclaim!</cite></p>
+                  </blockquote>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -172,7 +183,7 @@
                     <span class="release-type">Remix</span>
                     <span class="release-label">Mothland</span>
                   </span>
-                  <span class="release-date">07.17.2026</span>
+                  <span class="release-date">17.07.2026</span>
                 </a>
               </li>
               <li>
@@ -194,7 +205,7 @@
                     <span class="release-type">Live</span>
                     <span class="release-label"></span>
                   </span>
-                  <span class="release-date">09.22.2022</span>
+                  <span class="release-date">22.09.2022</span>
                 </a>
               </li>
               <li>
@@ -205,7 +216,7 @@
                     <span class="release-type">Compilation</span>
                     <span class="release-label">Causal Chain</span>
                   </span>
-                  <span class="release-date">04.06.2021</span>
+                  <span class="release-date">06.04.2021</span>
                 </a>
               </li>
               <li>
@@ -216,7 +227,7 @@
                     <span class="release-type">Compilation</span>
                     <span class="release-label">Blueberry Records</span>
                   </span>
-                  <span class="release-date">06.05.2020</span>
+                  <span class="release-date">05.06.2020</span>
                 </a>
               </li>
               <li>
@@ -227,7 +238,7 @@
                     <span class="release-type">Compilation</span>
                     <span class="release-label">Raven's Vision</span>
                   </span>
-                  <span class="release-date">02.20.2020</span>
+                  <span class="release-date">20.02.2020</span>
                 </a>
               </li>
             </ul>
@@ -240,17 +251,18 @@
         <div class="about-info">
           <p>
             Bénédicte is the musical project of Montreal-based producer
-            and sound artist Maxime Gordon. In her music she carefully 
-            crafts and combines soaring synths, 
-            distorted field-recordings and glittering 
-            vocal samples to explore moments of introspection and feeling. 
-            She has performed at venues and festivals across North America 
-            and Europe such as Mutek (Montreal), Eastern Bloc (Montreal), 
-            Glory Affairs (Prague) and OIIOIOOI (Stadt Wehlen).
+            and sound artist Maxime Gordon. In her music, she carefully
+            crafts and combines soaring synths,
+            distorted field recordings and glittering
+            vocal samples to explore moments of introspection and feeling.
+            She has performed at venues and festivals across North America
+            and Europe, including MUTEK (Montreal), PHI (Montreal),
+            SAT (Montreal), Punctum (Prague) and CULTVR (Wales), and has
+            shared bills with ML Buch, Malibu and BABii.
           </p>
           <p>
-            In 2021 she released the EP When It Binds on Blueberry
-            Records. When It Binds is a collection of songs that serves as 
+            In 2021, she released the EP <em>When It Binds</em> on Blueberry
+            Records. <em>When It Binds</em> is a collection of songs that serves as 
             Bénédicte’s personal exploration of what
             happens after an emotional connection is established with someone.
           </p>
@@ -297,7 +309,6 @@
     </div>
     <div class="live-image-section">
       <picture><source srcset="assets/images/Live/Frame%20379-400.webp 400w, assets/images/Live/Frame%20379-520.webp 520w, assets/images/Live/Frame%20379-800.webp 800w" sizes="(max-width: 520px) calc(100vw - 24px), 380px" type="image/webp" /><img loading="lazy" decoding="async" width="520" height="508" src="assets/images/Live/Frame 379.png" alt="Live image 379" /></picture>
-      <picture><img loading="lazy" decoding="async" src="assets/images/Live/Sight_Sound_June2026_Live-650.jpg" srcset="assets/images/Live/Sight_Sound_June2026_Live-650.jpg 650w, assets/images/Live/Sight_Sound_June2026_Live-1300.jpg 1300w" sizes="380px" alt="Sight+Sound 2026" /></picture>
       <picture><source srcset="assets/images/Live/Frame%20378-400.webp 400w, assets/images/Live/Frame%20378-520.webp 520w, assets/images/Live/Frame%20378-800.webp 800w" sizes="(max-width: 520px) calc(100vw - 24px), 380px" type="image/webp" /><img loading="lazy" decoding="async" width="520" height="390" src="assets/images/Live/Frame 378.png" alt="Live image 378" /></picture>
       <picture><source srcset="assets/images/Live/Frame%20381-400.webp 400w, assets/images/Live/Frame%20381-520.webp 520w, assets/images/Live/Frame%20381-800.webp 800w" sizes="(max-width: 520px) calc(100vw - 24px), 380px" type="image/webp" /><img loading="lazy" decoding="async" width="520" height="390" src="assets/images/Live/Frame 381.png" alt="Live image 381" /></picture>
       <picture><source srcset="assets/images/Live/Frame%20382-400.webp 400w, assets/images/Live/Frame%20382-520.webp 520w, assets/images/Live/Frame%20382-800.webp 800w" sizes="(max-width: 520px) calc(100vw - 24px), 380px" type="image/webp" /><img loading="lazy" decoding="async" width="520" height="390" src="assets/images/Live/Frame 382.png" alt="Live image 382" /></picture>
@@ -401,7 +412,7 @@
       </div>
     </div>
 
-    <script src="js/particle.js?v=1"></script>
+    <script src="js/particle.js?v=13"></script>
     -->
     <script>
       // set mobile viewport
@@ -460,6 +471,9 @@
         } else {
           contentEl.classList.remove("content-live")
         }
+        contentEl.classList.toggle("content-releases", activePage === "releases")
+        document.body.classList.toggle("home-active", activePage === "home")
+        document.body.classList.toggle("contact-active", activePage === "contact")
 
         // Update URL
         if (pushToHistory) {
@@ -503,6 +517,19 @@
       if (activePage === "live") {
         contentEl.classList.add("content-live")
       }
+      contentEl.classList.toggle("content-releases", activePage === "releases")
+      document.body.classList.toggle("home-active", activePage === "home")
+      document.body.classList.toggle("contact-active", activePage === "contact")
+
+      // the hamburger goes back to the home splash, which lists the
+      // page links, instead of opening the menu overlay
+      document.querySelector("#mobile-menu").addEventListener("click", (event) => {
+        event.preventDefault()
+        document.body.classList.remove("no-scroll")
+        mobileMenuToggle.checked = false
+        navigateToPage("home")
+        window.scrollTo(0, 0)
+      })
 
       mobileMenuToggle.addEventListener("change", (event) => {
         console.log(`input changed to: ${event.target.checked}`)
